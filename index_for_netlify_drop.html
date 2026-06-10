@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yoga Space — Мясницкая</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; }
+        body { background: #fdf6f0; font-family: 'Montserrat', Arial, sans-serif; }
+
+        .header {
+            background: #5C6937;
+            padding: 12px 28px;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 24px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            background: transparent;
+            color: rgba(255,255,255,0.65);
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Montserrat', Arial, sans-serif;
+        }
+
+        .btn:hover {
+            border-color: rgba(255,255,255,0.4);
+            color: rgba(255,255,255,0.85);
+        }
+
+        .btn.active {
+            background: #CAE7FB;
+            color: #5C6937;
+            border-color: #CAE7FB;
+        }
+
+        .content {
+            width: 100%;
+            height: calc(100vh - 50px);
+            display: none;
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .empty-section {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            color: #999;
+            font-size: 24px;
+            flex-direction: column;
+            gap: 20px;
+            background: linear-gradient(135deg, #fdf6f0 0%, #f5f0e8 100%);
+        }
+
+        .empty-icon {
+            font-size: 80px;
+            opacity: 0.3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <button class="btn active" onclick="showSection('report', this)">📊 Еженедельный отчет</button>
+    <button class="btn" onclick="showSection('promos', this)">🎁 Статистика промокодов</button>
+    <button class="btn" onclick="showSection('reviews', this)">⭐ Отзывы клиентов</button>
+</div>
+
+<div id="report" class="content active">
+    <iframe src="https://myasnitskaya-studio.netlify.app/" title="Еженедельный отчет — Мясницкая"></iframe>
+</div>
+
+<div id="promos" class="content">
+    <iframe src="http://fantastic-flan-c5254b.netlify.app/" title="Статистика промокодов"></iframe>
+</div>
+
+<div id="reviews" class="content">
+    <div class="empty-section">
+        <div class="empty-icon">⭐</div>
+        <div>Отзывы клиентов в разработке</div>
+    </div>
+</div>
+
+<script>
+function showSection(id, btn) {
+    // Скрыть все разделы
+    document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+    // Убрать активный класс со всех кнопок
+    document.querySelectorAll('.btn').forEach(el => el.classList.remove('active'));
+
+    // Показать выбранный раздел
+    document.getElementById(id).classList.add('active');
+    // Добавить активный класс кнопке
+    btn.classList.add('active');
+}
+</script>
+
+</body>
+</html>
