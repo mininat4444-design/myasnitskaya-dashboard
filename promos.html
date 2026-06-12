@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Yoga Space — Промокоды</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Основная палитра из брендбука */
+    --cream:    #fdf6f0;
+    --orange:   #f0803b;
+    --green:    #5c6937;
+    --blue:     #cae7fb;
+    --text:     #5c6937;
+    --muted:    #a5a09d;
+    --border:   rgba(92,105,55,0.12);
+
+    /* Фоны для месяцев */
+    --march-bg: rgba(240,128,59,0.08);
+    --april-bg: rgba(92,105,55,0.08);
+    --may-bg:   rgba(162,185,201,0.15);
+
+    /* Доп. палитра */
+    --green-mid: #7c8760;
+    --blue-mid:  #a2b9c9;
+    --peach:     #f9c1a0;
+    --sage:      #aeb49c;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+  body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    min-height: 100vh;
+    padding-bottom: 60px;
+  }
+
+  /* ─── HEADER ─── */
+  header {
+    background: var(--green);
+    padding: 22px 20px 18px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .header-inner { display: flex; justify-content: space-between; align-items: flex-end; }
+  .brand {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: rgba(253,246,240,0.5);
+    margin-bottom: 5px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .brand::before {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='rgba(253,246,240,0.5)' stroke-width='1.2'%3E%3Cellipse cx='12' cy='12' rx='9' ry='9'/%3E%3Cellipse cx='12' cy='12' rx='9' ry='3.5' transform='rotate(-30 12 12)'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    flex-shrink: 0;
+  }
+  h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 30px;
+    font-weight: 300;
+    color: var(--cream);
+    line-height: 1;
+    letter-spacing: 0.02em;
+  }
+  h1 em { font-style: italic; color: var(--peach); }
+  .period-badge {
+    font-family: 'Jost', sans-serif;
+    font-size: 9px;
+    font-weight: 400;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: rgba(253,246,240,0.65);
+    border: 1px solid rgba(253,246,240,0.2);
+    border-radius: 20px;
+    padding: 5px 12px;
+    white-space: nowrap;
+  }
+
+  /* ─── KPI ─── */
+  .kpi-scroll {
+    display: flex;
+    gap: 10px;
+    padding: 18px 16px 4px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .kpi-scroll::-webkit-scrollbar { display: none; }
+  .kpi {
+    background: white;
+    border-radius: 14px;
+    padding: 16px 18px 14px;
+    min-width: 155px;
+    flex-shrink: 0;
+    scroll-snap-align: start;
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  .kpi::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 2px;
+  }
+  .kpi.orange::after { background: var(--orange); }
+  .kpi.olive::after  { background: var(--green); }
+  .kpi.blue::after   { background: var(--blue-mid); }
+  .kpi-label {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 7px;
+    font-weight: 400;
+  }
+  .kpi-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 44px;
+    font-weight: 300;
+    line-height: 1;
+    color: var(--green);
+  }
+  .kpi-value sub { font-size: 11px; font-family: 'Jost', sans-serif; color: var(--muted); }
+  .kpi-value.sm { font-size: 20px; padding-top: 6px; line-height: 1.35; font-weight: 400; }
+  .kpi-sub { margin-top: 7px; font-size: 9px; color: var(--muted); display: flex; gap: 8px; flex-wrap: wrap; letter-spacing: 0.05em; }
+  .kpi-sub .m  { color: var(--orange); }
+  .kpi-sub .a  { color: var(--green); }
+  .kpi-sub .my { color: var(--blue-mid); }
+
+  /* ─── SECTION TITLE ─── */
+  .section-title {
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 20px 16px 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 400;
+  }
+
+  /* ─── MONTH TABS ─── */
+  .month-tabs {
+    display: flex;
+    gap: 0;
+    margin: 0 16px 16px;
+    background: white;
+    border-radius: 12px;
+    padding: 4px;
+    border: 1px solid var(--border);
+    position: sticky;
+    top: 72px;
+    z-index: 90;
+    box-shadow: 0 2px 12px rgba(92,105,55,0.08);
+  }
+  .month-tab {
+    flex: 1;
+    text-align: center;
+    padding: 9px 4px;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-radius: 9px;
+    cursor: pointer;
+    transition: all 0.22s;
+    user-select: none;
+    font-weight: 400;
+  }
+  .month-tab.active-march  { background: var(--orange);  color: white; }
+  .month-tab.active-april  { background: var(--green);   color: white; }
+  .month-tab.active-may    { background: var(--blue-mid); color: white; }
+  .month-tab.active-charts { background: var(--green);   color: white; }
+
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+
+  /* ─── CHARTS ─── */
+  .chart-card {
+    background: white;
+    margin: 0 16px 12px;
+    border-radius: 14px;
+    padding: 18px 16px;
+    border: 1px solid var(--border);
+  }
+  .chart-title {
+    font-size: 9px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-weight: 400;
+  }
+  .bar-row { display: flex; align-items: center; gap: 8px; margin-bottom: 8px; }
+  .bar-label { font-size: 10px; color: var(--muted); width: 120px; flex-shrink: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .bar-track { flex: 1; height: 6px; background: var(--cream); border-radius: 3px; overflow: hidden; }
+  .bar-fill { height: 100%; border-radius: 3px; transition: width 1.2s cubic-bezier(0.16,1,0.3,1); width: 0; }
+  .bar-num { font-size: 12px; color: var(--green); width: 22px; text-align: right; flex-shrink: 0; font-weight: 400; }
+  .orange-bar .bar-fill { background: var(--orange); }
+  .olive-bar  .bar-fill { background: var(--green); }
+  .blue-bar   .bar-fill { background: var(--blue-mid); }
+
+  /* ─── MONTH PILL ─── */
+  .month-pill {
+    display: inline-block;
+    font-size: 8px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+    margin-top: 14px;
+    font-weight: 400;
+  }
+  .month-pill.march { background: var(--march-bg); color: var(--orange); }
+  .month-pill.april { background: var(--april-bg); color: var(--green); }
+  .month-pill.may   { background: var(--may-bg);   color: var(--blue-mid); }
+
+  /* ─── PARTNER CARDS ─── */
+  .partner-card {
+    background: white;
+    margin: 0 16px 10px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .partner-card.active-m  { border-color: rgba(240,128,59,0.3); }
+  .partner-card.active-a  { border-color: rgba(92,105,55,0.25); }
+  .partner-card.active-my { border-color: rgba(162,185,201,0.5); }
+  .partner-header {
+    padding: 15px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    user-select: none;
+  }
+  .partner-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 19px;
+    font-weight: 300;
+    color: var(--green);
+    line-height: 1.1;
+    letter-spacing: 0.01em;
+  }
+  .partner-promo {
+    font-size: 9px;
+    color: var(--muted);
+    margin-top: 2px;
+    letter-spacing: 0.08em;
+    font-family: 'Jost', sans-serif;
+  }
+  .partner-total {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    font-weight: 300;
+    flex-shrink: 0;
+    margin-left: 12px;
+    line-height: 1;
+  }
+  .partner-total.march-col { color: var(--orange); }
+  .partner-total.april-col { color: var(--green); }
+  .partner-total.may-col   { color: var(--blue-mid); }
+  .partner-total.zero { font-size: 20px; color: rgba(92,105,55,0.15); }
+  .partner-chevron {
+    font-size: 9px;
+    color: var(--muted);
+    margin-left: 8px;
+    transition: transform 0.25s;
+    flex-shrink: 0;
+    opacity: 0.5;
+  }
+  .partner-card.open .partner-chevron { transform: rotate(180deg); }
+  .partner-body {
+    display: none;
+    padding: 0 16px 16px;
+    border-top: 1px solid var(--border);
+  }
+  .partner-card.open .partner-body { display: block; }
+
+  .month-block { margin-top: 14px; }
+  .month-label {
+    font-size: 8px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-weight: 400;
+  }
+  .month-label.march { color: var(--orange); }
+  .month-label.april { color: var(--green); }
+  .month-label.may   { color: var(--blue-mid); }
+  .month-label::before {
+    content: '';
+    display: inline-block;
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: currentColor;
+    flex-shrink: 0;
+  }
+
+  .studio-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 6px; }
+  .studio-cell {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 11px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    border: 1px solid transparent;
+  }
+  .studio-cell.has-value.march { background: var(--march-bg); border-color: rgba(240,128,59,0.12); }
+  .studio-cell.has-value.april { background: var(--april-bg); border-color: rgba(92,105,55,0.1); }
+  .studio-cell.has-value.may   { background: var(--may-bg);   border-color: rgba(162,185,201,0.2); }
+  .studio-cell-name {
+    font-size: 8px;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    font-weight: 400;
+  }
+  .studio-cell-val {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1;
+  }
+  .studio-cell.has-value.march .studio-cell-val { color: var(--orange); }
+  .studio-cell.has-value.april .studio-cell-val { color: var(--green); }
+  .studio-cell.has-value.may   .studio-cell-val { color: var(--blue-mid); }
+  .studio-cell:not(.has-value) .studio-cell-val { color: rgba(92,105,55,0.15); font-size: 16px; }
+
+  .no-sales {
+    text-align: center;
+    padding: 14px 0 4px;
+    font-size: 10px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+  }
+
+  /* ─── DIVIDER LINE ─── */
+  .thin-divider {
+    height: 1px;
+    background: var(--border);
+    margin: 4px 16px 0;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    text-align: center;
+    font-size: 8px;
+    letter-spacing: 0.28em;
+    color: var(--muted);
+    padding: 28px 16px 8px;
+    opacity: 0.5;
+    font-weight: 400;
+    text-transform: uppercase;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <div>
+      <div class="brand">Yoga Space</div>
+      <h1>Промо<em>коды</em></h1>
+    </div>
+    <div class="period-badge">МАР — МАЙ 2026</div>
+  </div>
+</header>
+
+<div class="kpi-scroll">
+  <div class="kpi orange">
+    <div class="kpi-label">Всего продаж</div>
+    <div class="kpi-value" id="kpi-total">—</div>
+    <div class="kpi-sub" id="kpi-total-sub"></div>
+  </div>
+  <div class="kpi olive">
+    <div class="kpi-label">Активных</div>
+    <div class="kpi-value" id="kpi-active">—</div>
+    <div class="kpi-sub" id="kpi-active-sub"></div>
+  </div>
+  <div class="kpi orange">
+    <div class="kpi-label">Топ март</div>
+    <div class="kpi-value sm" id="kpi-top-m">—</div>
+    <div class="kpi-sub" id="kpi-top-m-sub"></div>
+  </div>
+  <div class="kpi olive">
+    <div class="kpi-label">Топ апрель</div>
+    <div class="kpi-value sm" id="kpi-top-a">—</div>
+    <div class="kpi-sub" id="kpi-top-a-sub"></div>
+  </div>
+  <div class="kpi blue">
+    <div class="kpi-label">Топ май</div>
+    <div class="kpi-value sm" id="kpi-top-my">—</div>
+    <div class="kpi-sub" id="kpi-top-my-sub"></div>
+  </div>
+</div>
+
+<div class="section-title" style="padding-top:16px"><span>Просмотр по месяцам</span></div>
+
+<div class="month-tabs">
+  <div class="month-tab active-march" id="tab-btn-march"  onclick="switchTab('march')">Март</div>
+  <div class="month-tab"              id="tab-btn-april"  onclick="switchTab('april')">Апрель</div>
+  <div class="month-tab"              id="tab-btn-may"    onclick="switchTab('may')">Май</div>
+  <div class="month-tab"              id="tab-btn-charts" onclick="switchTab('charts')">Графики</div>
+</div>
+
+<div class="tab-content active" id="tab-march"></div>
+<div class="tab-content"        id="tab-april"></div>
+<div class="tab-content"        id="tab-may"></div>
+
+<div class="tab-content" id="tab-charts">
+  <div class="chart-card">
+    <div class="chart-title">Продажи по партнёрам — итого</div>
+    <div id="promo-bars" class="orange-bar"></div>
+  </div>
+  <div class="chart-card">
+    <div class="chart-title">Продажи по студиям</div>
+    <div class="month-pill march">Март</div>
+    <div id="bars-m" class="orange-bar"></div>
+    <div class="month-pill april">Апрель</div>
+    <div id="bars-a" class="olive-bar"></div>
+    <div class="month-pill may">Май</div>
+    <div id="bars-my" class="blue-bar"></div>
+  </div>
+</div>
+
+<footer>Yoga Space · Промокоды · Март — Май 2026</footer>
+
+<script>
+const data = [
+  ['Лукойл','lukoil',[0,0,0,0],[0,0,0,0],[0,0,1,0]],
+  ['Банк Точка','Tochka',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['ПИК','Pik',[0,0,0,0],[0,0,0,0],[1,0,0,0]],
+  ['музей Гараж','Garage',[2,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['The Cultt','Cultt',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['МГМУ Сеченова','Sechenov',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Ailove','Ailove',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Сбер здоровье','Sber',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['ВТБ private banking','Familyyoga15',[1,1,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Издательство МИФ','mif',[0,0,0,0],[0,1,0,0],[0,0,0,0]],
+  ['Evrone','evrone',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Rebellion','Rebellion',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Яндекс','МА - сотр. яндекс',[5,3,1,0],[9,2,2,0],[9,6,4,0]],
+  ['Игроник','Igronik',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Selecty (ИТ)','selecty',[0,0,0,0],[1,0,0,0],[0,0,0,0]],
+  ['Aston (ИТ)','Aston',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Щука (медиа)','Pike',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Перспектива','Perspektiva',[0,0,0,0],[0,1,0,0],[0,0,0,0]],
+  ['Rivka','Rivka',[0,0,0,2],[0,0,0,3],[0,0,0,3]],
+  ['Gotcha','Gotcha',[0,0,0,0],[0,0,0,0],[0,0,0,3]],
+  ['Ядро','Yadro',[0,0,0,0],[0,0,0,0],[8,0,0,0]],
+  ['Кофейня Зое','Zoe',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Золотое яблоко','SPACE APPLE 108',[1,0,0,0],[0,0,1,0],[0,0,4,0]],
+  ['Рекламное агентство','BBDO',[2,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Москвич','МА - Москвич',[1,0,0,0],[4,0,0,0],[3,0,0,0]],
+  ['Кафе Салют ДМ','salute15',[0,0,0,0],[0,0,0,0],[1,0,0,0]],
+  ['Popmeal','popmeal',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Метеорит','Meteorite',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Диасофт','Diasoft',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+];
+
+const studios = ['Дмитровка','Мясницкая','Никитская','Чернышевская'];
+const sum = a => a.reduce((t,v)=>t+v,0);
+
+let tM=[0,0,0,0], tA=[0,0,0,0], tMy=[0,0,0,0];
+let actM=0, actA=0, actMy=0;
+
+function studioGrid(arr, cls) {
+  return studios.map((st,i)=>`
+    <div class="studio-cell${arr[i]>0?' has-value '+cls:''}">
+      <div class="studio-cell-name">${st.substring(0,4)}.</div>
+      <div class="studio-cell-val">${arr[i]>0?arr[i]:'—'}</div>
+    </div>`).join('');
+}
+
+function buildList(containerId, monthIdx, monthCls, totalCls, activeCardCls, noSalesText) {
+  const container = document.getElementById(containerId);
+  const sorted = [...data].sort((a,b)=>sum(b[monthIdx])-sum(a[monthIdx]));
+  sorted.forEach(([co, pr, ...months]) => {
+    const arr = months[monthIdx-2];
+    const s = sum(arr);
+    const card = document.createElement('div');
+    card.className = `partner-card${s>0?' '+activeCardCls:''}`;
+    card.innerHTML = `
+      <div class="partner-header" onclick="toggleCard(this)">
+        <div>
+          <div class="partner-name">${co}</div>
+          <div class="partner-promo">${pr}</div>
+        </div>
+        <div style="display:flex;align-items:center">
+          <div class="partner-total ${s>0?totalCls:'zero'}">${s>0?s:'—'}</div>
+          <div class="partner-chevron">▼</div>
+        </div>
+      </div>
+      <div class="partner-body">
+        ${s>0?`<div class="month-block"><div class="month-label ${monthCls}">${noSalesText} — ${s} продаж</div><div class="studio-grid">${studioGrid(arr,monthCls)}</div></div>`:'<div class="no-sales">Продаж нет</div>'}
+      </div>`;
+    container.appendChild(card);
+  });
+}
+
+buildList('tab-march', 2, 'march', 'march-col', 'active-m', 'Март');
+buildList('tab-april', 3, 'april', 'april-col', 'active-a', 'Апрель');
+buildList('tab-may',   4, 'may',   'may-col',   'active-my', 'Май');
+
+// Totals for KPIs
+data.forEach(([,,m,a,my]) => {
+  m.forEach((v,i)=>tM[i]+=v); a.forEach((v,i)=>tA[i]+=v); my.forEach((v,i)=>tMy[i]+=v);
+  if(sum(m)>0) actM++; if(sum(a)>0) actA++; if(sum(my)>0) actMy++;
+});
+
+function toggleCard(h) { h.parentElement.classList.toggle('open'); }
+
+// KPIs
+const tMs=sum(tM), tAs=sum(tA), tMys=sum(tMy), grand=tMs+tAs+tMys;
+document.getElementById('kpi-total').innerHTML=`${grand}<sub>шт</sub>`;
+document.getElementById('kpi-total-sub').innerHTML=`<span class="m">март ${tMs}</span><span class="a">апр ${tAs}</span><span class="my">май ${tMys}</span>`;
+const actTotal=new Set([...data.filter(d=>sum(d[2])>0).map(d=>d[0]),...data.filter(d=>sum(d[3])>0).map(d=>d[0]),...data.filter(d=>sum(d[4])>0).map(d=>d[0])]).size;
+document.getElementById('kpi-active').innerHTML=`${actTotal}<sub>/${data.length}</sub>`;
+document.getElementById('kpi-active-sub').innerHTML=`<span class="m">март ${actM}</span><span class="a">апр ${actA}</span><span class="my">май ${actMy}</span>`;
+const topM=[...data].filter(d=>sum(d[2])>0).sort((a,b)=>sum(b[2])-sum(a[2]))[0];
+const topA=[...data].filter(d=>sum(d[3])>0).sort((a,b)=>sum(b[3])-sum(a[3]))[0];
+const topMy=[...data].filter(d=>sum(d[4])>0).sort((a,b)=>sum(b[4])-sum(a[4]))[0];
+if(topM){document.getElementById('kpi-top-m').textContent=topM[0];document.getElementById('kpi-top-m-sub').innerHTML=`<span class="m">${sum(topM[2])} прод.</span>`;}
+if(topA){document.getElementById('kpi-top-a').textContent=topA[0];document.getElementById('kpi-top-a-sub').innerHTML=`<span class="a">${sum(topA[3])} прод.</span>`;}
+if(topMy){document.getElementById('kpi-top-my').textContent=topMy[0];document.getElementById('kpi-top-my-sub').innerHTML=`<span class="my">${sum(topMy[4])} прод.</span>`;}
+
+// Charts
+const promoTots=data.map(([co,,m,a,my])=>({co,tot:sum(m)+sum(a)+sum(my)})).filter(d=>d.tot>0).sort((a,b)=>b.tot-a.tot);
+const maxP=promoTots[0]?.tot||1;
+promoTots.forEach(({co,tot})=>{
+  const d=document.createElement('div'); d.className='bar-row';
+  d.innerHTML=`<div class="bar-label">${co}</div><div class="bar-track"><div class="bar-fill" data-w="${tot/maxP*100}"></div></div><div class="bar-num">${tot}</div>`;
+  document.getElementById('promo-bars').appendChild(d);
+});
+const maxS=Math.max(...tM,...tA,...tMy,1);
+[['m',tM],['a',tA],['my',tMy]].forEach(([t,vals])=>{
+  studios.forEach((st,i)=>{
+    const d=document.createElement('div'); d.className='bar-row';
+    d.innerHTML=`<div class="bar-label">${st}</div><div class="bar-track"><div class="bar-fill" data-w="${vals[i]/maxS*100}"></div></div><div class="bar-num">${vals[i]||'—'}</div>`;
+    document.getElementById(`bars-${t}`).appendChild(d);
+  });
+});
+
+const tabIds = ['march','april','may','charts'];
+const tabColors = ['active-march','active-april','active-may','active-charts'];
+
+function switchTab(name) {
+  tabIds.forEach((id,i) => {
+    const btn = document.getElementById(`tab-btn-${id}`);
+    btn.className = 'month-tab' + (id===name?' '+tabColors[i]:'');
+    const content = document.getElementById(`tab-${id}`);
+    content.classList.toggle('active', id===name);
+  });
+  if(name==='charts') { animateBars(); return; }
+  const clsMap = {march:'active-m', april:'active-a', may:'active-my'};
+  const tab = document.getElementById(`tab-${name}`);
+  const openCard = tab.querySelector(`.partner-card.open`);
+  if(!openCard) {
+    tab.querySelector(`.partner-card.${clsMap[name]}`)?.querySelector('.partner-header')?.click();
+  }
+}
+
+let barsAnimated=false;
+function animateBars(){
+  if(barsAnimated) return; barsAnimated=true;
+  document.querySelectorAll('.bar-fill[data-w]').forEach(el=>{ el.style.width=el.dataset.w+'%'; });
+}
+
+// Open top card of active tab on load
+document.querySelector('#tab-march .partner-card.active-m')?.querySelector('.partner-header')?.click();
+</script>
+</body>
+</html>
