@@ -80,6 +80,79 @@
             font-size: 80px;
             opacity: 0.3;
         }
+
+        .reviews-container {
+            padding: 30px;
+            background: #fdf6f0;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .review-card {
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 2px 8px rgba(92, 105, 55, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 4px 16px rgba(92, 105, 55, 0.15);
+        }
+
+        .review-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        .review-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #5C6937;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .review-info h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: #5C6937;
+            margin: 0;
+        }
+
+        .review-date {
+            font-size: 12px;
+            color: #a5a09d;
+            margin: 2px 0 0 0;
+        }
+
+        .review-rating {
+            color: #f0803b;
+            font-size: 14px;
+            margin-bottom: 12px;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            font-size: 14px;
+            color: #5C6937;
+            line-height: 1.5;
+            margin: 0;
+        }
     </style>
 </head>
 <body>
@@ -99,9 +172,104 @@
 </div>
 
 <div id="reviews" class="content">
-    <div class="empty-section">
-        <div class="empty-icon">⭐</div>
-        <div>Отзывы клиентов в разработке</div>
+    <div class="reviews-container">
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">О</div>
+                    <div class="review-info">
+                        <h3>Ольга В.</h3>
+                        <p class="review-date">3 июня 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Замечательная студия! Тренеры очень внимательные, атмосфера уютная и спокойная. После занятий чувствую себя намного лучше. Спасибо всей команде за профессионализм!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">С</div>
+                    <div class="review-info">
+                        <h3>Светлана Д.</h3>
+                        <p class="review-date">28 мая 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Отличный выбор! Йога помогла мне разобраться с спиной, и я заметила улучшения уже через неделю. Рекомендую всем своим подругам!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">М</div>
+                    <div class="review-info">
+                        <h3>Мария К.</h3>
+                        <p class="review-date">15 мая 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Прекрасная студия на Мясницкой! Удобное расписание, современное оборудование. Тренеры объясняют доступно и помогают исправить ошибки. Очень доволена!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">Е</div>
+                    <div class="review-info">
+                        <h3>Екатерина П.</h3>
+                        <p class="review-date">10 мая 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Идеальное место для занятий йогой в центре города! Преподаватели знают своё дело, очень внимательны к деталям. После месяца занятий чувствую гибкость улучшилась!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">А</div>
+                    <div class="review-info">
+                        <h3>Анна Л.</h3>
+                        <p class="review-date">2 мая 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Студия супер! Атмосфера расслабляющая, музыка подобрана идеально. Тренеры очень дружелюбные и всегда готовы помочь. Обязательно вернусь!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">И</div>
+                    <div class="review-info">
+                        <h3>Ирина С.</h3>
+                        <p class="review-date">20 апреля 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Самая лучшая студия йоги, в которой я когда-либо была! Профессионалы своего дела, очень внимательны к каждому ученику. Спасибо за помощь в преодолении боли в спине!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">В</div>
+                    <div class="review-info">
+                        <h3>Виктория М.</h3>
+                        <p class="review-date">5 апреля 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Отличное место для практики! Тренеры всегда подскажут, как правильно выполнить асану. Очень благодарна за индивидуальный подход. Рекомендую!</p>
+            </div>
+
+            <div class="review-card">
+                <div class="review-header">
+                    <div class="review-avatar">Д</div>
+                    <div class="review-info">
+                        <h3>Дарья Г.</h3>
+                        <p class="review-date">28 марта 2026</p>
+                    </div>
+                </div>
+                <div class="review-rating">★★★★★</div>
+                <p class="review-text">Чудесная студия! Уютная обстановка, добрые тренеры, качественное оборудование. После занятий чувствую себя как заново рождённая. Спасибо всем!</p>
+            </div>
+        </div>
     </div>
 </div>
 
