@@ -2144,6 +2144,8 @@ function renderMonth(prefix) {
     // ── Товары и услуги по категориям: июнь ──
     if (isJun) {
       const wd = APR_ADMIN_WEEKS[APR_ADMIN_WEEKS.length - 1];
+      document.getElementById('jSvcCatsLabel').textContent = wd.label;
+      document.getElementById('jTovarCatsLabel').textContent = wd.label;
       function renderDonutJun(canvasId, legId, catData) {
         const tot = catData.values.reduce((s,x)=>s+x,0);
         new Chart(document.getElementById(canvasId), {
