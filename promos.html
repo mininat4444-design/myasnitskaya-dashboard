@@ -20,10 +20,12 @@
     --march-bg: rgba(240,128,59,0.08);
     --april-bg: rgba(92,105,55,0.08);
     --may-bg:   rgba(162,185,201,0.15);
+    --june-bg:  rgba(174,180,156,0.12);
 
     /* Доп. палитра */
     --green-mid: #7c8760;
     --blue-mid:  #a2b9c9;
+    --sage:      #aeb49c;
     --peach:     #f9c1a0;
     --sage:      #aeb49c;
   }
@@ -122,6 +124,7 @@
   .kpi.orange::after { background: var(--orange); }
   .kpi.olive::after  { background: var(--green); }
   .kpi.blue::after   { background: var(--blue-mid); }
+  .kpi.sage::after   { background: var(--sage); }
   .kpi-label {
     font-size: 8px;
     letter-spacing: 0.22em;
@@ -143,6 +146,7 @@
   .kpi-sub .m  { color: var(--orange); }
   .kpi-sub .a  { color: var(--green); }
   .kpi-sub .my { color: var(--blue-mid); }
+  .kpi-sub .ju { color: var(--sage); }
 
   /* ─── SECTION TITLE ─── */
   .section-title {
@@ -188,6 +192,7 @@
   .month-tab.active-march  { background: var(--orange);  color: white; }
   .month-tab.active-april  { background: var(--green);   color: white; }
   .month-tab.active-may    { background: var(--blue-mid); color: white; }
+  .month-tab.active-june   { background: var(--sage);    color: white; }
   .month-tab.active-charts { background: var(--green);   color: white; }
 
   .tab-content { display: none; }
@@ -219,6 +224,7 @@
   .orange-bar .bar-fill { background: var(--orange); }
   .olive-bar  .bar-fill { background: var(--green); }
   .blue-bar   .bar-fill { background: var(--blue-mid); }
+  .sage-bar   .bar-fill { background: var(--sage); }
 
   /* ─── MONTH PILL ─── */
   .month-pill {
@@ -235,6 +241,7 @@
   .month-pill.march { background: var(--march-bg); color: var(--orange); }
   .month-pill.april { background: var(--april-bg); color: var(--green); }
   .month-pill.may   { background: var(--may-bg);   color: var(--blue-mid); }
+  .month-pill.june  { background: var(--june-bg);  color: var(--sage); }
 
   /* ─── PARTNER CARDS ─── */
   .partner-card {
@@ -248,6 +255,7 @@
   .partner-card.active-m  { border-color: rgba(240,128,59,0.3); }
   .partner-card.active-a  { border-color: rgba(92,105,55,0.25); }
   .partner-card.active-my { border-color: rgba(162,185,201,0.5); }
+  .partner-card.active-ju { border-color: rgba(174,180,156,0.5); }
   .partner-header {
     padding: 15px 16px;
     display: flex;
@@ -282,6 +290,7 @@
   .partner-total.march-col { color: var(--orange); }
   .partner-total.april-col { color: var(--green); }
   .partner-total.may-col   { color: var(--blue-mid); }
+  .partner-total.june-col  { color: var(--sage); }
   .partner-total.zero { font-size: 20px; color: rgba(92,105,55,0.15); }
   .partner-chevron {
     font-size: 9px;
@@ -313,6 +322,7 @@
   .month-label.march { color: var(--orange); }
   .month-label.april { color: var(--green); }
   .month-label.may   { color: var(--blue-mid); }
+  .month-label.june  { color: var(--sage); }
   .month-label::before {
     content: '';
     display: inline-block;
@@ -336,6 +346,7 @@
   .studio-cell.has-value.march { background: var(--march-bg); border-color: rgba(240,128,59,0.12); }
   .studio-cell.has-value.april { background: var(--april-bg); border-color: rgba(92,105,55,0.1); }
   .studio-cell.has-value.may   { background: var(--may-bg);   border-color: rgba(162,185,201,0.2); }
+  .studio-cell.has-value.june  { background: var(--june-bg);  border-color: rgba(174,180,156,0.25); }
   .studio-cell-name {
     font-size: 8px;
     letter-spacing: 0.12em;
@@ -352,6 +363,7 @@
   .studio-cell.has-value.march .studio-cell-val { color: var(--orange); }
   .studio-cell.has-value.april .studio-cell-val { color: var(--green); }
   .studio-cell.has-value.may   .studio-cell-val { color: var(--blue-mid); }
+  .studio-cell.has-value.june  .studio-cell-val { color: var(--sage); }
   .studio-cell:not(.has-value) .studio-cell-val { color: rgba(92,105,55,0.15); font-size: 16px; }
 
   .no-sales {
@@ -390,7 +402,7 @@
       <div class="brand">Yoga Space</div>
       <h1>Промо<em>коды</em></h1>
     </div>
-    <div class="period-badge">МАР — МАЙ 2026</div>
+    <div class="period-badge">МАР — ИЮН 2026</div>
   </div>
 </header>
 
@@ -420,6 +432,11 @@
     <div class="kpi-value sm" id="kpi-top-my">—</div>
     <div class="kpi-sub" id="kpi-top-my-sub"></div>
   </div>
+  <div class="kpi sage">
+    <div class="kpi-label">Топ июнь</div>
+    <div class="kpi-value sm" id="kpi-top-ju">—</div>
+    <div class="kpi-sub" id="kpi-top-ju-sub"></div>
+  </div>
 </div>
 
 <div class="section-title" style="padding-top:16px"><span>Просмотр по месяцам</span></div>
@@ -428,12 +445,14 @@
   <div class="month-tab active-march" id="tab-btn-march"  onclick="switchTab('march')">Март</div>
   <div class="month-tab"              id="tab-btn-april"  onclick="switchTab('april')">Апрель</div>
   <div class="month-tab"              id="tab-btn-may"    onclick="switchTab('may')">Май</div>
+  <div class="month-tab"              id="tab-btn-june"   onclick="switchTab('june')">Июнь</div>
   <div class="month-tab"              id="tab-btn-charts" onclick="switchTab('charts')">Графики</div>
 </div>
 
 <div class="tab-content active" id="tab-march"></div>
 <div class="tab-content"        id="tab-april"></div>
 <div class="tab-content"        id="tab-may"></div>
+<div class="tab-content"        id="tab-june"></div>
 
 <div class="tab-content" id="tab-charts">
   <div class="chart-card">
@@ -448,49 +467,52 @@
     <div id="bars-a" class="olive-bar"></div>
     <div class="month-pill may">Май</div>
     <div id="bars-my" class="blue-bar"></div>
+    <div class="month-pill june">Июнь</div>
+    <div id="bars-ju" class="sage-bar"></div>
   </div>
 </div>
 
-<footer>Yoga Space · Промокоды · Март — Май 2026</footer>
+<footer>Yoga Space · Промокоды · Март — Июнь 2026</footer>
 
 <script>
 const data = [
-  ['Лукойл','lukoil',[0,0,0,0],[0,0,0,0],[0,0,1,0]],
-  ['Банк Точка','Tochka',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['ПИК','Pik',[0,0,0,0],[0,0,0,0],[1,0,0,0]],
-  ['музей Гараж','Garage',[2,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['The Cultt','Cultt',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['МГМУ Сеченова','Sechenov',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Ailove','Ailove',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Сбер здоровье','Sber',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['ВТБ private banking','Familyyoga15',[1,1,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Издательство МИФ','mif',[0,0,0,0],[0,1,0,0],[0,0,0,0]],
-  ['Evrone','evrone',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Rebellion','Rebellion',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Яндекс','МА - сотр. яндекс',[5,3,1,0],[9,2,2,0],[9,6,4,0]],
-  ['Игроник','Igronik',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Selecty (ИТ)','selecty',[0,0,0,0],[1,0,0,0],[0,0,0,0]],
-  ['Aston (ИТ)','Aston',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Щука (медиа)','Pike',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Перспектива','Perspektiva',[0,0,0,0],[0,1,0,0],[0,0,0,0]],
-  ['Rivka','Rivka',[0,0,0,2],[0,0,0,3],[0,0,0,3]],
-  ['Gotcha','Gotcha',[0,0,0,0],[0,0,0,0],[0,0,0,3]],
-  ['Ядро','Yadro',[0,0,0,0],[0,0,0,0],[8,0,0,0]],
-  ['Кофейня Зое','Zoe',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Золотое яблоко','SPACE APPLE 108',[1,0,0,0],[0,0,1,0],[0,0,4,0]],
-  ['Рекламное агентство','BBDO',[2,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Москвич','МА - Москвич',[1,0,0,0],[4,0,0,0],[3,0,0,0]],
-  ['Кафе Салют ДМ','salute15',[0,0,0,0],[0,0,0,0],[1,0,0,0]],
-  ['Popmeal','popmeal',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Метеорит','Meteorite',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
-  ['Диасофт','Diasoft',[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  // name, promo, [март], [апрель], [май], [июнь]  — студии: [Дмитровка, Мясницкая, Никитская, Чернышевская]
+  ['Лукойл','lukoil',[0,0,0,0],[0,0,0,0],[0,0,1,0],[0,1,1,0]],
+  ['Банк Точка','Tochka',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['ПИК','Pik',[0,0,0,0],[0,0,0,0],[1,0,0,0],[0,0,0,0]],
+  ['музей Гараж','Garage',[2,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['The Cultt','Cultt',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['МГМУ Сеченова','Sechenov',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Ailove','Ailove',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Сбер здоровье','Sber',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['ВТБ private banking','Familyyoga15',[1,1,0,0],[0,0,0,0],[0,0,0,0],[0,1,0,0]],
+  ['Издательство МИФ','mif',[0,0,0,0],[0,1,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Evrone','evrone',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Rebellion','Rebellion',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Яндекс','МА - сотр. яндекс',[5,3,1,0],[9,2,2,0],[9,6,4,0],[5,2,1,0]],
+  ['Игроник','Igronik',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Selecty (ИТ)','selecty',[0,0,0,0],[1,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Aston (ИТ)','Aston',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Щука (медиа)','Pike',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Перспектива','Perspektiva',[0,0,0,0],[0,1,0,0],[0,0,0,0],[0,1,0,0]],
+  ['Rivka','Rivka',[0,0,0,2],[0,0,0,3],[0,0,0,3],[0,0,0,0]],
+  ['Gotcha','Gotcha',[0,0,0,0],[0,0,0,0],[0,0,0,3],[0,0,0,0]],
+  ['Ядро','Yadro',[0,0,0,0],[0,0,0,0],[8,0,0,0],[6,0,0,0]],
+  ['Кофейня Зое','Zoe',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Золотое яблоко','SPACE APPLE 108',[1,0,0,0],[0,0,1,0],[0,0,4,0],[0,1,1,0]],
+  ['Рекламное агентство','BBDO',[2,0,0,0],[0,0,0,0],[0,0,0,0],[2,0,0,0]],
+  ['Москвич','МА - Москвич',[1,0,0,0],[4,0,0,0],[3,0,0,0],[2,2,0,0]],
+  ['Кафе Салют ДМ','salute15',[0,0,0,0],[0,0,0,0],[1,0,0,0],[0,0,0,0]],
+  ['Popmeal','popmeal',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Метеорит','Meteorite',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
+  ['Диасофт','Diasoft',[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],
 ];
 
 const studios = ['Дмитровка','Мясницкая','Никитская','Чернышевская'];
 const sum = a => a.reduce((t,v)=>t+v,0);
 
-let tM=[0,0,0,0], tA=[0,0,0,0], tMy=[0,0,0,0];
-let actM=0, actA=0, actMy=0;
+let tM=[0,0,0,0], tA=[0,0,0,0], tMy=[0,0,0,0], tJu=[0,0,0,0];
+let actM=0, actA=0, actMy=0, actJu=0;
 
 function studioGrid(arr, cls) {
   return studios.map((st,i)=>`
@@ -526,42 +548,47 @@ function buildList(containerId, monthIdx, monthCls, totalCls, activeCardCls, noS
   });
 }
 
-buildList('tab-march', 2, 'march', 'march-col', 'active-m', 'Март');
-buildList('tab-april', 3, 'april', 'april-col', 'active-a', 'Апрель');
+buildList('tab-march', 2, 'march', 'march-col', 'active-m',  'Март');
+buildList('tab-april', 3, 'april', 'april-col', 'active-a',  'Апрель');
 buildList('tab-may',   4, 'may',   'may-col',   'active-my', 'Май');
+buildList('tab-june',  5, 'june',  'june-col',  'active-ju', 'Июнь');
 
 // Totals for KPIs
-data.forEach(([,,m,a,my]) => {
-  m.forEach((v,i)=>tM[i]+=v); a.forEach((v,i)=>tA[i]+=v); my.forEach((v,i)=>tMy[i]+=v);
-  if(sum(m)>0) actM++; if(sum(a)>0) actA++; if(sum(my)>0) actMy++;
+data.forEach(([,,m,a,my,ju]) => {
+  m.forEach((v,i)=>tM[i]+=v); a.forEach((v,i)=>tA[i]+=v);
+  my.forEach((v,i)=>tMy[i]+=v); ju.forEach((v,i)=>tJu[i]+=v);
+  if(sum(m)>0) actM++; if(sum(a)>0) actA++;
+  if(sum(my)>0) actMy++; if(sum(ju)>0) actJu++;
 });
 
 function toggleCard(h) { h.parentElement.classList.toggle('open'); }
 
 // KPIs
-const tMs=sum(tM), tAs=sum(tA), tMys=sum(tMy), grand=tMs+tAs+tMys;
+const tMs=sum(tM), tAs=sum(tA), tMys=sum(tMy), tJus=sum(tJu), grand=tMs+tAs+tMys+tJus;
 document.getElementById('kpi-total').innerHTML=`${grand}<sub>шт</sub>`;
-document.getElementById('kpi-total-sub').innerHTML=`<span class="m">март ${tMs}</span><span class="a">апр ${tAs}</span><span class="my">май ${tMys}</span>`;
-const actTotal=new Set([...data.filter(d=>sum(d[2])>0).map(d=>d[0]),...data.filter(d=>sum(d[3])>0).map(d=>d[0]),...data.filter(d=>sum(d[4])>0).map(d=>d[0])]).size;
+document.getElementById('kpi-total-sub').innerHTML=`<span class="m">мар ${tMs}</span><span class="a">апр ${tAs}</span><span class="my">май ${tMys}</span><span class="ju">июн ${tJus}</span>`;
+const actTotal=new Set([...data.filter(d=>sum(d[2])>0).map(d=>d[0]),...data.filter(d=>sum(d[3])>0).map(d=>d[0]),...data.filter(d=>sum(d[4])>0).map(d=>d[0]),...data.filter(d=>sum(d[5])>0).map(d=>d[0])]).size;
 document.getElementById('kpi-active').innerHTML=`${actTotal}<sub>/${data.length}</sub>`;
-document.getElementById('kpi-active-sub').innerHTML=`<span class="m">март ${actM}</span><span class="a">апр ${actA}</span><span class="my">май ${actMy}</span>`;
+document.getElementById('kpi-active-sub').innerHTML=`<span class="m">мар ${actM}</span><span class="a">апр ${actA}</span><span class="my">май ${actMy}</span><span class="ju">июн ${actJu}</span>`;
 const topM=[...data].filter(d=>sum(d[2])>0).sort((a,b)=>sum(b[2])-sum(a[2]))[0];
 const topA=[...data].filter(d=>sum(d[3])>0).sort((a,b)=>sum(b[3])-sum(a[3]))[0];
 const topMy=[...data].filter(d=>sum(d[4])>0).sort((a,b)=>sum(b[4])-sum(a[4]))[0];
+const topJu=[...data].filter(d=>sum(d[5])>0).sort((a,b)=>sum(b[5])-sum(a[5]))[0];
 if(topM){document.getElementById('kpi-top-m').textContent=topM[0];document.getElementById('kpi-top-m-sub').innerHTML=`<span class="m">${sum(topM[2])} прод.</span>`;}
 if(topA){document.getElementById('kpi-top-a').textContent=topA[0];document.getElementById('kpi-top-a-sub').innerHTML=`<span class="a">${sum(topA[3])} прод.</span>`;}
 if(topMy){document.getElementById('kpi-top-my').textContent=topMy[0];document.getElementById('kpi-top-my-sub').innerHTML=`<span class="my">${sum(topMy[4])} прод.</span>`;}
+if(topJu){document.getElementById('kpi-top-ju').textContent=topJu[0];document.getElementById('kpi-top-ju-sub').innerHTML=`<span class="ju">${sum(topJu[5])} прод.</span>`;}
 
 // Charts
-const promoTots=data.map(([co,,m,a,my])=>({co,tot:sum(m)+sum(a)+sum(my)})).filter(d=>d.tot>0).sort((a,b)=>b.tot-a.tot);
+const promoTots=data.map(([co,,m,a,my,ju])=>({co,tot:sum(m)+sum(a)+sum(my)+sum(ju)})).filter(d=>d.tot>0).sort((a,b)=>b.tot-a.tot);
 const maxP=promoTots[0]?.tot||1;
 promoTots.forEach(({co,tot})=>{
   const d=document.createElement('div'); d.className='bar-row';
   d.innerHTML=`<div class="bar-label">${co}</div><div class="bar-track"><div class="bar-fill" data-w="${tot/maxP*100}"></div></div><div class="bar-num">${tot}</div>`;
   document.getElementById('promo-bars').appendChild(d);
 });
-const maxS=Math.max(...tM,...tA,...tMy,1);
-[['m',tM],['a',tA],['my',tMy]].forEach(([t,vals])=>{
+const maxS=Math.max(...tM,...tA,...tMy,...tJu,1);
+[['m',tM],['a',tA],['my',tMy],['ju',tJu]].forEach(([t,vals])=>{
   studios.forEach((st,i)=>{
     const d=document.createElement('div'); d.className='bar-row';
     d.innerHTML=`<div class="bar-label">${st}</div><div class="bar-track"><div class="bar-fill" data-w="${vals[i]/maxS*100}"></div></div><div class="bar-num">${vals[i]||'—'}</div>`;
@@ -569,21 +596,18 @@ const maxS=Math.max(...tM,...tA,...tMy,1);
   });
 });
 
-const tabIds = ['march','april','may','charts'];
-const tabColors = ['active-march','active-april','active-may','active-charts'];
+const tabIds   = ['march','april','may','june','charts'];
+const tabColors = ['active-march','active-april','active-may','active-june','active-charts'];
 
 function switchTab(name) {
   tabIds.forEach((id,i) => {
-    const btn = document.getElementById(`tab-btn-${id}`);
-    btn.className = 'month-tab' + (id===name?' '+tabColors[i]:'');
-    const content = document.getElementById(`tab-${id}`);
-    content.classList.toggle('active', id===name);
+    document.getElementById(`tab-btn-${id}`).className = 'month-tab' + (id===name?' '+tabColors[i]:'');
+    document.getElementById(`tab-${id}`).classList.toggle('active', id===name);
   });
   if(name==='charts') { animateBars(); return; }
-  const clsMap = {march:'active-m', april:'active-a', may:'active-my'};
+  const clsMap = {march:'active-m', april:'active-a', may:'active-my', june:'active-ju'};
   const tab = document.getElementById(`tab-${name}`);
-  const openCard = tab.querySelector(`.partner-card.open`);
-  if(!openCard) {
+  if(!tab.querySelector('.partner-card.open')) {
     tab.querySelector(`.partner-card.${clsMap[name]}`)?.querySelector('.partner-header')?.click();
   }
 }
