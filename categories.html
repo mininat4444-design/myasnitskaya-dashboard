@@ -208,7 +208,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
   <!-- ТРЕНД -->
   <div class="pane" id="pane-trend">
     <div class="chart-card">
-      <h3>Категории по месяцам, шт (янв—май)</h3>
+      <h3>Категории по месяцам, шт (янв—июн)</h3>
       <canvas id="trend-stack" height="90"></canvas>
     </div>
     <div class="chart-card">
@@ -462,7 +462,7 @@ function renderMonthlyBrandTables(){
 
   document.getElementById('brand-monthly-tables').innerHTML = `
     <div class="chart-card">
-      <h3>${CAT_LABELS[cat]} — по брендам, янв—май, шт</h3>
+      <h3>${CAT_LABELS[cat]} — по брендам, янв—июн, шт</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Бренд</th>${MONTHS.map(m=>`<th class="r">${m.slice(0,3)}</th>`).join('')}<th class="r">Итого</th></tr></thead>
@@ -536,7 +536,7 @@ function renderBrandProducts(){
 
   wrap.innerHTML = `
     <div class="chart-card">
-      <h3>${brand} — что продаётся внутри бренда, янв—май</h3>
+      <h3>${brand} — что продаётся внутри бренда, янв—июн</h3>
       <div class="table-wrap">
         <table>
           <thead><tr><th>Товар</th>${MONTHS.map(m=>`<th class="r">${m.slice(0,3)}</th>`).join('')}<th class="r">Итого</th><th class="r">Сумма, ₽</th></tr></thead>
@@ -608,7 +608,7 @@ function renderWriteoffs(){
     <div class="card">
       <div class="card-label">Списано всего</div>
       <div class="card-value">${fmtNum(grandQty)}</div>
-      <div class="card-sub">штук, янв—май</div>
+      <div class="card-sub">штук, янв—июн</div>
     </div>
     <div class="card orange">
       <div class="card-label">Стоимость списаний</div>
