@@ -1403,6 +1403,9 @@ const JUN_TOVAR_IN_MAY_WEEK = 0;
 const MAY_IN_JUN_WEEK       = 0; // майские дни внутри первой июньской недели → вычитается из июня
 const MAY_ABON_IN_JUN_WEEK  = 0;
 const MAY_TOVAR_IN_JUN_WEEK = 0;
+const JUL_IN_JUN_WEEK       = 845340; // продажи 1–5 июл внутри недели «29 июн–5 июл» → вычитается из июня, добавляется к июлю
+const JUL_ABON_IN_JUN_WEEK  = 746370;
+const JUL_TOVAR_IN_JUN_WEEK = 98970;
 
 const WEEKS = {
   labels:  ['2–8 мар','9–15 мар','16–22 мар','23–29 мар','30 мар–5 апр','6–12 апр','13–19 апр','20–26 апр','27 апр–3 мая','4–10 мая','11–17 мая','18–24 мая','25–31 мая','1–7 июн','8–14 июн','15–21 июн','22–28 июн','29 июн–5 июл','6–12 июл'],
@@ -2273,15 +2276,18 @@ function renderMonth(prefix) {
     const idx = isMar ? marchIdx : aprIdx;
     const totalAll  = idx.reduce((s,i) => s + W.total[i], 0)
       - (isMay  ? APR_IN_MAY_WEEK  + JUN_IN_MAY_WEEK  : 0)
-      - (isJun  ? MAY_IN_JUN_WEEK  : 0)
+      - (isJun  ? MAY_IN_JUN_WEEK  + JUL_IN_JUN_WEEK  : 0)
+      + (isJul  ? JUL_IN_JUN_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
-      - (isJun  ? MAY_ABON_IN_JUN_WEEK  : 0)
+      - (isJun  ? MAY_ABON_IN_JUN_WEEK  + JUL_ABON_IN_JUN_WEEK  : 0)
+      + (isJul  ? JUL_ABON_IN_JUN_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
-      - (isJun  ? MAY_TOVAR_IN_JUN_WEEK  : 0)
+      - (isJun  ? MAY_TOVAR_IN_JUN_WEEK  + JUL_TOVAR_IN_JUN_WEEK  : 0)
+      + (isJul  ? JUL_TOVAR_IN_JUN_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_TOVAR_IN_APR_WEEK  : 0);
     const weeks     = idx.length;
     const avgWeek   = totalAll / weeks;
@@ -2318,7 +2324,7 @@ function renderMonth(prefix) {
     if (pfx === 'as') renderPlanBlock('as', aprIdx.reduce((s,i) => s + W.total[i], 0) - MAY_IN_APR_WEEK, PLAN_APR);
     if (pfx === 'ys') renderPlanBlock('ys', aprIdx.reduce((s,i) => s + W.total[i], 0) - APR_IN_MAY_WEEK - JUN_IN_MAY_WEEK, PLAN_MAY);
     if (pfx === 'js') renderPlanBlock('js', aprIdx.reduce((s,i) => s + W.total[i], 0) - MAY_IN_JUN_WEEK, PLAN_JUN);
-    if (pfx === 'ls') renderPlanBlock('ls', aprIdx.reduce((s,i) => s + W.total[i], 0), PLAN_JUL);
+    if (pfx === 'ls') renderPlanBlock('ls', aprIdx.reduce((s,i) => s + W.total[i], 0) + JUL_IN_JUN_WEEK, PLAN_JUL);
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — всего ≥4 строк для сравнения)
     const tbId = {mar:'mWeekTable', apr:'aWeekTable', may:'yWeekTable', jun:'jWeekTable', jul:'lWeekTable'}[prefix];
