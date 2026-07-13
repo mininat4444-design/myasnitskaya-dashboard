@@ -2225,7 +2225,7 @@ function renderMonth(prefix) {
   const isMay = prefix === 'may';
   const isJun = prefix === 'jun';
   const isJul = prefix === 'jul';
-  const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 18 : 4)));
+  const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 17 : 4)));
   const slEnd = isMar ? 5 : (isMay ? 13 : (isJun ? 18 : (isJul ? undefined : 9)));
 
   // Sliced data views for this month tab
@@ -2278,23 +2278,27 @@ function renderMonth(prefix) {
       - (isMay  ? APR_IN_MAY_WEEK  + JUN_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_IN_JUN_WEEK  + JUL_IN_JUN_WEEK  : 0)
       + (isJul  ? JUL_IN_JUN_WEEK  : 0)
+      - (isJul  ? WEEKS.total[17]  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_ABON_IN_JUN_WEEK  + JUL_ABON_IN_JUN_WEEK  : 0)
       + (isJul  ? JUL_ABON_IN_JUN_WEEK  : 0)
+      - (isJul  ? WEEKS.abon[17]        : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_TOVAR_IN_JUN_WEEK  + JUL_TOVAR_IN_JUN_WEEK  : 0)
       + (isJul  ? JUL_TOVAR_IN_JUN_WEEK  : 0)
+      - (isJul  ? WEEKS.tovar[17]        : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_TOVAR_IN_APR_WEEK  : 0);
-    const weeks     = idx.length;
+    const weeks     = idx.length - (isJul ? 1 : 0);
     const avgWeek   = totalAll / weeks;
 
-    const totals    = idx.map(i => W.total[i]);
+    const julOff    = isJul ? 1 : 0;
+    const totals    = idx.slice(julOff).map(i => W.total[i]);
     const bestLocal = totals.indexOf(Math.max(...totals));
-    const bestIdx   = idx[bestLocal];
+    const bestIdx   = idx.slice(julOff)[bestLocal];
 
     const pfx = pfxChar + 's';
     document.getElementById(pfx+'-total').textContent = fmtK(totalAll);
@@ -2324,7 +2328,7 @@ function renderMonth(prefix) {
     if (pfx === 'as') renderPlanBlock('as', aprIdx.reduce((s,i) => s + W.total[i], 0) - MAY_IN_APR_WEEK, PLAN_APR);
     if (pfx === 'ys') renderPlanBlock('ys', aprIdx.reduce((s,i) => s + W.total[i], 0) - APR_IN_MAY_WEEK - JUN_IN_MAY_WEEK, PLAN_MAY);
     if (pfx === 'js') renderPlanBlock('js', aprIdx.reduce((s,i) => s + W.total[i], 0) - MAY_IN_JUN_WEEK, PLAN_JUN);
-    if (pfx === 'ls') renderPlanBlock('ls', aprIdx.reduce((s,i) => s + W.total[i], 0) + JUL_IN_JUN_WEEK, PLAN_JUL);
+    if (pfx === 'ls') renderPlanBlock('ls', aprIdx.reduce((s,i) => s + W.total[i], 0) + JUL_IN_JUN_WEEK - WEEKS.total[17], PLAN_JUL);
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — всего ≥4 строк для сравнения)
     const tbId = {mar:'mWeekTable', apr:'aWeekTable', may:'yWeekTable', jun:'jWeekTable', jul:'lWeekTable'}[prefix];
@@ -2640,9 +2644,9 @@ function renderMonth(prefix) {
     const aprIdx   = W.isMarch.map((m,i) => !m ? i : -1).filter(i => i >= 0);
     const idx = isMar ? marchIdx : aprIdx;
 
-    const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0);
-    const avgVisits   = Math.round(totalVisits / (idx.length || 1));
-    const totalFirst  = idx.reduce((s,i) => s + W.first[i], 0);
+    const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0) - (isJul ? WEEKS.visits[17] : 0);
+    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0)) || 1));
+    const totalFirst  = idx.reduce((s,i) => s + W.first[i], 0) - (isJul ? WEEKS.first[17] : 0);
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
