@@ -2699,7 +2699,7 @@ function renderMonth(prefix) {
 
     const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0) - (isJul ? WEEKS.visits[17] : 0);
     const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0)) || 1));
-    const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0) - (isJul ? TRIAL.trial[17] : 0);
+    const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0) - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0);
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
