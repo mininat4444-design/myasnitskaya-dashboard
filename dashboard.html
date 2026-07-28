@@ -3143,8 +3143,10 @@ function renderAprAdminBlock(wdRaw, admPfx) {
     gid('a-leader-new-val').textContent = newSorted[0].newQty + ' гостей';
   }
   if (newSorted[1]) {
-    gid('a-leader-new2').textContent     = shortName(newSorted[1].name);
-    gid('a-leader-new-val2').textContent = newSorted[1].newQty + ' гостей';
+    const q2 = newSorted[1].newQty;
+    const tied = newSorted.slice(1).filter(a => a.newQty === q2);
+    gid('a-leader-new2').textContent     = tied.map(a => shortName(a.name)).join(', ');
+    gid('a-leader-new-val2').textContent = q2 + ' гостей';
   }
   gid('a-pershift').textContent     = fmtK(avgPerShift);
   gid('a-pershift-sub').textContent = 'на ' + totalShifts + ' смен';
