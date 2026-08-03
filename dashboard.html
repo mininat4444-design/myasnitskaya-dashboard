@@ -1409,6 +1409,12 @@ const MAY_TOVAR_IN_JUN_WEEK = 0;
 const JUL_IN_JUN_WEEK       = 845340; // продажи 1–5 июл внутри недели «29 июн–5 июл» → вычитается из июня, добавляется к июлю
 const JUL_ABON_IN_JUN_WEEK  = 746370;
 const JUL_TOVAR_IN_JUN_WEEK = 98970;
+// ── Граница июль/август ────────────────────────────────────────────────────
+const AUG_IN_JUL_WEEK       = 338738; // продажи 1–2 авг внутри недели «27 июл–2 авг» → вычитается из июля
+const AUG_ABON_IN_JUL_WEEK  = 316253;
+const AUG_TOVAR_IN_JUL_WEEK = 22485;
+const AUG_VISITS_IN_JUL_WEEK = 206;   // посещения 1–2 авг
+const AUG_TRIAL_IN_JUL_WEEK  = 20;    // пробные занятия 1–2 авг
 
 const WEEKS = {
   labels:  ['2–8 мар','9–15 мар','16–22 мар','23–29 мар','30 мар–5 апр','6–12 апр','13–19 апр','20–26 апр','27 апр–3 мая','4–10 мая','11–17 мая','18–24 мая','25–31 мая','1–7 июн','8–14 июн','15–21 июн','22–28 июн','29 июн–5 июл','6–12 июл','13–19 июл','20–26 июл','27 июл–2 авг'],
@@ -2434,18 +2440,21 @@ function renderMonth(prefix) {
       - (isJun  ? MAY_IN_JUN_WEEK  + JUL_IN_JUN_WEEK  : 0)
       + (isJul  ? JUL_IN_JUN_WEEK  : 0)
       - (isJul  ? WEEKS.total[17]  : 0)
+      - (isJul  ? AUG_IN_JUL_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_ABON_IN_JUN_WEEK  + JUL_ABON_IN_JUN_WEEK  : 0)
       + (isJul  ? JUL_ABON_IN_JUN_WEEK  : 0)
       - (isJul  ? WEEKS.abon[17]        : 0)
+      - (isJul  ? AUG_ABON_IN_JUL_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_TOVAR_IN_JUN_WEEK  + JUL_TOVAR_IN_JUN_WEEK  : 0)
       + (isJul  ? JUL_TOVAR_IN_JUN_WEEK  : 0)
       - (isJul  ? WEEKS.tovar[17]        : 0)
+      - (isJul  ? AUG_TOVAR_IN_JUL_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul ? MAY_TOVAR_IN_APR_WEEK  : 0);
     const weeks     = idx.length - (isJul ? 1 : 0);
     const avgWeek   = totalAll / weeks;
@@ -2796,9 +2805,9 @@ function renderMonth(prefix) {
     const aprIdx   = W.isMarch.map((m,i) => !m ? i : -1).filter(i => i >= 0);
     const idx = isMar ? marchIdx : aprIdx;
 
-    const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0) - (isJul ? WEEKS.visits[17] : 0);
+    const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0) - (isJul ? WEEKS.visits[17] : 0) - (isJul ? AUG_VISITS_IN_JUL_WEEK : 0);
     const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0)) || 1));
-    const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0) - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0);
+    const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0) - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0) - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0);
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
