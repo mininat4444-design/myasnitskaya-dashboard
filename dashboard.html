@@ -228,7 +228,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
     <div style="position:relative;height:340px;"><canvas id="chartMarWeekly"></canvas></div>
     <div class="chart-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Итого продаж</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (1 050 000 ₽)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (948 387 ₽)</div>
     </div>
   </div>
   <div class="chart-card">
@@ -479,7 +479,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Абонементы</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Товары</div>
       <div class="leg-item"><div class="leg-dot" style="background:rgba(174,180,156,0.65)"></div>Март</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (1 050 000 ₽)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (980 000 ₽)</div>
     </div>
   </div>
   <div class="chart-card">
@@ -777,7 +777,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
     <div class="chart-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Абонементы</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Товары</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (980 000 ₽)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (948 387 ₽)</div>
     </div>
   </div>
   <div class="chart-card">
@@ -1062,7 +1062,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
     <div class="chart-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Абонементы</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Товары</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (1 050 000 ₽)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (980 000 ₽)</div>
     </div>
   </div>
   <div class="chart-card">
@@ -1239,7 +1239,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
     <div class="chart-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Абонементы</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Товары</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (1 050 000 ₽)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (948 387 ₽)</div>
     </div>
   </div>
   <div class="chart-card">
@@ -1415,7 +1415,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
     <div class="chart-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Абонементы</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Товары</div>
-      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (1 050 000 ₽)</div>
+      <div class="leg-item"><div class="leg-dot" style="background:#a5a09d;height:3px;border-radius:0;width:18px"></div>Недельный план (948 387 ₽)</div>
     </div>
   </div>
   <div class="chart-card">
@@ -1565,17 +1565,17 @@ Chart.register(ChartDataLabels);
 // ══════════════════════════════════════════
 
 const PLAN_MAR = 4200000; // месячный план март
-const PLAN_WEEK_MAR = Math.round(PLAN_MAR / 4); // 1 050 000/нед
+const PLAN_WEEK_MAR = Math.round(PLAN_MAR / 31 * 7); // 948 387/нед (план/дней в мес*7)
 const PLAN_APR = 4200000; // месячный план апрель
-const PLAN_WEEK_APR = Math.round(PLAN_APR / 4); // 1 050 000/нед
+const PLAN_WEEK_APR = Math.round(PLAN_APR / 30 * 7); // 980 000/нед
 const PLAN_MAY = 4200000; // месячный план май
-const PLAN_WEEK_MAY = Math.round(PLAN_MAY / 4); // 1 050 000/нед
-const PLAN_JUN = 4200000; // месячный план июнь (уточнить при необходимости)
-const PLAN_WEEK_JUN = Math.round(PLAN_JUN / 4); // 1 050 000/нед
+const PLAN_WEEK_MAY = Math.round(PLAN_MAY / 31 * 7); // 948 387/нед
+const PLAN_JUN = 4200000; // месячный план июнь
+const PLAN_WEEK_JUN = Math.round(PLAN_JUN / 30 * 7); // 980 000/нед
 const PLAN_JUL = 4200000; // месячный план июль
-const PLAN_WEEK_JUL = Math.round(PLAN_JUL / 4); // 1 050 000/нед
+const PLAN_WEEK_JUL = Math.round(PLAN_JUL / 31 * 7); // 948 387/нед
 const PLAN_AUG = 4200000; // месячный план август
-const PLAN_WEEK_AUG = Math.round(PLAN_AUG / 4); // 1 050 000/нед
+const PLAN_WEEK_AUG = Math.round(PLAN_AUG / 31 * 7); // 948 387/нед
 const APR_IN_MAY_WEEK       = 506229; // продажи 27–30 апр внутри недели «27 апр–3 мая» (вычитается из майского итога)
 const APR_ABON_IN_MAY_WEEK  = 475549; // абонементы 27–30 апр
 const APR_TOVAR_IN_MAY_WEEK =  30680; // товары 27–30 апр
@@ -1610,7 +1610,7 @@ const WEEKS = {
   day:     [183, 184, 190, 191, 184, 183, 240, 216, 219, 197, 329, 293, 230, 216, 212, 234, 213, 219, 193, 166, 228, 165, 194],
   eve:     [416, 417, 431, 435, 417, 410, 422, 418, 345, 366, 274, 312, 424, 471, 377, 386, 403, 422, 444, 420, 449, 419, 387],
   first:   [78,  61,  70,  87,  59,  71,  60,  57,  58,  43,  53,  54,  74,  64,  11,  21,  31,  14,  14,  11,  15,  18,  12],
-  plan:    [1050000, 1050000, 1050000, 1050000, 980000, 980000, 980000, 980000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000, 1050000],
+  plan:    [948387, 948387, 948387, 948387, 980000, 980000, 980000, 980000, 948387, 948387, 948387, 948387, 948387, 980000, 980000, 980000, 980000, 948387, 948387, 948387, 948387, 948387, 948387],
   isMarch: [true, true, true, true, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false],
 };
 WEEKS.total = WEEKS.abon.map((a,i) => a + WEEKS.tovar[i]);
