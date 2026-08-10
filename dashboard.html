@@ -3091,7 +3091,7 @@ function renderMonth(prefix) {
     const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0)) || 1));
     const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0)
       - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0)
-      - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0) + (isAug ? AUG_TRIAL_IN_JUL_WEEK : 0)
+      - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0)
       - (isAug ? TRIAL.trial[sl] : 0);
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
