@@ -2730,7 +2730,7 @@ function renderMonth(prefix) {
       document.getElementById(p+'-plan-bar').style.background = planDiff >= 0 ? '#F0803B' : '#A2B9C9';
       document.getElementById(p+'-plan-label').textContent    = planPct + '% от плана — ' + fmt(totalCur) + ' из ' + fmt(PLAN);
       document.getElementById(p+'-plan-mark').textContent     = fmt(PLAN) + ' (план)';
-      document.getElementById(p+'-plan-max').textContent      = fmt(Math.max(totalCur, PLAN) * 1.05);
+      document.getElementById(p+'-plan-max').textContent      = '';
     }
     const PLAN_BY_PFX = {ms:PLAN_MAR, as:PLAN_APR, ys:PLAN_MAY, js:PLAN_JUN, ls:PLAN_JUL, us:PLAN_AUG};
     // Для плана берём сумму за весь календарный месяц:
