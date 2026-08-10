@@ -2733,7 +2733,10 @@ function renderMonth(prefix) {
       document.getElementById(p+'-plan-max').textContent      = fmt(Math.max(totalCur, PLAN) * 1.05);
     }
     const PLAN_BY_PFX = {ms:PLAN_MAR, as:PLAN_APR, ys:PLAN_MAY, js:PLAN_JUN, ls:PLAN_JUL, us:PLAN_AUG};
-    if (PLAN_BY_PFX[pfx]) renderPlanBlock(pfx, totalAll, PLAN_BY_PFX[pfx]);
+    // Для плана берём сумму за весь календарный месяц:
+    // для августа добавляем продажи 1–2 авг из граничной недели (AUG_IN_JUL_WEEK)
+    const planAll = totalAll + (isAug ? AUG_IN_JUL_WEEK : 0);
+    if (PLAN_BY_PFX[pfx]) renderPlanBlock(pfx, planAll, PLAN_BY_PFX[pfx]);
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — всего ≥4 строк для сравнения)
     const tbId = {mar:'mWeekTable', apr:'aWeekTable', may:'yWeekTable', jun:'jWeekTable', jul:'lWeekTable', aug:'uWeekTable'}[prefix];
