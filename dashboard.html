@@ -2618,7 +2618,7 @@ function renderMonth(prefix) {
   const isJun = prefix === 'jun';
   const isJul = prefix === 'jul';
   const isAug = prefix === 'aug';
-  const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 17 : (isAug ? 22 : 4))));
+  const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 17 : (isAug ? 21 : 4))));
   const slEnd = isMar ? 5 : (isMay ? 13 : (isJun ? 18 : (isJul ? undefined : (isAug ? undefined : 9))));
 
   // Sliced data views for this month tab
@@ -2674,6 +2674,7 @@ function renderMonth(prefix) {
       - (isJul  ? WEEKS.total[17]  : 0)
       - (isJul  ? AUG_IN_JUL_WEEK  : 0)
       + (isAug  ? AUG_IN_JUL_WEEK  : 0)
+      - (isAug  ? W.total[0]       : 0)  // вычитаем граничную неделю (27 июл–2 авг)
       - (!isMar && !isMay && !isJun && !isJul && !isAug ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
@@ -2682,6 +2683,7 @@ function renderMonth(prefix) {
       - (isJul  ? WEEKS.abon[17]        : 0)
       - (isJul  ? AUG_ABON_IN_JUL_WEEK  : 0)
       + (isAug  ? AUG_ABON_IN_JUL_WEEK  : 0)
+      - (isAug  ? W.abon[0]             : 0)
       - (!isMar && !isMay && !isJun && !isJul && !isAug ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
@@ -2690,11 +2692,12 @@ function renderMonth(prefix) {
       - (isJul  ? WEEKS.tovar[17]        : 0)
       - (isJul  ? AUG_TOVAR_IN_JUL_WEEK  : 0)
       + (isAug  ? AUG_TOVAR_IN_JUL_WEEK  : 0)
+      - (isAug  ? W.tovar[0]             : 0)
       - (!isMar && !isMay && !isJun && !isJul && !isAug ? MAY_TOVAR_IN_APR_WEEK  : 0);
-    const weeks     = idx.length - (isJul ? 1 : 0);
+    const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0);
     const avgWeek   = totalAll / weeks;
 
-    const julOff    = isJul ? 1 : 0;
+    const julOff    = (isJul || isAug) ? 1 : 0;
     const totals    = idx.slice(julOff).map(i => W.total[i]);
     const bestLocal = totals.indexOf(Math.max(...totals));
     const bestIdx   = idx.slice(julOff)[bestLocal];
@@ -2732,14 +2735,17 @@ function renderMonth(prefix) {
     const rows = isMar ? marchIdx : [...marchIdx.slice(-2), ...aprIdx];
     rows.forEach((i, li) => {
       const tr = document.createElement('tr');
-      const isRefMar = !isMar && W.isMarch[i]; // мартовская строка в апрельской таблице
+      const isRefMar  = !isMar && W.isMarch[i]; // мартовская строка в апрельской таблице
+      const isRefPrev = isAug && i === 0;        // предыдущая неделя (июль) в августовской таблице
       // тренд только внутри одного месяца
-      const trendStr = (li > 0 && W.isMarch[i] === W.isMarch[rows[li-1]])
+      const trendStr = (li > 0 && !isRefPrev && W.isMarch[i] === W.isMarch[rows[li-1]])
         ? trend(W.total[i], W.total[rows[li-1]]) : '';
-      if (!W.isMarch[i])   tr.style.cssText = 'font-weight:400;background:#FDF6F0';
-      else if (isRefMar)   tr.style.cssText = 'color:#aaa';
+      if (isRefMar || isRefPrev) tr.style.cssText = 'color:#aaa';
+      else if (!W.isMarch[i])    tr.style.cssText = 'font-weight:400;background:#FDF6F0';
       const badge = isRefMar
         ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">март</span>'
+        : isRefPrev
+        ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">июль</span>'
         : '';
       tr.innerHTML = `
         <td>${W.labels[i]}${badge}</td>
@@ -2753,7 +2759,7 @@ function renderMonth(prefix) {
     // Итого — только по текущему месяцу (idx = marchIdx или aprIdx)
     const tf = document.createElement('tr');
     tf.className = 'tfoot-row';
-    const visTotal = idx.reduce((s,i) => s + W.visits[i], 0);
+    const visTotal = idx.slice(julOff).reduce((s,i) => s + W.visits[i], 0);
     tf.innerHTML = `<td>Итого</td>
       <td class="r">${fmt(abonAll)}</td>
       <td class="r">${fmt(tovarAll)}</td>
@@ -2772,7 +2778,7 @@ function renderMonth(prefix) {
             label: 'Абонементы',
             data: W.abon,
             backgroundColor: W.labels.map((_,i) =>
-              barColor(W.isMarch[i], '#5C6937', 'rgba(174,180,156,0.45)')),
+              barColor(W.isMarch[i] || (isAug && i===0), '#5C6937', 'rgba(174,180,156,0.45)')),
             borderRadius: { topLeft: 0, topRight: 0, bottomLeft: 5, bottomRight: 5 },
             order: 2,
             datalabels: {
@@ -2787,13 +2793,13 @@ function renderMonth(prefix) {
             label: 'Товары',
             data: W.tovar,
             backgroundColor: W.labels.map((_,i) =>
-              barColor(W.isMarch[i], '#F0803B', 'rgba(200,200,200,0.3)')),
+              barColor(W.isMarch[i] || (isAug && i===0), '#F0803B', 'rgba(200,200,200,0.3)')),
             borderRadius: { topLeft: 5, topRight: 5, bottomLeft: 0, bottomRight: 0 },
             order: 2,
             datalabels: {
               anchor: 'end', align: 'end', offset: 2,
               font: { size: 10, weight: '400' },
-              color: ctx => (!isMar && W.isMarch[ctx.dataIndex]) ? '#888' : '#5C6937',
+              color: ctx => (!isMar && (W.isMarch[ctx.dataIndex] || (isAug && ctx.dataIndex===0))) ? '#888' : '#5C6937',
               formatter: (v, ctx) => Math.round(W.total[ctx.dataIndex]).toLocaleString('ru-RU'),
             },
           },
@@ -2839,7 +2845,7 @@ function renderMonth(prefix) {
               label: s.label,
               data: toRub(data[s.key]),
               backgroundColor: C.labels.map((_,i) =>
-                barColor(C.isMarch[i], s.color, 'rgba(200,200,200,0.35)')),
+                barColor(C.isMarch[i] || (isAug && i===0), s.color, 'rgba(200,200,200,0.35)')),
               borderRadius: 3,
               datalabels: isTop ? {
                 labels: {
@@ -2853,7 +2859,7 @@ function renderMonth(prefix) {
                   total: {
                     anchor: 'end', align: 'top', offset: 2,
                     font: { size: 10, weight: '400' },
-                    color: ctx => (!isMar && C.isMarch[ctx.dataIndex]) ? '#bbb' : '#5C6937',
+                    color: ctx => (!isMar && (C.isMarch[ctx.dataIndex] || (isAug && ctx.dataIndex===0))) ? '#bbb' : '#5C6937',
                     formatter: (_, ctx) => {
                       const i = ctx.dataIndex;
                       const svc = (data.morn[i] + data.eve[i] + data.wknd[i]) * 1000;
@@ -2894,19 +2900,22 @@ function renderMonth(prefix) {
     stackedChart('chart'+chartPfx+'TovarCats', C.tovar, 'Товары, руб.');
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — для сравнения)
-    const tb = document.getElementById({mar:'mCatsTable', apr:'aCatsTable', may:'yCatsTable', jun:'jCatsTable', jul:'lCatsTable'}[prefix]);
+    const tb = document.getElementById({mar:'mCatsTable', apr:'aCatsTable', may:'yCatsTable', jun:'jCatsTable', jul:'lCatsTable', aug:'uCatsTable'}[prefix]);
     const marchIdx = C.isMarch.map((m,i) => m ? i : -1).filter(i => i >= 0);
     const aprIdx   = C.isMarch.map((m,i) => !m ? i : -1).filter(i => i >= 0);
     const rows = isMar ? marchIdx : [...marchIdx.slice(-2), ...aprIdx];
-    rows.forEach(i => {
+    rows.forEach((i, ri) => {
       const abonTotal = (C.abon.morn[i]+C.abon.eve[i]+C.abon.wknd[i])*1000;
       const tovarTotal= (C.tovar.morn[i]+C.tovar.eve[i]+C.tovar.wknd[i])*1000;
       const isRefMar  = !isMar && C.isMarch[i];
+      const isRefPrev = isAug && i === 0;
       const tr = document.createElement('tr');
-      if (!C.isMarch[i]) tr.style.fontWeight = '400';
-      else if (isRefMar)  tr.style.cssText = 'color:#aaa';
+      if (isRefMar || isRefPrev) tr.style.cssText = 'color:#aaa';
+      else if (!C.isMarch[i])    tr.style.fontWeight = '400';
       const label = C.labels[i] + (isRefMar
         ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">март</span>'
+        : isRefPrev
+        ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">июль</span>'
         : '');
       tr.innerHTML = `
         <td>${label}</td>
@@ -3067,9 +3076,14 @@ function renderMonth(prefix) {
     const aprIdx   = W.isMarch.map((m,i) => !m ? i : -1).filter(i => i >= 0);
     const idx = isMar ? marchIdx : aprIdx;
 
-    const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0) - (isJul ? WEEKS.visits[17] : 0) - (isJul ? AUG_VISITS_IN_JUL_WEEK : 0) + (isAug ? AUG_VISITS_IN_JUL_WEEK : 0);
-    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0)) || 1));
-    const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0) - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0) - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0) + (isAug ? AUG_TRIAL_IN_JUL_WEEK : 0);
+    const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0)
+      - (isJul ? WEEKS.visits[17] : 0) - (isJul ? AUG_VISITS_IN_JUL_WEEK : 0)
+      + (isAug ? AUG_VISITS_IN_JUL_WEEK : 0) - (isAug ? W.visits[0] : 0);
+    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0)) || 1));
+    const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0)
+      - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0)
+      - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0) + (isAug ? AUG_TRIAL_IN_JUL_WEEK : 0)
+      - (isAug ? TRIAL.trial[sl] : 0);
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
@@ -3085,24 +3099,24 @@ function renderMonth(prefix) {
         datasets: [
           {
             label: 'Утро', data: W.morn, yAxisID: 'y', order: 2,
-            backgroundColor: W.isMarch.map(m => barColor(m, '#A2B9C9', 'rgba(162,185,201,0.3)')),
+            backgroundColor: W.isMarch.map((m,i) => barColor(m || (isAug && i===0), '#A2B9C9', 'rgba(162,185,201,0.3)')),
             borderRadius: 0, borderSkipped: false,
             datalabels: { display: false },
           },
           {
             label: 'День', data: W.day, yAxisID: 'y', order: 2,
-            backgroundColor: W.isMarch.map(m => barColor(m, '#5C6937', 'rgba(92,105,55,0.3)')),
+            backgroundColor: W.isMarch.map((m,i) => barColor(m || (isAug && i===0), '#5C6937', 'rgba(92,105,55,0.3)')),
             borderRadius: 0, borderSkipped: false,
             datalabels: { display: false },
           },
           {
             label: 'Вечер', data: W.eve, yAxisID: 'y', order: 2,
-            backgroundColor: W.isMarch.map(m => barColor(m, '#F0803B', 'rgba(240,128,59,0.3)')),
+            backgroundColor: W.isMarch.map((m,i) => barColor(m || (isAug && i===0), '#F0803B', 'rgba(240,128,59,0.3)')),
             borderRadius: 4, borderSkipped: false,
             datalabels: {
               display: true, anchor: 'end', align: 'top', offset: 2,
               formatter: (_, ctx) => fmtN(W.morn[ctx.dataIndex] + W.day[ctx.dataIndex] + W.eve[ctx.dataIndex]),
-              color: ctx => (!isMar && W.isMarch[ctx.dataIndex]) ? '#aaa' : '#5C6937',
+              color: ctx => (!isMar && (W.isMarch[ctx.dataIndex] || (isAug && ctx.dataIndex===0))) ? '#aaa' : '#5C6937',
               font: { size: 11, weight: '400' },
             },
           },
@@ -3115,7 +3129,7 @@ function renderMonth(prefix) {
             datalabels: {
               display: true, anchor: 'top', align: 'top', offset: 4,
               formatter: v => fmtN(v),
-              color: ctx => (!isMar && W.isMarch[ctx.dataIndex]) ? '#aaa' : '#A2B9C9',
+              color: ctx => (!isMar && (W.isMarch[ctx.dataIndex] || (isAug && ctx.dataIndex===0))) ? '#aaa' : '#A2B9C9',
               font: { size: 10, weight: '400' },
             },
           },
@@ -3140,18 +3154,21 @@ function renderMonth(prefix) {
     });
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — для сравнения)
-    const tb = document.getElementById({mar:'mVisitTable', apr:'aVisitTable', may:'yVisitTable', jun:'jVisitTable', jul:'lVisitTable'}[prefix]);
+    const tb = document.getElementById({mar:'mVisitTable', apr:'aVisitTable', may:'yVisitTable', jun:'jVisitTable', jul:'lVisitTable', aug:'uVisitTable'}[prefix]);
     const rows = isMar ? marchIdx : [...marchIdx.slice(-2), ...aprIdx];
     rows.forEach((i, li) => {
-      const isRefMar = !isMar && W.isMarch[i];
+      const isRefMar  = !isMar && W.isMarch[i];
+      const isRefPrev = isAug && i === 0;
       const tr = document.createElement('tr');
-      if (!W.isMarch[i])  tr.style.fontWeight = '400';
-      else if (isRefMar)  tr.style.cssText = 'color:#aaa';
+      if (isRefMar || isRefPrev) tr.style.cssText = 'color:#aaa';
+      else if (!W.isMarch[i])    tr.style.fontWeight = '400';
       const badge = isRefMar
         ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">март</span>'
+        : isRefPrev
+        ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">июль</span>'
         : '';
       // тренд только внутри одного месяца
-      const prev = (li > 0 && W.isMarch[i] === W.isMarch[rows[li-1]]) ? rows[li-1] : null;
+      const prev = (li > 0 && !isRefPrev && W.isMarch[i] === W.isMarch[rows[li-1]]) ? rows[li-1] : null;
       const trendStr = prev !== null ? trend(W.visits[i], W.visits[prev]) : '';
       tr.innerHTML = `
         <td>${W.labels[i]}${badge}</td>
@@ -3183,8 +3200,8 @@ function renderMonth(prefix) {
           {
             label: 'Всего гостей',
             data: T.visits,
-            backgroundColor: T.isMarch.map(m =>
-              barColor(m, '#A2B9C9', 'rgba(162,185,201,0.3)')),
+            backgroundColor: T.isMarch.map((m,i) =>
+              barColor(m || (isAug && i===0), '#A2B9C9', 'rgba(162,185,201,0.3)')),
             borderRadius: 5, order: 2, yAxisID: 'y',
           },
           {
@@ -3211,7 +3228,7 @@ function renderMonth(prefix) {
               total: {
                 anchor: 'end', align: 'top', offset: 2,
                 formatter: (v, ctx) => ctx.datasetIndex === 0 ? fmtN(v) : null,
-                color: ctx => (!isMar && T.isMarch[ctx.dataIndex]) ? '#aaa' : '#5C6937',
+                color: ctx => (!isMar && (T.isMarch[ctx.dataIndex] || (isAug && ctx.dataIndex===0))) ? '#aaa' : '#5C6937',
                 font: { size: 10, weight: '400' },
               },
               trial: {
