@@ -2515,9 +2515,9 @@ const APR_ADMIN_WEEKS = [
     admins: [
       { name:'Оля В',   abon:184370, tovar:12486, shifts:4, newQty:4, newRub:42800  },
       { name:'Оля К',   abon:149235, tovar:15227, shifts:2, newQty:0, newRub:0      },
-      { name:'Алёна',   abon:132610, tovar:19820, shifts:3, newQty:5, newRub:61300  },
+      { name:'Алёна',   abon:132610, tovar:19820, shifts:2, newQty:5, newRub:61300  },
       { name:'Даша',    abon:109100, tovar:1640,  shifts:2, newQty:0, newRub:0      },
-      { name:'Полина',  abon:101930, tovar:4829,  shifts:4, newQty:1, newRub:14500  },
+      { name:'Полина',  abon:101930, tovar:4829,  shifts:2, newQty:1, newRub:14500  },
       { name:'Вика',    abon:36880,  tovar:13450, shifts:1, newQty:1, newRub:13900  },
       { name:'Наташа',  abon:33210,  tovar:990,   shifts:1, newQty:1, newRub:7500   },
     ],
@@ -2682,7 +2682,6 @@ function renderMonth(prefix) {
       + (isJul  ? JUL_IN_JUN_WEEK  : 0)
       - (isJul  ? WEEKS.total[17]  : 0)
       - (isJul  ? AUG_IN_JUL_WEEK  : 0)
-      + (isAug  ? AUG_IN_JUL_WEEK  : 0)
       - (isAug  ? W.total[0]       : 0)  // вычитаем граничную неделю (27 июл–2 авг)
       - (!isMar && !isMay && !isJun && !isJul && !isAug ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
@@ -2691,7 +2690,6 @@ function renderMonth(prefix) {
       + (isJul  ? JUL_ABON_IN_JUN_WEEK  : 0)
       - (isJul  ? WEEKS.abon[17]        : 0)
       - (isJul  ? AUG_ABON_IN_JUL_WEEK  : 0)
-      + (isAug  ? AUG_ABON_IN_JUL_WEEK  : 0)
       - (isAug  ? W.abon[0]             : 0)
       - (!isMar && !isMay && !isJun && !isJul && !isAug ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
@@ -2700,7 +2698,6 @@ function renderMonth(prefix) {
       + (isJul  ? JUL_TOVAR_IN_JUN_WEEK  : 0)
       - (isJul  ? WEEKS.tovar[17]        : 0)
       - (isJul  ? AUG_TOVAR_IN_JUL_WEEK  : 0)
-      + (isAug  ? AUG_TOVAR_IN_JUL_WEEK  : 0)
       - (isAug  ? W.tovar[0]             : 0)
       - (!isMar && !isMay && !isJun && !isJul && !isAug ? MAY_TOVAR_IN_APR_WEEK  : 0);
     const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0);
@@ -3087,7 +3084,7 @@ function renderMonth(prefix) {
 
     const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0)
       - (isJul ? WEEKS.visits[17] : 0) - (isJul ? AUG_VISITS_IN_JUL_WEEK : 0)
-      + (isAug ? AUG_VISITS_IN_JUL_WEEK : 0) - (isAug ? W.visits[0] : 0);
+      - (isAug ? W.visits[0] : 0);
     const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0)) || 1));
     const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0)
       - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0)
