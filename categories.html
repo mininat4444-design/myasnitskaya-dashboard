@@ -230,7 +230,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
       <h3>Таблица списаний по товарам</h3>
       <div class="table-wrap">
         <table>
-          <thead><tr><th>Товар</th><th class="r">Янв</th><th class="r">Фев</th><th class="r">Мар</th><th class="r">Апр</th><th class="r">Май</th><th class="r">Итого, шт</th><th class="r">Сумма, ₽</th></tr></thead>
+          <thead id="wo-thead"><tr><th>Товар</th><th class="r">Итого, шт</th><th class="r">Сумма, ₽</th></tr></thead>
           <tbody id="wo-table-body"></tbody>
         </table>
       </div>
@@ -610,7 +610,7 @@ function renderWriteoffs(){
     <div class="card">
       <div class="card-label">Списано всего</div>
       <div class="card-value">${fmtNum(grandQty)}</div>
-      <div class="card-sub">штук, янв—июн</div>
+      <div class="card-sub">штук, янв—${MONTHS[MONTHS.length-1].slice(0,3).toLowerCase()}</div>
     </div>
     <div class="card orange">
       <div class="card-label">Стоимость списаний</div>
@@ -637,6 +637,10 @@ function renderWriteoffs(){
     ]},
     options:{ plugins:{ legend:{ display:false } }, scales:{ y:{ title:{display:true,text:'шт'} } } }
   });
+
+  // Динамический заголовок таблицы
+  document.getElementById('wo-thead').innerHTML =
+    `<tr><th>Товар</th>${MONTHS.map(m=>`<th class="r">${m.slice(0,3)}</th>`).join('')}<th class="r">Итого, шт</th><th class="r">Сумма, ₽</th></tr>`;
 
   const order = Object.keys(itemTotals).sort((a,b)=>itemTotals[b][1]-itemTotals[a][1]);
   document.getElementById('wo-table-body').innerHTML = order.map(name => {
