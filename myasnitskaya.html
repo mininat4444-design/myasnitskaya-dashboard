@@ -3092,7 +3092,7 @@ function renderMonth(prefix) {
   const isAug = prefix === 'aug';
   const isSep = prefix === 'sep';
   const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 17 : (isAug ? 21 : (isSep ? 26 : 4)))));
-  const slEnd = isMar ? 5 : (isMay ? 13 : (isJun ? 18 : (isJul ? undefined : (isAug ? 26 : (isSep ? undefined : 9)))));
+  const slEnd = isMar ? 5 : (isMay ? 13 : (isJun ? 18 : (isJul ? 22 : (isAug ? 26 : (isSep ? undefined : 9)))));
 
   // Sliced data views for this month tab
   const W = {
