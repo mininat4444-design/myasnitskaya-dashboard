@@ -3147,6 +3147,7 @@ function renderMonth(prefix) {
       - (isJul  ? WEEKS.total[17]  : 0)
       - (isJul  ? AUG_IN_JUL_WEEK  : 0)
       - (isAug  ? W.total[0]       : 0)  // вычитаем граничную неделю (27 июл–2 авг)
+      - (isAug  ? W.total[W.total.length - 1] : 0)  // вычитаем граничную неделю (31 авг–6 сен)
       - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
@@ -3155,6 +3156,7 @@ function renderMonth(prefix) {
       - (isJul  ? WEEKS.abon[17]        : 0)
       - (isJul  ? AUG_ABON_IN_JUL_WEEK  : 0)
       - (isAug  ? W.abon[0]             : 0)
+      - (isAug  ? W.abon[W.abon.length - 1] : 0)  // вычитаем граничную неделю (31 авг–6 сен)
       - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
@@ -3163,14 +3165,16 @@ function renderMonth(prefix) {
       - (isJul  ? WEEKS.tovar[17]        : 0)
       - (isJul  ? AUG_TOVAR_IN_JUL_WEEK  : 0)
       - (isAug  ? W.tovar[0]             : 0)
+      - (isAug  ? W.tovar[W.tovar.length - 1] : 0)  // вычитаем граничную неделю (31 авг–6 сен)
       - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep ? MAY_TOVAR_IN_APR_WEEK  : 0);
-    const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0) - (isSep ? 0 : 0);
+    const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0) - (isSep ? 0 : 0);
     const avgWeek   = totalAll / weeks;
 
     const julOff    = (isJul || isAug) ? 1 : 0;
-    const totals    = idx.slice(julOff).map(i => W.total[i]);
+    const augEndOff = isAug ? idx.length - 1 : undefined;
+    const totals    = idx.slice(julOff, augEndOff).map(i => W.total[i]);
     const bestLocal = totals.indexOf(Math.max(...totals));
-    const bestIdx   = idx.slice(julOff)[bestLocal];
+    const bestIdx   = idx.slice(julOff, augEndOff)[bestLocal];
 
     const pfx = pfxChar + 's';
     document.getElementById(pfx+'-total').textContent = fmtK(totalAll);
@@ -3232,7 +3236,7 @@ function renderMonth(prefix) {
     // Итого — только по текущему месяцу (idx = marchIdx или aprIdx)
     const tf = document.createElement('tr');
     tf.className = 'tfoot-row';
-    const visTotal = idx.slice(julOff).reduce((s,i) => s + W.visits[i], 0);
+    const visTotal = idx.slice(julOff, augEndOff).reduce((s,i) => s + W.visits[i], 0);
     tf.innerHTML = `<td>Итого</td>
       <td class="r">${fmt(abonAll)}</td>
       <td class="r">${fmt(tovarAll)}</td>
@@ -3578,12 +3582,14 @@ function renderMonth(prefix) {
 
     const totalVisits = idx.reduce((s,i) => s + W.visits[i], 0)
       - (isJul ? WEEKS.visits[17] : 0) - (isJul ? AUG_VISITS_IN_JUL_WEEK : 0)
-      - (isAug ? W.visits[0] : 0);
-    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 1 : 0)) || 1));
+      - (isAug ? W.visits[0] : 0)
+      - (isAug ? W.visits[W.visits.length - 1] : 0);  // вычитаем граничную неделю (31 авг–6 сен)
+    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0)) || 1));
     const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0)
       - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0)
       - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0)
-      - (isAug ? TRIAL.trial[sl] : 0);
+      - (isAug ? TRIAL.trial[sl] : 0)
+      - (isAug ? TRIAL.trial[sl + idx.length - 1] : 0);  // вычитаем граничную неделю (31 авг–6 сен)
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
