@@ -100,27 +100,27 @@
   }
 
   /* ─── KPI ─── */
-  .kpi-scroll {
+  .kpi-main {
     display: flex;
     gap: 10px;
-    padding: 18px 16px 4px;
-    overflow-x: auto;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
+    padding: 18px 16px 6px;
   }
-  .kpi-scroll::-webkit-scrollbar { display: none; }
+  .kpi-tops {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 0 16px 4px;
+  }
   .kpi {
     background: white;
     border-radius: 14px;
     padding: 16px 18px 14px;
-    min-width: 155px;
-    flex-shrink: 0;
-    scroll-snap-align: start;
     position: relative;
     overflow: hidden;
     border: 1px solid var(--border);
   }
+  .kpi-main .kpi { flex: 1 1 0; min-width: 140px; }
+  .kpi-tops .kpi  { flex: 1 1 120px; min-width: 110px; }
   .kpi::after {
     content: '';
     position: absolute;
@@ -439,7 +439,7 @@
   </div>
 </header>
 
-<div class="kpi-scroll">
+<div class="kpi-main">
   <div class="kpi orange">
     <div class="kpi-label">Всего продаж</div>
     <div class="kpi-value" id="kpi-total">—</div>
@@ -450,6 +450,8 @@
     <div class="kpi-value" id="kpi-active">—</div>
     <div class="kpi-sub" id="kpi-active-sub"></div>
   </div>
+</div>
+<div class="kpi-tops">
   <div class="kpi orange">
     <div class="kpi-label">Топ март</div>
     <div class="kpi-value sm" id="kpi-top-m">—</div>
