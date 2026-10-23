@@ -14,7 +14,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 
 .time-col { width: 52px; flex-shrink: 0; background: #fafafa; border-right: 1px solid #e8e8e8; }
 .time-header { height: 74px; border-bottom: 1px solid #ddd; }
-.time-axis { position: relative; height: 800px; }
+.time-axis { position: relative; height: 1120px; }
 .tick { position: absolute; right: 4px; font-size: 10px; color: #999; transform: translateY(-50%); white-space: nowrap; }
 
 .day-block { flex: 1; min-width: 0; border-right: 1px solid #ddd; }
@@ -22,7 +22,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 
 .day-header { height: 54px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #5C6937; background: #f0f4e8; border-bottom: 1px solid #ddd; }
 
-.cols { display: grid; grid-template-columns: 1fr 1fr; height: 800px; position: relative; }
+.cols { display: grid; grid-template-columns: 1fr 1fr; height: 1120px; position: relative; }
 
 .hall-col { position: relative; border-right: 1px solid #f0f0f0; }
 .hall-col:last-child { border-right: none; }
@@ -108,7 +108,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 </div>
 
 <script>
-const START_H = 6, END_H = 22, TOTAL = (END_H - START_H) * 60, H = 800;
+const START_H = 6, END_H = 22, TOTAL = (END_H - START_H) * 60, H = 1120;
 const toMin = t => { const [h,m] = t.split(':').map(Number); return (h - START_H)*60+(m||0); };
 const toY = t => toMin(t) / TOTAL * H;
 const toHpx = d => d / TOTAL * H;
