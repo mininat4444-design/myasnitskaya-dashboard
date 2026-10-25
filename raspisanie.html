@@ -127,8 +127,6 @@ const typeOf = c => {
   return 't-other';
 };
 
-const RYABOVA = 'Уходит на Пятницкую с ноября';
-
 const sched = {
   'Пн': {
     jup: [
@@ -145,7 +143,7 @@ const sched = {
       {t:'13:00', d:60, n:'Пичугина Маша', c:'Хатха йога'},
       {t:'17:00', d:90, n:'Пичугина Маша', c:'Женская йога'},
       {t:'18:45', d:80, n:'Кравченко Дима', c:'Аштанга'},
-      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога', think:true, note:RYABOVA},
+      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога'},
     ],
   },
   'Вт': {
@@ -215,7 +213,7 @@ const sched = {
       {t:'13:00', d:60, n:'Пичугина Маша', c:'Хатха йога'},
       {t:'17:00', d:90, n:'Васильева Алина', c:'Виньяса'},
       {t:'18:45', d:80, n:'Кравченко Дима', c:'Аштанга'},
-      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога', think:true, note:RYABOVA},
+      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога'},
     ],
   },
   'Сб': {
@@ -430,10 +428,20 @@ document.addEventListener('click', e => {
     </tbody>
   </table>
 
-  <h2 style="font-size:18px; font-weight:700; margin-bottom:16px; border-bottom:2px solid #e0e0e0; padding-bottom:8px;">Изменения</h2>
+  <h2 style="font-size:18px; font-weight:700; margin-bottom:16px; border-bottom:2px solid #e0e0e0; padding-bottom:8px;">Нужен преподаватель</h2>
   <ul style="margin:0 0 32px; padding-left:20px; line-height:2;">
-    <li>Рябова Катя (пн и пт, 20:15, Сатурн) — уходит на Пятницкую с ноября</li>
-    <li>Вс 20:00 — потенциальные классы с ноября в обоих залах</li>
+    <li>Пн 11:30–12:50, Сатурн</li>
+    <li>Ср 10:30–12:00, Юпитер</li>
+    <li>Пт 11:30–12:50, Сатурн</li>
+    <li>Сб 18:45–20:15, Сатурн</li>
+    <li>Сб 19:15–20:45, Юпитер</li>
+    <li>Вс 20:00–21:30, Юпитер — потенциальный класс с ноября</li>
+    <li>Вс 20:00–21:15, Сатурн — потенциальный класс</li>
+  </ul>
+
+  <h2 style="font-size:18px; font-weight:700; margin-bottom:16px; border-bottom:2px solid #e0e0e0; padding-bottom:8px;">Изменения с ноября</h2>
+  <ul style="margin:0 0 32px; padding-left:20px; line-height:2;">
+    <li>Один преподаватель уходит на Пятницкую</li>
   </ul>
 </div>
 
