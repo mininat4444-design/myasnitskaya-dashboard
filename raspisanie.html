@@ -12,7 +12,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 .scroll { overflow-x: auto; }
 .schedule { display: flex; gap: 0; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; background: #fff; min-width: 1100px; }
 
-.time-col { width: 52px; flex-shrink: 0; background: #fafafa; border-right: 1px solid #e8e8e8; }
+.time-col { width: 52px; flex-shrink: 0; background: #DAF2F4; border-right: 1px solid #e8e8e8; }
 .time-header { height: 74px; border-bottom: 1px solid #ddd; }
 .time-axis { position: relative; height: 1120px; }
 .tick { position: absolute; right: 4px; font-size: 10px; color: #999; transform: translateY(-50%); white-space: nowrap; }
@@ -20,7 +20,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 .day-block { flex: 1; min-width: 0; border-right: 1px solid #ddd; }
 .day-block:last-child { border-right: none; }
 
-.day-header { height: 54px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #5C6937; background: #f0f4e8; border-bottom: 1px solid #ddd; }
+.day-header { height: 54px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 600; color: #fff; background: #59ACF1; border-bottom: 1px solid #ddd; }
 
 .cols { display: grid; grid-template-columns: 1fr 1fr; height: 1120px; position: relative; }
 
@@ -33,23 +33,12 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 .cls .ctime { font-size: 10px; opacity: 0.65; }
 .cls .cname { font-weight: 600; font-size: 11px; }
 .cls .tname { font-size: 12px; font-weight: 500; opacity: 0.9; }
-.cls-need  { background: #F7C1C1; color: #791F1F; border: 1px dashed #E24B4A; }
-.cls-think { background: #E9E9E9 !important; color: #555 !important; border: 1px dashed #999; }
-/* Хатха — зелёные */
-.t-hbeg  { background: #DDF2C9; color: #2F5A0C; }
-.t-hall  { background: #A9DC8A; color: #1F4A06; }
-.t-hpow  { background: #6FB24A; color: #fff; }
-.t-haroma{ background: #CDE8B0; color: #3A5A10; border-left: 4px solid #9BC46A; }
-/* Терапия — бирюзовые */
-.t-back  { background: #7FCFC4; color: #08403A; }
-.t-women { background: #F5C2DD; color: #7A1E50; }
-/* Аштанга — оранжевые */
-.t-mysore{ background: #F6A65A; color: #5A2A00; }
-.t-led   { background: #FBD1A2; color: #6B3A06; }
-/* Остальные */
-.t-vin   { background: #B5D4F4; color: #0C447C; }
-.t-sound { background: #D9C6F2; color: #4A2A7A; }
-.t-other { background: #E8E8E8; color: #444; }
+.cls-need { background: #FF7C80; color: #1a1a1a; }
+/* Цвета ячеек как в Excel */
+.x-blue { background: #D9E7FD; color: #1a1a1a; }
+.x-cyan { background: #CCFFFF; color: #1a1a1a; }
+.x-pink { background: #F6C3FF; color: #1a1a1a; }
+.x-red  { background: #FF7C80; color: #1a1a1a; }
 
 .legend { display: flex; gap: 20px; margin-top: 12px; flex-wrap: wrap; }
 .leg-item { display: flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
@@ -57,8 +46,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 
 .hall-strip { height: 20px; display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid #ddd; }
 .hs { font-size: 9px; text-align: center; display: flex; align-items: center; justify-content: center; font-weight: 500; }
-.hs.h-jup { background: #EAF3DE; color: #3B6D11; }
-.hs.h-sat { background: #E6F1FB; color: #185FA5; }
+.hs.h-jup, .hs.h-sat { background: #C0CDFF; color: #333; font-weight: 700; }
 
 .cls { cursor: pointer; }
 .cls:hover { filter: brightness(0.93); }
@@ -72,8 +60,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 .popup-teacher { font-size: 14px; color: #3a3a3a; margin-bottom: 8px; }
 .popup-note { font-size: 12px; color: #A4161A; margin-bottom: 8px; }
 .popup-hall { font-size: 11px; font-weight: 600; display: inline-block; padding: 2px 9px; border-radius: 20px; }
-.popup-hall.h-jup { background: #EAF3DE; color: #3B6D11; }
-.popup-hall.h-sat { background: #E6F1FB; color: #185FA5; }
+.popup-hall.h-jup, .popup-hall.h-sat { background: #C0CDFF; color: #333; }
 .popup-day { font-size: 11px; color: #aaa; margin-left: 6px; }
 </style>
 </head>
@@ -93,18 +80,7 @@ h1 { font-size: 20px; font-weight: 500; margin-bottom: 20px; color: #3a3a3a; }
 <div class="scroll"><div class="schedule" id="schedule"></div></div>
 
 <div class="legend">
-  <div class="leg-item"><div class="leg-dot" style="background:#DDF2C9;"></div>Хатха. Начинающие</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#A9DC8A;"></div>Хатха. Все уровни</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#6FB24A;"></div>Силовая</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#CDE8B0;"></div>Хатха + Ароматерапия</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#7FCFC4;"></div>Здоровая спина</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#F5C2DD;"></div>Женская йога</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#F6A65A;"></div>Аштанга. Майсор</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#FBD1A2;"></div>Аштанга</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#B5D4F4;"></div>Виньяса</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#D9C6F2;"></div>Звукотерапия</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#F7C1C1;border:1px dashed #E24B4A"></div>Нужен преподаватель</div>
-  <div class="leg-item"><div class="leg-dot" style="background:#E9E9E9;border:1px dashed #999"></div>Уходит / под вопросом</div>
+  <div class="leg-item"><div class="leg-dot" style="background:#FF7C80;"></div>Нужен преподаватель</div>
 </div>
 
 <script>
@@ -112,145 +88,131 @@ const START_H = 6, END_H = 22, TOTAL = (END_H - START_H) * 60, H = 1120;
 const toMin = t => { const [h,m] = t.split(':').map(Number); return (h - START_H)*60+(m||0); };
 const toY = t => toMin(t) / TOTAL * H;
 const toHpx = d => d / TOTAL * H;
-const typeOf = c => {
-  const x = c.toLowerCase();
-  if (x.includes('майсор')) return 't-mysore';
-  if (x.includes('аштанга')) return 't-led';
-  if (x.includes('виньяса')) return 't-vin';
-  if (x.includes('звук')) return 't-sound';
-  if (x.includes('спина')) return 't-back';
-  if (x.includes('женск')) return 't-women';
-  if (x.includes('арома')) return 't-haroma';
-  if (x.includes('силов')) return 't-hpow';
-  if (x.includes('начинающ')) return 't-hbeg';
-  if (x.includes('хатха')) return 't-hall';
-  return 't-other';
-};
 
 const sched = {
   'Пн': {
     jup: [
-      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор'},
-      {t:'9:30', d:60, n:'Березкина Олеся', c:'Хатха + Ароматерапия'},
-      {t:'11:00', d:90, n:'Хейлик Юля', c:'Хатха. Начинающие'},
-      {t:'14:00', d:90, n:'Назарова Даша', c:'Виньяса'},
-      {t:'17:30', d:80, n:'Васильева Алина', c:'Виньяса'},
-      {t:'19:00', d:80, n:'Колбина Настя', c:'Хатха йога'},
-      {t:'20:30', d:90, n:'Павлов Юрий', c:'Хатха силовая'},
+      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор', x:'x-blue'},
+      {t:'9:30', d:60, n:'Березкина Олеся', c:'Хатха + Ароматерапия', x:'x-blue'},
+      {t:'11:00', d:90, n:'Хейлик Юля', c:'Хатха. Начинающие', x:'x-blue'},
+      {t:'14:00', d:90, n:'Назарова Даша', c:'Виньяса', x:'x-pink'},
+      {t:'17:30', d:80, n:'Васильева Алина', c:'Виньяса', x:'x-pink'},
+      {t:'19:00', d:80, n:'Колбина Настя', c:'Хатха йога', x:'x-blue'},
+      {t:'20:30', d:90, n:'Павлов Юрий', c:'Хатха силовая', x:'x-blue'},
     ],
     sat: [
-      {t:'11:30', d:80, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true},
-      {t:'13:00', d:60, n:'Пичугина Маша', c:'Хатха йога'},
-      {t:'17:00', d:90, n:'Пичугина Маша', c:'Женская йога'},
-      {t:'18:45', d:80, n:'Кравченко Дима', c:'Аштанга'},
-      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога'},
+      {t:'11:30', d:80, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true, x:'x-red'},
+      {t:'13:00', d:60, n:'Пичугина Маша', c:'Хатха йога', x:'x-cyan'},
+      {t:'17:00', d:90, n:'Пичугина Маша', c:'Женская йога', x:'x-cyan'},
+      {t:'18:45', d:80, n:'Кравченко Дима', c:'Аштанга', x:'x-cyan'},
+      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога', x:'x-cyan'},
     ],
   },
   'Вт': {
     jup: [
-      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор'},
-      {t:'14:00', d:90, n:'Муравьев Денис', c:'Хатха йога'},
-      {t:'17:30', d:80, n:'Барабаш Татьяна', c:'Аштанга'},
-      {t:'19:00', d:80, n:'Родина Люба', c:'Виньяса'},
-      {t:'20:30', d:90, n:'Юдина Настя', c:'Хатха. Начинающие'},
+      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор', x:'x-blue'},
+      {t:'14:00', d:90, n:'Муравьев Денис', c:'Хатха йога', x:'x-blue'},
+      {t:'17:30', d:80, n:'Барабаш Татьяна', c:'Аштанга', x:'x-blue'},
+      {t:'19:00', d:80, n:'Родина Люба', c:'Виньяса', x:'x-blue'},
+      {t:'20:30', d:90, n:'Юдина Настя', c:'Хатха. Начинающие', x:'x-blue'},
     ],
     sat: [
-      {t:'8:30', d:90, n:'Русова Настя', c:'Хатха йога'},
-      {t:'10:30', d:90, n:'Обухова Настя', c:'Хатха йога'},
-      {t:'13:30', d:75, n:'Грачева Саша', c:'Здоровая спина'},
-      {t:'17:00', d:80, n:'Зеленая Маша', c:'Хатха йога'},
-      {t:'18:45', d:80, n:'Зареченская Маша', c:'Хатха и дыхание'},
-      {t:'20:15', d:90, n:'Попова Ксения', c:'Виньяса soft'},
+      {t:'8:30', d:90, n:'Русова Настя', c:'Хатха йога', x:'x-cyan'},
+      {t:'10:30', d:90, n:'Обухова Настя', c:'Хатха йога', x:'x-cyan'},
+      {t:'13:30', d:75, n:'Грачева Саша', c:'Здоровая спина', x:'x-cyan'},
+      {t:'17:00', d:80, n:'Зеленая Маша', c:'Хатха йога', x:'x-cyan'},
+      {t:'18:45', d:80, n:'Зареченская Маша', c:'Хатха и дыхание', x:'x-cyan'},
+      {t:'20:15', d:90, n:'Попова Ксения', c:'Виньяса soft', x:'x-cyan'},
     ],
   },
   'Ср': {
     jup: [
-      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор'},
-      {t:'10:30', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true},
-      {t:'12:00', d:90, n:'Обухова Настя', c:'Женское здоровье'},
-      {t:'14:00', d:90, n:'Назарова Даша', c:'Виньяса'},
-      {t:'17:30', d:80, n:'Никитина Женя', c:'Хатха йога'},
-      {t:'19:00', d:80, n:'Феликс', c:'Хатха йога'},
-      {t:'20:30', d:90, n:'Никитина Женя', c:'Виньяса'},
+      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор', x:'x-blue'},
+      {t:'10:30', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true, x:'x-red'},
+      {t:'12:00', d:90, n:'Обухова Настя', c:'Женское здоровье', x:'x-blue'},
+      {t:'14:00', d:90, n:'Назарова Даша', c:'Виньяса', x:'x-pink'},
+      {t:'17:30', d:80, n:'Никитина Женя', c:'Хатха йога', x:'x-blue'},
+      {t:'19:00', d:80, n:'Феликс', c:'Хатха йога', x:'x-blue'},
+      {t:'20:30', d:90, n:'Никитина Женя', c:'Виньяса', x:'x-blue'},
     ],
     sat: [
-      {t:'9:30', d:60, n:'Иванова Мария', c:'Хатха йога'},
-      {t:'13:00', d:90, n:'Барышников', c:'Аштанга'},
-      {t:'17:00', d:80, n:'Пичугина Маша', c:'Хатха йога'},
-      {t:'18:30', d:90, n:'Лисова Вика', c:'Хатха йога'},
-      {t:'20:15', d:90, n:'Лычак Юля', c:'Хатха йога'},
+      {t:'9:30', d:60, n:'Иванова Мария', c:'Хатха йога', x:'x-cyan'},
+      {t:'13:00', d:90, n:'Барышников', c:'Аштанга', x:'x-cyan'},
+      {t:'17:00', d:80, n:'Пичугина Маша', c:'Хатха йога', x:'x-cyan'},
+      {t:'18:30', d:90, n:'Лисова Вика', c:'Хатха йога', x:'x-cyan'},
+      {t:'20:15', d:90, n:'Лычак Юля', c:'Хатха йога', x:'x-cyan'},
     ],
   },
   'Чт': {
     jup: [
-      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор'},
-      {t:'14:00', d:90, n:'Муравьев Денис', c:'Хатха йога'},
-      {t:'17:30', d:80, n:'Барабаш Татьяна', c:'Аштанга'},
-      {t:'19:00', d:80, n:'Родина Люба', c:'Виньяса'},
-      {t:'20:30', d:90, n:'Юдина Настя', c:'Хатха. Начинающие'},
+      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор', x:'x-blue'},
+      {t:'14:00', d:90, n:'Муравьев Денис', c:'Хатха йога', x:'x-blue'},
+      {t:'17:30', d:80, n:'Барабаш Татьяна', c:'Аштанга', x:'x-blue'},
+      {t:'19:00', d:80, n:'Родина Люба', c:'Виньяса', x:'x-blue'},
+      {t:'20:30', d:90, n:'Юдина Настя', c:'Хатха. Начинающие', x:'x-blue'},
     ],
     sat: [
-      {t:'8:30', d:90, n:'Русова Настя', c:'Хатха йога'},
-      {t:'10:30', d:90, n:'Обухова Настя', c:'Хатха йога'},
-      {t:'13:30', d:75, n:'Грачева Саша', c:'Здоровая спина'},
-      {t:'17:00', d:80, n:'Зеленая Маша', c:'Хатха йога'},
-      {t:'18:45', d:80, n:'Зареченская Маша', c:'Хатха и дыхание'},
-      {t:'20:15', d:90, n:'Попова Ксения', c:'Виньяса soft'},
+      {t:'8:30', d:90, n:'Русова Настя', c:'Хатха йога', x:'x-cyan'},
+      {t:'10:30', d:90, n:'Обухова Настя', c:'Хатха йога', x:'x-cyan'},
+      {t:'13:30', d:75, n:'Грачева Саша', c:'Здоровая спина', x:'x-cyan'},
+      {t:'17:00', d:80, n:'Зеленая Маша', c:'Хатха йога', x:'x-cyan'},
+      {t:'18:45', d:80, n:'Зареченская Маша', c:'Хатха и дыхание', x:'x-cyan'},
+      {t:'20:15', d:90, n:'Попова Ксения', c:'Виньяса soft', x:'x-cyan'},
     ],
   },
   'Пт': {
     jup: [
-      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор'},
-      {t:'11:00', d:90, n:'Хейлик Юля', c:'Хатха. Начинающие'},
-      {t:'14:00', d:90, n:'Барабаш Таня', c:'Аштанга'},
-      {t:'17:30', d:80, n:'Никитина Женя', c:'Хатха йога'},
-      {t:'19:00', d:80, n:'Колбина Настя', c:'Хатха йога'},
-      {t:'20:30', d:90, n:'Павлов Юрий', c:'Хатха силовая'},
+      {t:'6:30', d:180, n:'Шалимова', c:'Аштанга. Майсор', x:'x-blue'},
+      {t:'11:00', d:90, n:'Хейлик Юля', c:'Хатха. Начинающие', x:'x-blue'},
+      {t:'14:00', d:90, n:'Барабаш Таня', c:'Аштанга', x:'x-blue'},
+      {t:'17:30', d:80, n:'Никитина Женя', c:'Хатха йога', x:'x-blue'},
+      {t:'19:00', d:80, n:'Колбина Настя', c:'Хатха йога', x:'x-blue'},
+      {t:'20:30', d:90, n:'Павлов Юрий', c:'Хатха силовая', x:'x-blue'},
     ],
     sat: [
-      {t:'9:30', d:60, n:'Иванова Мария', c:'Хатха йога'},
-      {t:'11:30', d:80, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true},
-      {t:'13:00', d:60, n:'Пичугина Маша', c:'Хатха йога'},
-      {t:'17:00', d:90, n:'Васильева Алина', c:'Виньяса'},
-      {t:'18:45', d:80, n:'Кравченко Дима', c:'Аштанга'},
-      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога'},
+      {t:'9:30', d:60, n:'Иванова Мария', c:'Хатха йога', x:'x-cyan'},
+      {t:'11:30', d:80, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true, x:'x-red'},
+      {t:'13:00', d:60, n:'Пичугина Маша', c:'Хатха йога', x:'x-cyan'},
+      {t:'17:00', d:90, n:'Васильева Алина', c:'Виньяса', x:'x-pink'},
+      {t:'18:45', d:80, n:'Кравченко Дима', c:'Аштанга', x:'x-cyan'},
+      {t:'20:15', d:90, n:'Рябова Катя', c:'Хатха йога', x:'x-cyan'},
     ],
   },
   'Сб': {
     jup: [
-      {t:'9:30', d:120, n:'Феликс', c:'Хатха йога'},
-      {t:'12:00', d:90, n:'Никитина Женя', c:'Хатха йога'},
-      {t:'14:00', d:90, n:'Попова Ксения', c:'Виньяса'},
-      {t:'16:00', d:90, n:'Пелунская Катя', c:'Аштанга'},
-      {t:'18:00', d:60, n:'Шаповалов Алексей', c:'Звукотерапия'},
-      {t:'19:15', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true},
+      {t:'9:30', d:120, n:'Феликс', c:'Хатха йога', x:'x-blue'},
+      {t:'12:00', d:90, n:'Никитина Женя', c:'Хатха йога', x:'x-blue'},
+      {t:'14:00', d:90, n:'Попова Ксения', c:'Виньяса', x:'x-blue'},
+      {t:'16:00', d:90, n:'Пелунская Катя', c:'Аштанга', x:'x-blue'},
+      {t:'18:00', d:60, n:'Шаповалов Алексей', c:'Звукотерапия', x:'x-blue'},
+      {t:'19:15', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true, x:'x-red'},
     ],
     sat: [
-      {t:'10:00', d:90, n:'Минина Наталья', c:'Хатха йога'},
-      {t:'11:45', d:90, n:'Пичугина Маша', c:'Йога для женского здоровья'},
-      {t:'13:30', d:90, n:'Лисецкая Арина', c:'Силовая йога'},
-      {t:'15:15', d:90, n:'Колбина Настя', c:'Хатха йога'},
-      {t:'17:00', d:90, n:'Муравьев Денис', c:'Хатха йога'},
-      {t:'18:45', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true},
+      {t:'10:00', d:90, n:'Минина Наталья', c:'Хатха йога', x:'x-cyan'},
+      {t:'11:45', d:90, n:'Пичугина Маша', c:'Йога для женского здоровья', x:'x-cyan'},
+      {t:'13:30', d:90, n:'Лисецкая Арина', c:'Силовая йога', x:'x-cyan'},
+      {t:'15:15', d:90, n:'Колбина Настя', c:'Хатха йога', x:'x-cyan'},
+      {t:'17:00', d:90, n:'Муравьев Денис', c:'Хатха йога', x:'x-cyan'},
+      {t:'18:45', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'', need:true, x:'x-red'},
     ],
   },
   'Вс': {
     jup: [
-      {t:'9:00', d:75, n:'Грачева Саша', c:'Хатха. Начинающие'},
-      {t:'10:30', d:105, n:'Барабаш Таня', c:'Аштанга'},
-      {t:'12:30', d:90, n:'Лычак Юля', c:'Хатха йога'},
-      {t:'14:30', d:90, n:'Юдина Настя', c:'Хатха. Начинающие'},
-      {t:'16:30', d:90, n:'Назарова Даша', c:'Виньяса'},
-      {t:'18:15', d:90, n:'Павлов Юрий', c:'Хатха йога'},
-      {t:'20:00', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'Потенциальный класс · с ноября', need:true},
+      {t:'9:00', d:75, n:'Грачева Саша', c:'Хатха. Начинающие', x:'x-blue'},
+      {t:'10:30', d:105, n:'Барабаш Таня', c:'Аштанга', x:'x-blue'},
+      {t:'12:30', d:90, n:'Лычак Юля', c:'Хатха йога', x:'x-blue'},
+      {t:'14:30', d:90, n:'Юдина Настя', c:'Хатха. Начинающие', x:'x-blue'},
+      {t:'16:30', d:90, n:'Назарова Даша', c:'Виньяса', x:'x-blue'},
+      {t:'18:15', d:90, n:'Павлов Юрий', c:'Хатха йога', x:'x-cyan'},
+      {t:'20:00', d:90, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'Потенциальный класс · с ноября', need:true, x:'x-red'},
     ],
     sat: [
-      {t:'10:00', d:90, n:'Обухова Настя', c:'Хатха soft & stretch'},
-      {t:'12:00', d:90, n:'Зареченская Маша', c:'Хатха и дыхание'},
-      {t:'14:00', d:90, n:'Родина Люба', c:'Виньяса'},
-      {t:'16:00', d:90, n:'Кравченко Дима', c:'Аштанга'},
-      {t:'18:00', d:90, n:'Иванова Мария', c:'Хатха йога'},
-      {t:'20:00', d:75, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'Потенциальный класс', need:true},
+      {t:'10:00', d:90, n:'Обухова Настя', c:'Хатха soft & stretch', x:'x-cyan'},
+      {t:'12:00', d:90, n:'Зареченская Маша', c:'Хатха и дыхание', x:'x-cyan'},
+      {t:'14:00', d:90, n:'Родина Люба', c:'Виньяса', x:'x-cyan'},
+      {t:'16:00', d:90, n:'Кравченко Дима', c:'Аштанга', x:'x-cyan'},
+      {t:'18:00', d:90, n:'Иванова Мария', c:'Хатха йога', x:'x-cyan'},
+      {t:'20:00', d:75, n:'НУЖЕН ПРЕПОДАВАТЕЛЬ', c:'Потенциальный класс', need:true, x:'x-red'},
     ],
   },
 };
@@ -318,7 +280,7 @@ days.forEach(day => {
       const y = toY(item.t);
       const h = toHpx(item.d);
       const div = document.createElement('div');
-      div.className = 'cls ' + (item.need ? 'cls-need' : typeOf(item.c) + (item.think ? ' cls-think' : ''));
+      div.className = 'cls ' + (item.need ? 'cls-need' : item.x);
       div.style.top = (y + 1) + 'px';
       div.style.height = (h - 2) + 'px';
       const endMin = toMin(item.t) + item.d;
