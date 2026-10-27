@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Краски Мясницкая</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { position: relative; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #f5f5f0; color: #1a1a1a; padding: 24px; }
+h1 { font-size: 20px; font-weight: 500; margin-bottom: 6px; color: #3a3a3a; }
+.sub { font-size: 13px; color: #888; margin-bottom: 20px; }
+
+table { width: 100%; border-collapse: collapse; background: #fff; border: 1px solid #ddd; border-radius: 12px; overflow: hidden; }
+th { background: #DAF2F4; text-align: left; font-size: 13px; font-weight: 600; color: #3a3a3a; padding: 12px 14px; border-bottom: 1px solid #ddd; }
+td { padding: 14px; border-bottom: 1px solid #eee; vertical-align: top; font-size: 14px; line-height: 1.45; }
+tr:last-child td { border-bottom: none; }
+td.name { width: 30%; font-weight: 500; }
+td.place { width: 22%; color: #3a3a3a; }
+td.num { width: 12%; }
+.code { display: inline-block; font-family: Consolas, monospace; font-size: 13px; font-weight: 600; background: #f0f0ea; border-radius: 6px; padding: 3px 8px; white-space: nowrap; }
+.empty { color: #bbb; }
+.note { display: block; margin-top: 6px; font-size: 12px; color: #c0392b; }
+.photos { display: flex; gap: 8px; flex-wrap: wrap; }
+.photos img { width: 120px; height: 160px; object-fit: cover; border-radius: 8px; cursor: zoom-in; border: 1px solid #e5e5e5; background: #eee; }
+.photos img:hover { filter: brightness(0.92); }
+
+/* внутри обёртки iframe растянут на всю высоту, поэтому окно ставим рядом с нажатым фото, а не по центру экрана */
+.lightbox { display: none; position: absolute; left: 0; right: 0; height: 760px; background: rgba(0,0,0,0.85); z-index: 1000; align-items: center; justify-content: center; cursor: zoom-out; }
+.lightbox.open { display: flex; }
+.lightbox img { max-width: 94%; max-height: 720px; border-radius: 8px; }
+
+@media (max-width: 760px) {
+  body { padding: 16px; }
+  table, thead, tbody, tr, td { display: block; width: 100%; }
+  thead { display: none; }
+  table { border: none; background: none; }
+  tr { background: #fff; border: 1px solid #ddd; border-radius: 12px; margin-bottom: 12px; padding: 4px 0; }
+  td { border: none; padding: 6px 14px; width: 100% !important; }
+  td::before { content: attr(data-label); display: block; font-size: 11px; color: #999; margin-bottom: 2px; }
+  .photos img { width: calc(50% - 4px); height: auto; aspect-ratio: 3 / 4; }
+}
+</style>
+</head>
+<body>
+
+<h1>Краски</h1>
+<div class="sub">Копия таблицы из Yonote от 27.10.2026. Нажмите на фото, чтобы увеличить.</div>
+
+<table>
+<thead><tr><th>Наименование краски</th><th>Место использования</th><th>Номер</th><th>Фото</th></tr></thead>
+<tbody id="rows"></tbody>
+</table>
+
+<div class="lightbox" id="lb" onclick="this.classList.remove('open')"><img id="lbImg" alt=""></div>
+
+<script>
+const PAINTS = [
+  { name: 'Erica грунт ГФ-021 на алкидной основе для металла и дерева', place: 'Белая для труб', num: 'H497', imgs: [7, 9] },
+  { name: 'Эмаль ПФ-115', place: 'Белая для металла', num: '', imgs: [18] },
+  { name: 'Tikkurila Pesto 10 стойкая универсальная матовая эмаль', place: 'Для чего — непонятно, зелёная', num: '621', imgs: [19, 20] },
+  { name: 'Erica грунт ГФ-021 на алкидной основе для металла и дерева — рыжая', place: 'Рыжая для металла', num: 'S0530-Y50R', imgs: [26, 27] },
+  { name: 'Tikkurila Luja 20', place: 'Лестница, зелёная', num: 'S3020G20Y', imgs: [28, 34] },
+  { name: 'Keramik Paint Keraline 7 краска интерьерная моющаяся', place: 'Зелёная для душевой кабины', num: 'S3020G20Y', imgs: [35] },
+  { name: 'Siloxane краска фасадная силоксановая водоотталкивающая', place: 'Стены, белая', num: 'H497', imgs: [36, 42] },
+  { name: 'Keramik Paint Keraline 7 краска интерьерная моющаяся', place: 'Стены, матовая', num: 'H497', imgs: [43, 44] },
+  { name: 'Dulux полы и лестницы — краска для дерева, ламината, паркета, плитки и бетона', place: 'Пол, последняя матовая (Шамиль)', num: 'V497', imgs: [50, 51] },
+  { name: 'Profilux Professional Facade&Socle для фасадов и цоколей, высокопрочная', place: 'Непонятно для чего', num: 'Q696', imgs: [52, 53] },
+  { name: 'Siloxane краска фасадная силоксановая водоотталкивающая', place: 'Стены, белая', num: 'S3020G20Y', note: 'Очень странно, что номер как у зелёной краски!', imgs: [59, 60] },
+];
+
+const esc = s => s.replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+document.getElementById('rows').innerHTML = PAINTS.map(p => `
+  <tr>
+    <td class="name" data-label="Наименование">${esc(p.name)}</td>
+    <td class="place" data-label="Место">${esc(p.place)}${p.note ? `<span class="note">${esc(p.note)}</span>` : ''}</td>
+    <td class="num" data-label="Номер">${p.num ? `<span class="code">${esc(p.num)}</span>` : '<span class="empty">—</span>'}</td>
+    <td data-label="Фото"><div class="photos">${p.imgs.map(i => `<img src="kraski/k${i}.jpg" loading="lazy" alt="${esc(p.name)}">`).join('')}</div></td>
+  </tr>`).join('');
+
+document.getElementById('rows').addEventListener('click', e => {
+  if (e.target.tagName !== 'IMG') return;
+  const lb = document.getElementById('lb');
+  document.getElementById('lbImg').src = e.target.src;
+  const top = e.target.getBoundingClientRect().top + window.scrollY - 200;
+  lb.style.top = Math.max(0, Math.min(top, document.body.scrollHeight - 760)) + 'px';
+  lb.classList.add('open');
+});
+</script>
+</body>
+</html>
