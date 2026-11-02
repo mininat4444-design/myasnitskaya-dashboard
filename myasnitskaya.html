@@ -3842,7 +3842,7 @@ function showSection(name, btn) {
   const pane = document.querySelector('.month-pane.active');
   pane.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-  const prefix = pane.id === 'month-mar' ? 'mar' : (pane.id === 'month-may' ? 'may' : (pane.id === 'month-jun' ? 'jun' : (pane.id === 'month-jul' ? 'jul' : (pane.id === 'month-aug' ? 'aug' : (pane.id === 'month-sep' ? 'sep' : (pane.id === 'month-oct' ? 'oct' : 'apr'))))));
+  const prefix = pane.id === 'month-mar' ? 'mar' : (pane.id === 'month-may' ? 'may' : (pane.id === 'month-jun' ? 'jun' : (pane.id === 'month-jul' ? 'jul' : (pane.id === 'month-aug' ? 'aug' : (pane.id === 'month-sep' ? 'sep' : (pane.id === 'month-oct' ? 'oct' : (pane.id === 'month-nov' ? 'nov' : 'apr')))))));
   pane.querySelector('#'+prefix+'-sec-'+name).classList.add('active');
   btn.classList.add('active');
 }
