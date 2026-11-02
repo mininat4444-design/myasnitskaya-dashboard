@@ -1984,23 +1984,23 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
         <th>Неделя</th><th class="r">Усл. утро</th><th class="r">Усл. вечер</th><th class="r">Усл. выходные</th><th class="r">Усл. итого</th>
         <th class="r">Тов. утро</th><th class="r">Тов. вечер</th><th class="r">Тов. выходные</th><th class="r">Тов. итого</th>
       </tr></thead>
-      <tbody id="oCatsTable"></tbody>
+      <tbody id="nCatsTable"></tbody>
     </table></div>
   </div>
   <div class="chart-card">
     <div style="display:flex;gap:40px;flex-wrap:wrap">
       <div style="flex:1;min-width:260px">
-        <h3 style="margin-top:0">Услуги по видам — <span id="oSvcCatsLabel">28 сен–4 окт</span></h3>
+        <h3 style="margin-top:0">Услуги по видам — <span id="nSvcCatsLabel">28 сен–4 окт</span></h3>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNSvcCats"></canvas></div>
-          <div id="oSvcCatsLeg" style="flex:1;min-width:140px;font-size:0.82rem;line-height:2"></div>
+          <div id="nSvcCatsLeg" style="flex:1;min-width:140px;font-size:0.82rem;line-height:2"></div>
         </div>
       </div>
       <div style="flex:1;min-width:260px">
-        <h3 style="margin-top:0">Товары по категориям — <span id="oTovarCatsLabel">28 сен–4 окт</span></h3>
+        <h3 style="margin-top:0">Товары по категориям — <span id="nTovarCatsLabel">28 сен–4 окт</span></h3>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNTovarCats"></canvas></div>
-          <div id="oTovarCatsLeg" style="flex:1;min-width:140px;font-size:0.82rem;line-height:2"></div>
+          <div id="nTovarCatsLeg" style="flex:1;min-width:140px;font-size:0.82rem;line-height:2"></div>
         </div>
       </div>
     </div>
@@ -2010,9 +2010,9 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
 <!-- 3. Посещения (ноябрь) -->
 <div class="section" id="nov-sec-visits">
   <div class="cards">
-    <div class="card blue"><div class="card-label">Всего посещений</div><div class="card-value" id="ov-total">—</div><div class="card-sub" id="ov-total-sub">за октябрь</div></div>
-    <div class="card blue"><div class="card-label">Среднее / нед.</div><div class="card-value" id="ov-avg">—</div><div class="card-sub">средняя посещаемость</div></div>
-    <div class="card orange"><div class="card-label">Первичных</div><div class="card-value" id="ov-first">—</div><div class="card-sub">пробные занятия &nbsp;·&nbsp; <span id="ov-pct" style="color:#A2B9C9;font-weight:400">—</span> от посещений</div></div>
+    <div class="card blue"><div class="card-label">Всего посещений</div><div class="card-value" id="nv-total">—</div><div class="card-sub" id="nv-total-sub">за октябрь</div></div>
+    <div class="card blue"><div class="card-label">Среднее / нед.</div><div class="card-value" id="nv-avg">—</div><div class="card-sub">средняя посещаемость</div></div>
+    <div class="card orange"><div class="card-label">Первичных</div><div class="card-value" id="nv-first">—</div><div class="card-sub">пробные занятия &nbsp;·&nbsp; <span id="nv-pct" style="color:#A2B9C9;font-weight:400">—</span> от посещений</div></div>
   </div>
   <div class="chart-card" style="display:none"><canvas id="chartNovVisits"></canvas></div>
   <div class="chart-card">
@@ -2023,22 +2023,22 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B;height:3px;border-radius:0;width:18px"></div>% конверсии</div>
     </div>
   </div>
-  <div style="display:none"><table><tbody id="oVisitTable"></tbody></table></div>
+  <div style="display:none"><table><tbody id="nVisitTable"></tbody></table></div>
   <div class="chart-card">
-    <h3>Конверсии — <span id="oConvWeekLabel">28 сен–4 окт</span></h3>
+    <h3>Конверсии — <span id="nConvWeekLabel">28 сен–4 окт</span></h3>
     <div style="display:flex;gap:32px;flex-wrap:wrap">
       <div style="flex:1;min-width:260px">
         <div style="font-size:0.8rem;font-weight:400;color:#a5a09d;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">По администраторам</div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNovTrialPie"></canvas></div>
-          <div id="oTrialPieLegend" style="flex:1;min-width:150px;font-size:0.82rem;line-height:1.9"></div>
+          <div id="nTrialPieLegend" style="flex:1;min-width:150px;font-size:0.82rem;line-height:1.9"></div>
         </div>
       </div>
       <div style="flex:1;min-width:260px">
         <div style="font-size:0.8rem;font-weight:400;color:#a5a09d;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">По абонементам</div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
           <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNovTrialPie2"></canvas></div>
-          <div id="oTrialPieLegend2" style="flex:1;min-width:150px;font-size:0.82rem;line-height:1.9"></div>
+          <div id="nTrialPieLegend2" style="flex:1;min-width:150px;font-size:0.82rem;line-height:1.9"></div>
         </div>
       </div>
     </div>
@@ -2077,7 +2077,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
         <th style="width:36px">#</th><th>Администратор</th><th class="r">Услуги</th><th class="r">Товары</th>
         <th class="r">Итого</th><th class="r">Смены</th><th class="r">В смену</th><th class="r">Новым, шт.</th><th class="r">Новым, руб.</th>
       </tr></thead>
-      <tbody id="oAdminTable"></tbody>
+      <tbody id="nAdminTable"></tbody>
     </table></div>
   </div>
   <div class="chart-card">
@@ -4165,7 +4165,7 @@ function renderMonth(prefix) {
     stackedChart('chart'+chartPfx+'TovarCats', C.tovar, 'Товары, руб.');
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — для сравнения)
-    const tb = document.getElementById({mar:'mCatsTable', apr:'aCatsTable', may:'yCatsTable', jun:'jCatsTable', jul:'lCatsTable', aug:'uCatsTable', sep:'pCatsTable', oct:'oCatsTable'}[prefix]);
+    const tb = document.getElementById({mar:'mCatsTable', apr:'aCatsTable', may:'yCatsTable', jun:'jCatsTable', jul:'lCatsTable', aug:'uCatsTable', sep:'pCatsTable', oct:'oCatsTable', nov:'nCatsTable'}[prefix]);
     const marchIdx = C.isMarch.map((m,i) => m ? i : -1).filter(i => i >= 0);
     const aprIdx   = C.isMarch.map((m,i) => !m ? i : -1).filter(i => i >= 0);
     const rows = isMar ? marchIdx : [...marchIdx.slice(-2), ...aprIdx];
@@ -4196,7 +4196,7 @@ function renderMonth(prefix) {
     });
 
     // ── Товары и услуги по категориям: апрель ──
-    if (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct) {
+    if (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov) {
       const wd = APR_ADMIN_WEEKS[3]; // 27 апр–3 мая
 
       function renderDonut(canvasId, legId, catData) {
@@ -4284,6 +4284,37 @@ function renderMonth(prefix) {
       document.getElementById('oSvcCatsLabel').textContent = wd.label;
       document.getElementById('oTovarCatsLabel').textContent = wd.label;
       [['chartOSvcCats','oSvcCatsLeg',wd.svcCats],['chartOTovarCats','oTovarCatsLeg',wd.tovarCats]].forEach(([canvasId,legId,catData]) => {
+        const tot = catData.values.reduce((s,x)=>s+x,0);
+        const el = document.getElementById(canvasId);
+        if (!el) return;
+        new Chart(el, {
+          type: 'doughnut',
+          data: { labels: catData.labels, datasets: [{ data: catData.values, backgroundColor: catData.colors, borderWidth: 2 }] },
+          options: { responsive: true, maintainAspectRatio: false,
+            plugins: {
+              datalabels: { color: 'white', font: { weight:'400', size:11 }, formatter: v => { const p=Math.round(v/tot*100); return p>=5?p+'%':''; } },
+              legend: { display: false },
+              tooltip: { callbacks: { label: ctx => ctx.label+': '+fmt(ctx.raw)+' ('+Math.round(ctx.raw/tot*100)+'%)' } }
+            }
+          }
+        });
+        const leg = document.getElementById(legId);
+        if (!leg) return;
+        catData.labels.forEach((lbl,i) => {
+          const p = Math.round(catData.values[i]/tot*100);
+          leg.innerHTML += `<div style="display:flex;align-items:center;gap:6px;margin-bottom:4px">
+            <div style="width:10px;height:10px;border-radius:2px;background:${catData.colors[i]};flex-shrink:0"></div>
+            <span><b>${lbl}</b> — ${fmt(catData.values[i])} (${p}%)</span></div>`;
+        });
+      });
+    }
+
+    // ── Товары и услуги по категориям: ноябрь ──
+    if (isNov) {
+      const wd = APR_ADMIN_WEEKS[29]; // 26 окт–1 ноя
+      document.getElementById('nSvcCatsLabel').textContent = wd.label;
+      document.getElementById('nTovarCatsLabel').textContent = wd.label;
+      [['chartNSvcCats','nSvcCatsLeg',wd.svcCats],['chartNTovarCats','nTovarCatsLeg',wd.tovarCats]].forEach(([canvasId,legId,catData]) => {
         const tot = catData.values.reduce((s,x)=>s+x,0);
         const el = document.getElementById(canvasId);
         if (!el) return;
@@ -4423,7 +4454,7 @@ function renderMonth(prefix) {
     document.getElementById(pfx+'-pct').textContent   = pctFirst;
 
     // Для июля, августа, сентября и октября chartVisits скрыт через display:none — пропускаем создание чарта
-    if (!isJul && !isAug && !isSep && !isOct) new Chart(document.getElementById('chart'+chartPfx+'Visits'), {
+    if (!isJul && !isAug && !isSep && !isOct && !isNov) new Chart(document.getElementById('chart'+chartPfx+'Visits'), {
       type: 'bar',
       data: {
         labels: W.labels,
@@ -4485,7 +4516,7 @@ function renderMonth(prefix) {
     });
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — для сравнения)
-    const tb = document.getElementById({mar:'mVisitTable', apr:'aVisitTable', may:'yVisitTable', jun:'jVisitTable', jul:'lVisitTable', aug:'uVisitTable', sep:'pVisitTable', oct:'oVisitTable'}[prefix]);
+    const tb = document.getElementById({mar:'mVisitTable', apr:'aVisitTable', may:'yVisitTable', jun:'jVisitTable', jul:'lVisitTable', aug:'uVisitTable', sep:'pVisitTable', oct:'oVisitTable', nov:'nVisitTable'}[prefix]);
     const rows = isMar ? marchIdx : [...marchIdx.slice(-2), ...aprIdx];
     rows.forEach((i, li) => {
       const isRefMar  = !isMar && W.isMarch[i];
