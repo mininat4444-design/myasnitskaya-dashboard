@@ -2166,6 +2166,9 @@ const OCT_TOVAR_IN_NOV_WEEK  = 83519;
 const OCT_IN_NOV_WEEK        = 1291572; // = OCT_ABON_IN_NOV_WEEK + OCT_TOVAR_IN_NOV_WEEK
 const OCT_VISITS_IN_NOV_WEEK = 883;
 const OCT_TRIAL_IN_NOV_WEEK  = 59;
+const NOV_IN_OCT_WEEK        = 1010724; // 26–31 окт (6/7 недели «26 окт–1 ноя»)
+const NOV_ABON_IN_OCT_WEEK   = 935199;  // 6/7 × 1 091 066
+const NOV_TOVAR_IN_OCT_WEEK  = 75525;   // 6/7 × 88 113
 
 const WEEKS = {
   labels:  ['2–8 мар','9–15 мар','16–22 мар','23–29 мар','30 мар–5 апр','6–12 апр','13–19 апр','20–26 апр','27 апр–3 мая','4–10 мая','11–17 мая','18–24 мая','25–31 мая','1–7 июн','8–14 июн','15–21 июн','22–28 июн','29 июн–5 июл','6–12 июл','13–19 июл','20–26 июл','27 июл–2 авг','3–9 авг','10–16 авг','17–23 авг','24–30 авг','31 авг–6 сен','7–13 сен','14–20 сен','21–27 сен','28 сен–4 окт','5–11 окт','12–18 окт','19–25 окт', '26 окт–1 ноя'],
@@ -3999,7 +4002,7 @@ function renderMonth(prefix) {
     const PLAN_BY_PFX = {ms:PLAN_MAR, as:PLAN_APR, ys:PLAN_MAY, js:PLAN_JUN, ls:PLAN_JUL, us:PLAN_AUG, ps:PLAN_SEP, os:PLAN_OCT, ns:PLAN_NOV};
     // Для плана берём сумму за весь календарный месяц:
     // для августа добавляем продажи 1–2 авг из граничной недели (AUG_IN_JUL_WEEK)
-    const planAll = totalAll + (isAug ? AUG_IN_JUL_WEEK : 0);
+    const planAll = totalAll + (isAug ? AUG_IN_JUL_WEEK : 0) + (isOct ? NOV_IN_OCT_WEEK : 0);
     if (PLAN_BY_PFX[pfx]) renderPlanBlock(pfx, planAll, PLAN_BY_PFX[pfx]);
 
     // Таблица (для апреля: последние 2 мартовских + апрельские — всего ≥4 строк для сравнения)
