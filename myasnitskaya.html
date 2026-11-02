@@ -3852,7 +3852,7 @@ function showMonth(id, btn) {
   const names = { mar:'МАРТ 2026', apr:'АПРЕЛЬ 2026', may:'МАЙ 2026', jun:'ИЮНЬ 2026', jul:'ИЮЛЬ 2026' };
   document.querySelector('.header-badge').textContent = '2026';
   // Ленивый рендер — рисуем только когда вкладка стала видимой
-  if (!_rendered[id] && (id === 'mar' || id === 'apr' || id === 'may' || id === 'jun' || id === 'jul' || id === 'aug' || id === 'sep' || id === 'oct')) {
+  if (!_rendered[id] && (id === 'mar' || id === 'apr' || id === 'may' || id === 'jun' || id === 'jul' || id === 'aug' || id === 'sep' || id === 'oct' || id === 'nov')) {
     renderMonth(id);
     _rendered[id] = true;
   }
