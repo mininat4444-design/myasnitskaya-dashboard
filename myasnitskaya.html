@@ -1945,7 +1945,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
   </div>
   <div class="chart-card">
     <h3>Продажи по неделям — абонементы и товары</h3>
-    <div style="position:relative;height:340px;"><canvas id="chartOctWeekly"></canvas></div>
+    <div style="position:relative;height:340px;"><canvas id="chartNovWeekly"></canvas></div>
     <div class="chart-legend">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Абонементы</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Товары</div>
@@ -1961,7 +1961,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
   </div>
   <div class="chart-card">
     <h3>Продажи услуг по категориям — по неделям</h3>
-    <div style="position:relative;height:320px;"><canvas id="chartOctAbonCats"></canvas></div>
+    <div style="position:relative;height:320px;"><canvas id="chartNovAbonCats"></canvas></div>
     <div class="chart-legend" style="margin-top:10px">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Выходные</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Вечер</div>
@@ -1970,7 +1970,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
   </div>
   <div class="chart-card">
     <h3>Продажи товаров по категориям — по неделям</h3>
-    <div style="position:relative;height:260px;"><canvas id="chartOctTovarCats"></canvas></div>
+    <div style="position:relative;height:260px;"><canvas id="chartNovTovarCats"></canvas></div>
     <div class="chart-legend" style="margin-top:10px">
       <div class="leg-item"><div class="leg-dot" style="background:#5C6937"></div>Выходные</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B"></div>Вечер</div>
@@ -1992,14 +1992,14 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
       <div style="flex:1;min-width:260px">
         <h3 style="margin-top:0">Услуги по видам — <span id="oSvcCatsLabel">28 сен–4 окт</span></h3>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartOSvcCats"></canvas></div>
+          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNSvcCats"></canvas></div>
           <div id="oSvcCatsLeg" style="flex:1;min-width:140px;font-size:0.82rem;line-height:2"></div>
         </div>
       </div>
       <div style="flex:1;min-width:260px">
         <h3 style="margin-top:0">Товары по категориям — <span id="oTovarCatsLabel">28 сен–4 окт</span></h3>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartOTovarCats"></canvas></div>
+          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNTovarCats"></canvas></div>
           <div id="oTovarCatsLeg" style="flex:1;min-width:140px;font-size:0.82rem;line-height:2"></div>
         </div>
       </div>
@@ -2014,10 +2014,10 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
     <div class="card blue"><div class="card-label">Среднее / нед.</div><div class="card-value" id="ov-avg">—</div><div class="card-sub">средняя посещаемость</div></div>
     <div class="card orange"><div class="card-label">Первичных</div><div class="card-value" id="ov-first">—</div><div class="card-sub">пробные занятия &nbsp;·&nbsp; <span id="ov-pct" style="color:#A2B9C9;font-weight:400">—</span> от посещений</div></div>
   </div>
-  <div class="chart-card" style="display:none"><canvas id="chartOctVisits"></canvas></div>
+  <div class="chart-card" style="display:none"><canvas id="chartNovVisits"></canvas></div>
   <div class="chart-card">
     <h3>Пробные посещения и конверсия по неделям</h3>
-    <div style="position:relative;height:300px;"><canvas id="chartOctTrialWeeks"></canvas></div>
+    <div style="position:relative;height:300px;"><canvas id="chartNovTrialWeeks"></canvas></div>
     <div class="chart-legend" style="margin-top:10px">
       <div class="leg-item"><div class="leg-dot" style="background:#9b89c4"></div>Пробные + Приведи друга</div>
       <div class="leg-item"><div class="leg-dot" style="background:#F0803B;height:3px;border-radius:0;width:18px"></div>% конверсии</div>
@@ -2030,14 +2030,14 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
       <div style="flex:1;min-width:260px">
         <div style="font-size:0.8rem;font-weight:400;color:#a5a09d;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">По администраторам</div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartOctTrialPie"></canvas></div>
+          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNovTrialPie"></canvas></div>
           <div id="oTrialPieLegend" style="flex:1;min-width:150px;font-size:0.82rem;line-height:1.9"></div>
         </div>
       </div>
       <div style="flex:1;min-width:260px">
         <div style="font-size:0.8rem;font-weight:400;color:#a5a09d;text-transform:uppercase;letter-spacing:.05em;margin-bottom:8px">По абонементам</div>
         <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
-          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartOctTrialPie2"></canvas></div>
+          <div style="position:relative;height:220px;width:220px;flex-shrink:0"><canvas id="chartNovTrialPie2"></canvas></div>
           <div id="oTrialPieLegend2" style="flex:1;min-width:150px;font-size:0.82rem;line-height:1.9"></div>
         </div>
       </div>
@@ -3901,9 +3901,9 @@ function renderMonth(prefix) {
     conversion: TRIAL.conversion.slice(sl, slEnd),
   };
   // ID character prefix: 'm' for March, 'a' for April, 'y' for May, 'j' for Jun, 'l' for Jul, 'u' for Aug, 'p' for Sep
-  const pfxChar = isMar ? 'm' : (isMay ? 'y' : (isJun ? 'j' : (isJul ? 'l' : (isAug ? 'u' : (isSep ? 'p' : (isOct ? 'o' : 'a'))))));
+  const pfxChar = isMar ? 'm' : (isMay ? 'y' : (isJun ? 'j' : (isJul ? 'l' : (isAug ? 'u' : (isSep ? 'p' : (isOct ? 'o' : (isNov ? 'n' : 'a')))))));
   // Chart name part: 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct'
-  const chartPfx = isMar ? 'Mar' : (isMay ? 'May' : (isJun ? 'Jun' : (isJul ? 'Jul' : (isAug ? 'Aug' : (isSep ? 'Sep' : (isOct ? 'Oct' : 'Apr'))))));
+  const chartPfx = isMar ? 'Mar' : (isMay ? 'May' : (isJun ? 'Jun' : (isJul ? 'Jul' : (isAug ? 'Aug' : (isSep ? 'Sep' : (isOct ? 'Oct' : (isNov ? 'Nov' : 'Apr')))))));
 
   // Определяем цвет бара в зависимости от режима и isMarch
   const barColor = (isM, colorFull, colorGray) =>
@@ -4760,7 +4760,7 @@ const abColors = {
 // ── renderAprAdminBlock — рендерит раздел администраторов за выбранную неделю ──
 function renderAprAdminBlock(wdRaw, admPfx) {
   if (!admPfx) admPfx = 'a'; // 'a' for April, 'y' for May
-  const chartMonthPfx = admPfx === 'j' ? 'Jun' : (admPfx === 'l' ? 'Jul' : (admPfx === 'y' ? 'May' : (admPfx === 'u' ? 'Aug' : (admPfx === 'p' ? 'Sep' : (admPfx === 'o' ? 'Oct' : 'Apr')))));
+  const chartMonthPfx = admPfx === 'j' ? 'Jun' : (admPfx === 'l' ? 'Jul' : (admPfx === 'y' ? 'May' : (admPfx === 'u' ? 'Aug' : (admPfx === 'p' ? 'Sep' : (admPfx === 'o' ? 'Oct' : (admPfx === 'n' ? 'Nov' : 'Apr'))))));
   // Скидка First −20% на все суммы новых гостей
   const D = 0.8;
   const wd = {
