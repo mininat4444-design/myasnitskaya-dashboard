@@ -2161,6 +2161,11 @@ const OCT_VISITS_IN_SEP_WEEK = 495;    // посещения 1–4 окт (4/7 �
 const OCT_TRIAL_IN_SEP_WEEK  = 27;     // пробные 1–4 окт (4/7 × 47)
 const SEP_VISITS_IN_OCT_WEEK = 371;    // посещения 28–30 сен (3/7 × 866)
 const SEP_TRIAL_IN_OCT_WEEK  = 20;     // пробные 28–30 сен (3/7 × 47)
+const OCT_ABON_IN_NOV_WEEK   = 1208053; // 19–25 окт — неделя для сравнения в ноябре
+const OCT_TOVAR_IN_NOV_WEEK  = 83519;
+const OCT_IN_NOV_WEEK        = 1291572; // = OCT_ABON_IN_NOV_WEEK + OCT_TOVAR_IN_NOV_WEEK
+const OCT_VISITS_IN_NOV_WEEK = 883;
+const OCT_TRIAL_IN_NOV_WEEK  = 59;
 
 const WEEKS = {
   labels:  ['2–8 мар','9–15 мар','16–22 мар','23–29 мар','30 мар–5 апр','6–12 апр','13–19 апр','20–26 апр','27 апр–3 мая','4–10 мая','11–17 мая','18–24 мая','25–31 мая','1–7 июн','8–14 июн','15–21 июн','22–28 июн','29 июн–5 июл','6–12 июл','13–19 июл','20–26 июл','27 июл–2 авг','3–9 авг','10–16 авг','17–23 авг','24–30 авг','31 авг–6 сен','7–13 сен','14–20 сен','21–27 сен','28 сен–4 окт','5–11 окт','12–18 окт','19–25 окт', '26 окт–1 ноя'],
@@ -3870,7 +3875,7 @@ function renderMonth(prefix) {
   const isSep = prefix === 'sep';
   const isOct = prefix === 'oct';
   const isNov = prefix === 'nov';
-  const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 17 : (isAug ? 21 : (isSep ? 26 : (isOct ? 30 : (isNov ? 34 : 4)))))));
+  const sl    = isMar ? 0 : (isMay ? 8 : (isJun ? 13 : (isJul ? 17 : (isAug ? 21 : (isSep ? 26 : (isOct ? 30 : (isNov ? 33 : 4)))))));
   const slEnd = isMar ? 5 : (isMay ? 13 : (isJun ? 18 : (isJul ? 22 : (isAug ? 27 : (isSep ? 31 : (isOct ? 34 : (isNov ? 35 : 9)))))));
 
   // Sliced data views for this month tab
@@ -3930,6 +3935,7 @@ function renderMonth(prefix) {
       - (isSep  ? AUG_IN_SEP_WEEK       : 0)  // вычитаем 31 авг из суммы сентября
       - (isSep  ? OCT_IN_SEP_WEEK       : 0)  // вычитаем 1–4 окт из суммы сентября
       - (isOct  ? SEP_IN_OCT_WEEK       : 0)  // вычитаем 28–30 сен из суммы октября
+      - (isNov  ? OCT_IN_NOV_WEEK       : 0)  // вычитаем 19–25 окт (неделя для сравнения)
       - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
@@ -3942,6 +3948,7 @@ function renderMonth(prefix) {
       - (isSep  ? AUG_ABON_IN_SEP_WEEK  : 0)
       - (isSep  ? OCT_ABON_IN_SEP_WEEK  : 0)
       - (isOct  ? SEP_ABON_IN_OCT_WEEK  : 0)
+      - (isNov  ? OCT_ABON_IN_NOV_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
@@ -3954,11 +3961,12 @@ function renderMonth(prefix) {
       - (isSep  ? AUG_TOVAR_IN_SEP_WEEK  : 0)
       - (isSep  ? OCT_TOVAR_IN_SEP_WEEK  : 0)
       - (isOct  ? SEP_TOVAR_IN_OCT_WEEK  : 0)
+      - (isNov  ? OCT_TOVAR_IN_NOV_WEEK  : 0)
       - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov ? MAY_TOVAR_IN_APR_WEEK  : 0);
-    const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0) - (isSep ? 0 : 0) - (isOct ? 0 : 0);
+    const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0) - (isSep ? 0 : 0) - (isOct ? 0 : 0) - (isNov ? 1 : 0);
     const avgWeek   = totalAll / weeks;
 
-    const julOff    = (isJul || isAug) ? 1 : 0;
+    const julOff    = (isJul || isAug || isNov) ? 1 : 0;
     const augEndOff = isAug ? idx.length - 1 : undefined;
     const totals    = idx.slice(julOff, augEndOff).map(i => W.total[i]);
     const bestLocal = totals.indexOf(Math.max(...totals));
@@ -4001,7 +4009,7 @@ function renderMonth(prefix) {
     rows.forEach((i, li) => {
       const tr = document.createElement('tr');
       const isRefMar  = !isMar && W.isMarch[i]; // мартовская строка в апрельской таблице
-      const isRefPrev = isAug && i === 0;        // предыдущая неделя (июль) в августовской таблице
+      const isRefPrev = (isAug || isNov) && i === 0; // предыдущая неделя (июль в авг / окт в ноя)
       // тренд только внутри одного месяца
       const trendStr = (li > 0 && !isRefPrev && W.isMarch[i] === W.isMarch[rows[li-1]])
         ? trend(W.total[i], W.total[rows[li-1]]) : '';
@@ -4010,7 +4018,7 @@ function renderMonth(prefix) {
       const badge = isRefMar
         ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">март</span>'
         : isRefPrev
-        ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">июль</span>'
+        ? ' <span style="font-size:0.7rem;background:rgba(165,160,157,0.12);color:#a5a09d;padding:1px 6px;border-radius:8px">' + (isNov ? 'октябрь' : 'июль') + '</span>'
         : '';
       tr.innerHTML = `
         <td>${W.labels[i]}${badge}</td>
@@ -4043,7 +4051,7 @@ function renderMonth(prefix) {
             label: 'Абонементы',
             data: W.abon,
             backgroundColor: W.labels.map((_,i) =>
-              barColor(W.isMarch[i] || (isAug && i===0), '#5C6937', 'rgba(174,180,156,0.45)')),
+              barColor(W.isMarch[i] || (isAug && i===0) || (isNov && i===0), '#5C6937', 'rgba(174,180,156,0.45)')),
             borderRadius: { topLeft: 0, topRight: 0, bottomLeft: 5, bottomRight: 5 },
             order: 2,
             datalabels: {
@@ -4058,7 +4066,7 @@ function renderMonth(prefix) {
             label: 'Товары',
             data: W.tovar,
             backgroundColor: W.labels.map((_,i) =>
-              barColor(W.isMarch[i] || (isAug && i===0), '#F0803B', 'rgba(200,200,200,0.3)')),
+              barColor(W.isMarch[i] || (isAug && i===0) || (isNov && i===0), '#F0803B', 'rgba(200,200,200,0.3)')),
             borderRadius: { topLeft: 5, topRight: 5, bottomLeft: 0, bottomRight: 0 },
             order: 2,
             datalabels: {
@@ -4110,7 +4118,7 @@ function renderMonth(prefix) {
               label: s.label,
               data: toRub(data[s.key]),
               backgroundColor: C.labels.map((_,i) =>
-                barColor(C.isMarch[i] || (isAug && i===0), s.color, 'rgba(200,200,200,0.35)')),
+                barColor(C.isMarch[i] || (isAug && i===0) || (isNov && i===0), s.color, 'rgba(200,200,200,0.35)')),
               borderRadius: 3,
               datalabels: isTop ? {
                 labels: {
@@ -4436,15 +4444,17 @@ function renderMonth(prefix) {
       - (isAug ? W.visits[W.visits.length - 1] : 0)   // вычитаем граничную неделю (31 авг–6 сен)
       - (isSep ? AUG_VISITS_IN_SEP_WEEK : 0)           // вычитаем 31 авг из суммы сентября
       - (isSep ? OCT_VISITS_IN_SEP_WEEK : 0)           // вычитаем 1–4 окт из суммы сентября
-      - (isOct ? SEP_VISITS_IN_OCT_WEEK : 0);          // вычитаем 28–30 сен из суммы октября
-    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0)) || 1));
+      - (isOct ? SEP_VISITS_IN_OCT_WEEK : 0)            // вычитаем 28–30 сен из суммы октября
+      - (isNov ? OCT_VISITS_IN_NOV_WEEK : 0);           // вычитаем 19–25 окт (неделя для сравнения)
+    const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0) - (isNov ? 1 : 0)) || 1));
     const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0)
       - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0)
       - (isJul ? AUG_TRIAL_IN_JUL_WEEK : 0)
       - (isAug ? TRIAL.trial[sl] : 0)
       - (isAug ? TRIAL.trial[sl + idx.length - 1] : 0)   // вычитаем граничную неделю (31 авг–6 сен)
       - (isSep ? OCT_TRIAL_IN_SEP_WEEK : 0)               // вычитаем 1–4 окт из суммы сентября
-      - (isOct ? SEP_TRIAL_IN_OCT_WEEK : 0);              // вычитаем 28–30 сен из суммы октября
+      - (isOct ? SEP_TRIAL_IN_OCT_WEEK : 0)               // вычитаем 28–30 сен из суммы октября
+      - (isNov ? OCT_TRIAL_IN_NOV_WEEK : 0);              // вычитаем 19–25 окт (неделя для сравнения)
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
@@ -4563,7 +4573,7 @@ function renderMonth(prefix) {
             label: 'Всего гостей',
             data: T.visits,
             backgroundColor: T.isMarch.map((m,i) =>
-              barColor(m || (isAug && i===0), '#A2B9C9', 'rgba(162,185,201,0.3)')),
+              barColor(m || (isAug && i===0) || (isNov && i===0), '#A2B9C9', 'rgba(162,185,201,0.3)')),
             borderRadius: 5, order: 2, yAxisID: 'y',
           },
           {
