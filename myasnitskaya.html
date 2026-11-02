@@ -4683,7 +4683,7 @@ function renderMonth(prefix) {
 
   // ── 5. АДМИНИСТРАТОРЫ ─────────────────────────────────────────
   (function renderAdmins() {
-    if (prefix === 'apr' || prefix === 'may' || prefix === 'jun' || prefix === 'jul' || prefix === 'aug' || prefix === 'sep' || prefix === 'oct') return; // Апрель, Май, Июнь, Июль, Август, Сентябрь и Октябрь рендерятся через renderAprAdminBlock
+    if (prefix === 'apr' || prefix === 'may' || prefix === 'jun' || prefix === 'jul' || prefix === 'aug' || prefix === 'sep' || prefix === 'oct' || prefix === 'nov') return; // Апрель, Май, Июнь, Июль, Август, Сентябрь, Октябрь и Ноябрь рендерятся через renderAprAdminBlock
     const active = ADMINS.filter(a => a.total > 0);
     const totalAbon  = ADMINS.reduce((s,a) => s+a.abon, 0);
     const totalTovar = ADMINS.reduce((s,a) => s+a.tovar, 0);
