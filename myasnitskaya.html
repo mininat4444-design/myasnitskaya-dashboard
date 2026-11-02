@@ -3930,7 +3930,7 @@ function renderMonth(prefix) {
       - (isSep  ? AUG_IN_SEP_WEEK       : 0)  // вычитаем 31 авг из суммы сентября
       - (isSep  ? OCT_IN_SEP_WEEK       : 0)  // вычитаем 1–4 окт из суммы сентября
       - (isOct  ? SEP_IN_OCT_WEEK       : 0)  // вычитаем 28–30 сен из суммы октября
-      - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct ? MAY_IN_APR_WEEK  : 0);
+      - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov ? MAY_IN_APR_WEEK  : 0);
     const abonAll   = idx.reduce((s,i) => s + W.abon[i], 0)
       - (isMay  ? APR_ABON_IN_MAY_WEEK  + JUN_ABON_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_ABON_IN_JUN_WEEK  + JUL_ABON_IN_JUN_WEEK  : 0)
@@ -3942,7 +3942,7 @@ function renderMonth(prefix) {
       - (isSep  ? AUG_ABON_IN_SEP_WEEK  : 0)
       - (isSep  ? OCT_ABON_IN_SEP_WEEK  : 0)
       - (isOct  ? SEP_ABON_IN_OCT_WEEK  : 0)
-      - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct ? MAY_ABON_IN_APR_WEEK  : 0);
+      - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov ? MAY_ABON_IN_APR_WEEK  : 0);
     const tovarAll  = idx.reduce((s,i) => s + W.tovar[i], 0)
       - (isMay  ? APR_TOVAR_IN_MAY_WEEK  + JUN_TOVAR_IN_MAY_WEEK  : 0)
       - (isJun  ? MAY_TOVAR_IN_JUN_WEEK  + JUL_TOVAR_IN_JUN_WEEK  : 0)
@@ -3954,7 +3954,7 @@ function renderMonth(prefix) {
       - (isSep  ? AUG_TOVAR_IN_SEP_WEEK  : 0)
       - (isSep  ? OCT_TOVAR_IN_SEP_WEEK  : 0)
       - (isOct  ? SEP_TOVAR_IN_OCT_WEEK  : 0)
-      - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct ? MAY_TOVAR_IN_APR_WEEK  : 0);
+      - (!isMar && !isMay && !isJun && !isJul && !isAug && !isSep && !isOct && !isNov ? MAY_TOVAR_IN_APR_WEEK  : 0);
     const weeks     = idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0) - (isSep ? 0 : 0) - (isOct ? 0 : 0);
     const avgWeek   = totalAll / weeks;
 
