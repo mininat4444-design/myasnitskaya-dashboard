@@ -2010,7 +2010,7 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
 <!-- 3. Посещения (ноябрь) -->
 <div class="section" id="nov-sec-visits">
   <div class="cards">
-    <div class="card blue"><div class="card-label">Всего посещений</div><div class="card-value" id="nv-total">—</div><div class="card-sub" id="nv-total-sub">за октябрь</div></div>
+    <div class="card blue"><div class="card-label">Всего посещений</div><div class="card-value" id="nv-total">—</div><div class="card-sub" id="nv-total-sub">за ноябрь</div></div>
     <div class="card blue"><div class="card-label">Среднее / нед.</div><div class="card-value" id="nv-avg">—</div><div class="card-sub">средняя посещаемость</div></div>
     <div class="card orange"><div class="card-label">Первичных</div><div class="card-value" id="nv-first">—</div><div class="card-sub">пробные занятия &nbsp;·&nbsp; <span id="nv-pct" style="color:#A2B9C9;font-weight:400">—</span> от посещений</div></div>
   </div>
@@ -2048,8 +2048,8 @@ td.r { text-align: right; font-variant-numeric: tabular-nums; }
 <!-- 5. Администраторы (ноябрь) -->
 <div class="section" id="nov-sec-admins">
   <div id="nov-admin-week-tabs" style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap">
-    <button class="tab-btn active" onclick="switchNovAdminWeek(0,this)">26 окт–1 ноя</button>
-    <button class="tab-btn" onclick="switchNovAdminWeek(1,this)">2–8 ноя</button>
+    <button class="tab-btn" onclick="switchNovAdminWeek(0,this)">26 окт–1 ноя</button>
+    <button class="tab-btn active" onclick="switchNovAdminWeek(1,this)">2–8 ноя</button>
   </div>
   <div class="cards">
     <div class="card orange">
@@ -2167,6 +2167,8 @@ const OCT_TRIAL_IN_NOV_WEEK  = 59;
 const NOV_IN_OCT_WEEK        = 1010724; // 26–31 окт (6/7 недели «26 окт–1 ноя»)
 const NOV_ABON_IN_OCT_WEEK   = 935199;  // 6/7 × 1 091 066
 const NOV_TOVAR_IN_OCT_WEEK  = 75525;   // 6/7 × 88 113
+const NOV_VISITS_IN_OCT_WEEK = 771;     // 6/7 × 899
+const NOV_TRIAL_IN_OCT_WEEK  = 58;      // 6/7 × 68
 
 const WEEKS = {
   labels:  ['2–8 мар','9–15 мар','16–22 мар','23–29 мар','30 мар–5 апр','6–12 апр','13–19 апр','20–26 апр','27 апр–3 мая','4–10 мая','11–17 мая','18–24 мая','25–31 мая','1–7 июн','8–14 июн','15–21 июн','22–28 июн','29 июн–5 июл','6–12 июл','13–19 июл','20–26 июл','27 июл–2 авг','3–9 авг','10–16 авг','17–23 авг','24–30 авг','31 авг–6 сен','7–13 сен','14–20 сен','21–27 сен','28 сен–4 окт','5–11 окт','12–18 окт','19–25 окт', '26 окт–1 ноя', '2–8 ноя'],
@@ -4382,7 +4384,7 @@ function renderMonth(prefix) {
 
     // ── Товары и услуги по категориям: ноябрь ──
     if (isNov) {
-      const wd = APR_ADMIN_WEEKS[29]; // 26 окт–1 ноя
+      const wd = APR_ADMIN_WEEKS[30]; // 2–8 ноя
       document.getElementById('nSvcCatsLabel').textContent = wd.label;
       document.getElementById('nTovarCatsLabel').textContent = wd.label;
       [['chartNSvcCats','nSvcCatsLeg',wd.svcCats],['chartNTovarCats','nTovarCatsLeg',wd.tovarCats]].forEach(([canvasId,legId,catData]) => {
@@ -4508,7 +4510,8 @@ function renderMonth(prefix) {
       - (isSep ? AUG_VISITS_IN_SEP_WEEK : 0)           // вычитаем 31 авг из суммы сентября
       - (isSep ? OCT_VISITS_IN_SEP_WEEK : 0)           // вычитаем 1–4 окт из суммы сентября
       - (isOct ? SEP_VISITS_IN_OCT_WEEK : 0)            // вычитаем 28–30 сен из суммы октября
-      - (isNov ? OCT_VISITS_IN_NOV_WEEK : 0);           // вычитаем 19–25 окт (неделя для сравнения)
+      - (isNov ? OCT_VISITS_IN_NOV_WEEK : 0)             // вычитаем 19–25 окт (неделя для сравнения)
+      - (isNov ? NOV_VISITS_IN_OCT_WEEK : 0);            // вычитаем окт часть (26–31 окт) из граничной недели
     const avgVisits   = Math.round(totalVisits / ((idx.length - (isJul ? 1 : 0) - (isAug ? 2 : 0) - (isNov ? 1 : 0)) || 1));
     const totalFirst  = idx.reduce((s,i) => s + TRIAL.trial[sl + i], 0)
       - (isJul ? TRIAL.trial[17] : 0) + (isJul ? 65 : 0)
@@ -4517,7 +4520,8 @@ function renderMonth(prefix) {
       - (isAug ? TRIAL.trial[sl + idx.length - 1] : 0)   // вычитаем граничную неделю (31 авг–6 сен)
       - (isSep ? OCT_TRIAL_IN_SEP_WEEK : 0)               // вычитаем 1–4 окт из суммы сентября
       - (isOct ? SEP_TRIAL_IN_OCT_WEEK : 0)               // вычитаем 28–30 сен из суммы октября
-      - (isNov ? OCT_TRIAL_IN_NOV_WEEK : 0);              // вычитаем 19–25 окт (неделя для сравнения)
+      - (isNov ? OCT_TRIAL_IN_NOV_WEEK : 0)               // вычитаем 19–25 окт (неделя для сравнения)
+      - (isNov ? NOV_TRIAL_IN_OCT_WEEK : 0);              // вычитаем окт часть (26–31 окт) из граничной недели
     const pctFirst    = totalVisits > 0 ? ((totalFirst / totalVisits) * 100).toFixed(1) + '%' : '—';
 
     const pfx = pfxChar + 'v';
@@ -5147,7 +5151,7 @@ renderAprAdminBlock(APR_ADMIN_WEEKS[16], 'l');
 renderAprAdminBlock(APR_ADMIN_WEEKS[20], 'u');
 renderAprAdminBlock(APR_ADMIN_WEEKS[25], 'p');
 renderAprAdminBlock(APR_ADMIN_WEEKS[28], 'o');
-renderAprAdminBlock(APR_ADMIN_WEEKS[29], 'n');
+renderAprAdminBlock(APR_ADMIN_WEEKS[30], 'n');
 
 // ── Итоговая таблица мая по администраторам ───────────────────
 (function renderMaySummary() {
