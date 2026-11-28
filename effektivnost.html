@@ -14,6 +14,8 @@
 // Источник — страница maramuhta. Сюда дописываются только классы Мясницкой.
 const SRC = 'https://maramuhta.github.io/yogaspace/effektivnost-prepodavateley/';
 const ATT = 'https://maramuhta.github.io/analitikaprepodavately/';
+// ручные правки Мясницкой во вкладке студии (замены, объединения) — см. ms-att-patch.js
+const PATCH = 'https://mininat4444-design.github.io/myasnitskaya-dashboard/ms-att-patch.js';
 (async () => {
   try {
     const r = await fetch(SRC + '?t=' + Date.now(), {cache: 'no-store'});
@@ -32,7 +34,7 @@ const ATT = 'https://maramuhta.github.io/analitikaprepodavately/';
     h = h.replace('id="attFrame" src="${ATT_URL}"', 'id="attFrame" data-ys-att="1"');
     const shim = '<base href="' + SRC + '"><script>(function(){ let cache = null;'
       + 'async function fill(f){ f.dataset.ysAtt = "2"; try { if (!cache) { const r = await fetch("' + ATT + '?t=" + Date.now(), {cache:"no-store"}); cache = await r.text(); }'
-      + ' const html = cache.replace(/<head[^>]*>/i, m => m + \'<base href="' + ATT + '">\'); f.srcdoc = html; } catch(e) { f.src = "' + ATT + '"; } }'
+      + ' const html = cache.replace(/<head[^>]*>/i, m => m + \'<base href="' + ATT + '"><scr\' + \'ipt defer src="' + PATCH + '?v=' + Date.now() + '"></scr\' + \'ipt>\'); f.srcdoc = html; } catch(e) { f.src = "' + ATT + '"; } }'
       + 'new MutationObserver(() => document.querySelectorAll(\'iframe[data-ys-att="1"]\').forEach(fill))'
       + '.observe(document.documentElement, {childList:true, subtree:true}); })();<\/script>';
     h = h.replace(/<head[^>]*>/i, m => m + shim);
