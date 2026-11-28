@@ -74,7 +74,8 @@ html, body { margin: 0; background: #fdf6f0; } * { box-sizing: border-box; }
 .tn-fail { color: var(--ys-orange); font-size: 13px; }
 .tn-watch .tn-table-wrap { border-style: dashed; }
 </style>
-<style>.tn-chip { border-left-style: solid; border-left-width: 4px; }</style>
+<style>.tn-chip { border-left-style: solid; border-left-width: 4px; }
+@media (max-width: 560px) { .tn-bar-row { grid-template-columns: 1fr; gap: 4px; } .tn-card { padding: 20px; } }</style>
 </head>
 <body>
 <div class="tn">
@@ -109,19 +110,19 @@ html, body { margin: 0; background: #fdf6f0; } * { box-sizing: border-box; }
     <div class="tn-card">
       <h2>По <em>студиям</em></h2>
       <p class="tn-sub">Занятий в неделю и сколько нужно преподавателей</p>
-      <div class="tn-bars"><div class="tn-bar-row"><div>Мясницкая</div><div class="tn-bar-track"><div class="tn-bar" style="width:24.0%;background:#5c6937"></div><span class="tn-bar-val" style="left:calc(24.0% + 8px)">2 зан. · 1 преп.</span></div></div>
-<div class="tn-bar-row"><div>Пятницкая</div><div class="tn-bar-track"><div class="tn-bar" style="width:72.0%;background:#f0803b"></div><span class="tn-bar-val" style="left:calc(72.0% + 8px)">6 зан. · 3 преп.</span></div></div>
-<div class="tn-bar-row"><div>Дмитровка</div><div class="tn-bar-track"><div class="tn-bar" style="width:36.0%;background:#a2b9c9"></div><span class="tn-bar-val" style="left:calc(36.0% + 8px)">3 зан. · 2 преп.</span></div></div>
-<div class="tn-bar-row"><div>Никитская</div><div class="tn-bar-track"><div class="tn-bar" style="width:72.0%;background:#cb9f86"></div><span class="tn-bar-val" style="left:calc(72.0% + 8px)">6 зан. · 3 преп.</span></div></div></div>
+      <div class="tn-bars"><div class="tn-bar-row"><div>Мясницкая</div><div class="tn-bar-track"><div class="tn-bar" style="width:18.3%;background:#5c6937"></div><span class="tn-bar-val" style="left:calc(18.3% + 8px)">2 зан. · 1 преп.</span></div></div>
+<div class="tn-bar-row"><div>Пятницкая</div><div class="tn-bar-track"><div class="tn-bar" style="width:55.0%;background:#f0803b"></div><span class="tn-bar-val" style="left:calc(55.0% + 8px)">6 зан. · 3 преп.</span></div></div>
+<div class="tn-bar-row"><div>Дмитровка</div><div class="tn-bar-track"><div class="tn-bar" style="width:27.5%;background:#a2b9c9"></div><span class="tn-bar-val" style="left:calc(27.5% + 8px)">3 зан. · 2 преп.</span></div></div>
+<div class="tn-bar-row"><div>Никитская</div><div class="tn-bar-track"><div class="tn-bar" style="width:55.0%;background:#cb9f86"></div><span class="tn-bar-val" style="left:calc(55.0% + 8px)">6 зан. · 3 преп.</span></div></div></div>
     </div>
     <div class="tn-card">
       <h2>По <em>направлениям</em></h2>
       <p class="tn-sub">Каких преподавателей ищем</p>
-      <div class="tn-bars"><div class="tn-bar-row"><div>Мягкая / начинающие</div><div class="tn-bar-track"><div class="tn-bar" style="width:57.6%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(57.6% + 8px)">4 зан. · 3 преп.</span></div></div>
-<div class="tn-bar-row"><div>Хатха</div><div class="tn-bar-track"><div class="tn-bar" style="width:72.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(72.0% + 8px)">5 зан. · 2 преп.</span></div></div>
-<div class="tn-bar-row"><div>Хатха / виньяса</div><div class="tn-bar-track"><div class="tn-bar" style="width:57.6%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(57.6% + 8px)">4 зан. · 2 преп.</span></div></div>
-<div class="tn-bar-row"><div>Хатха / инь</div><div class="tn-bar-track"><div class="tn-bar" style="width:43.2%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(43.2% + 8px)">3 зан. · 1 преп.</span></div></div>
-<div class="tn-bar-row"><div>Сильная виньяса</div><div class="tn-bar-track"><div class="tn-bar" style="width:14.4%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(14.4% + 8px)">1 зан. · 1 преп.</span></div></div></div>
+      <div class="tn-bars"><div class="tn-bar-row"><div>Мягкая / начинающие</div><div class="tn-bar-track"><div class="tn-bar" style="width:44.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(44.0% + 8px)">4 зан. · 3 преп.</span></div></div>
+<div class="tn-bar-row"><div>Хатха</div><div class="tn-bar-track"><div class="tn-bar" style="width:55.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(55.0% + 8px)">5 зан. · 2 преп.</span></div></div>
+<div class="tn-bar-row"><div>Хатха / виньяса</div><div class="tn-bar-track"><div class="tn-bar" style="width:44.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(44.0% + 8px)">4 зан. · 2 преп.</span></div></div>
+<div class="tn-bar-row"><div>Хатха / инь</div><div class="tn-bar-track"><div class="tn-bar" style="width:33.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(33.0% + 8px)">3 зан. · 1 преп.</span></div></div>
+<div class="tn-bar-row"><div>Сильная виньяса</div><div class="tn-bar-track"><div class="tn-bar" style="width:11.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(11.0% + 8px)">1 зан. · 1 преп.</span></div></div></div>
     </div>
   </section>
 
