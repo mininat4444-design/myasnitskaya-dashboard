@@ -1,0 +1,184 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Потребности в преподавателях · Yoga Space</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
+/* YogaSpace: бежевый фон, зелёный вместо чёрного, оранжевый акцент, голубая подложка; тонкие орбиты */
+html, body { margin: 0; background: #fdf6f0; } * { box-sizing: border-box; }
+.tn {
+  --ys-bg: #fdf6f0; --ys-green: #5c6937; --ys-green-2: #7c8760; --ys-orange: #f0803b;
+  --ys-blue: #cae7fb; --ys-blue-soft: #e5f3fd; --ys-sand: #f0eae4; --ys-line: #d7d9cd;
+  --ys-serif: 'Playfair Display', 'Times New Roman', Georgia, serif;
+  --ys-sans: 'Montserrat', 'Segoe UI', Arial, sans-serif;
+  background: var(--ys-bg); color: var(--ys-green); font-family: var(--ys-sans); font-weight: 400;
+  display: flex; flex-direction: column; gap: 40px; padding-bottom: 48px; color-scheme: light;
+}
+.tn-pad { padding-left: max(16px, 4vw); padding-right: max(16px, 4vw); }
+.tn-hero { position: relative; overflow: hidden; background: var(--ys-green); color: var(--ys-bg); padding-top: 28px; padding-bottom: 40px; }
+.tn-orbits { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.tn-orbits ellipse, .tn-orbits circle { fill: none; stroke: rgba(253,246,240,.45); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.tn-hero > * { position: relative; }
+.tn-logo { display: flex; align-items: center; gap: 10px; font-weight: 300; letter-spacing: .14em; font-size: 15px; text-transform: uppercase; }
+.tn-logo svg { width: 34px; height: 22px; }
+.tn-logo svg * { fill: none; stroke: currentColor; stroke-width: 1.4; }
+.tn h1 { font-family: var(--ys-serif); font-weight: 400; font-size: clamp(2.1rem, 5vw, 3.6rem); line-height: 1.05; margin: 36px 0 0; text-transform: uppercase; letter-spacing: .01em; text-wrap: balance; }
+.tn h1 em { font-style: italic; text-transform: none; }
+.tn-lead { margin: 18px 0 0; max-width: 60ch; font-size: 1.05rem; line-height: 1.55; font-weight: 300; }
+.tn-lead b { font-weight: 600; }
+.tn-kicker { font-size: 12px; letter-spacing: .3em; text-transform: uppercase; color: var(--ys-orange); font-weight: 500; display: flex; align-items: center; gap: 10px; margin: 0 0 10px; }
+.tn-star { width: 14px; height: 14px; fill: var(--ys-orange); flex: none; }
+.tn h2 { font-family: var(--ys-serif); font-weight: 400; font-size: 1.75rem; margin: 0 0 6px; line-height: 1.15; }
+.tn h2 em { font-style: italic; }
+.tn-sub { color: var(--ys-green-2); font-size: 13px; margin: 0 0 18px; }
+.tn-tiles { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 16px; }
+.tn-card { background: var(--ys-bg); border: 1px solid var(--ys-green); border-radius: 28px; padding: 24px 26px; min-width: 0; }
+.tn-card.tn-blue { background: linear-gradient(160deg, var(--ys-bg), var(--ys-blue)); }
+.tn-card.tn-peach { background: linear-gradient(160deg, var(--ys-bg), #fde6d9); }
+.tn-tile-label { font-size: 11px; color: var(--ys-green-2); text-transform: uppercase; letter-spacing: .18em; font-weight: 500; }
+.tn-big { font-family: var(--ys-serif); font-weight: 400; font-size: 3.4rem; line-height: 1; margin-top: 10px; font-variant-numeric: lining-nums tabular-nums; color: var(--ys-green); }
+.tn-big.tn-accent { color: var(--ys-orange); }
+.tn-tile-note { font-size: 12.5px; color: var(--ys-green-2); margin-top: 8px; }
+.tn-week-wrap { overflow-x: auto; padding-bottom: 4px; }
+.tn-week { display: grid; grid-template-columns: repeat(7, minmax(118px, 1fr)); gap: 10px; min-width: 860px; }
+.tn-day { display: flex; flex-direction: column; gap: 8px; min-height: 140px; background: var(--ys-sand); border-radius: 22px; padding: 12px 10px; }
+.tn-day-name { font-size: 12px; font-weight: 600; letter-spacing: .2em; text-transform: uppercase; text-align: center; padding-bottom: 6px; }
+.tn-chip { background: var(--ys-bg); border-radius: 14px; padding: 8px 10px 8px 12px; font-size: 12.5px; line-height: 1.35; border-left: 4px solid var(--chip); }
+.tn-chip b { font-weight: 600; font-variant-numeric: tabular-nums; display: block; }
+.tn-chip span { color: var(--ys-green-2); display: block; }
+.tn-legend { display: flex; flex-wrap: wrap; gap: 18px; font-size: 13px; margin-bottom: 16px; }
+.tn-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; margin-right: 7px; vertical-align: -1px; }
+.tn-two { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 16px; }
+.tn-bars { display: flex; flex-direction: column; gap: 12px; min-height: 140px; }
+.tn-bar-row { display: grid; grid-template-columns: 10em 1fr; gap: 12px; align-items: center; font-size: 14px; }
+.tn-bar-track { position: relative; height: 26px; }
+.tn-bar { height: 100%; border-radius: 999px; min-width: 4px; }
+.tn-bar-val { position: absolute; top: 50%; transform: translateY(-50%); font-size: 12.5px; font-variant-numeric: tabular-nums; white-space: nowrap; }
+.tn-table-wrap { overflow-x: auto; border: 1px solid var(--ys-green); border-radius: 28px; background: var(--ys-bg); }
+.tn table { border-collapse: collapse; width: 100%; font-size: 14px; }
+.tn th { text-align: left; font-weight: 500; font-size: 11px; color: var(--ys-green-2); text-transform: uppercase; letter-spacing: .16em; padding: 16px 14px 12px; border-bottom: 1px solid var(--ys-line); white-space: nowrap; }
+.tn td { padding: 12px 14px; border-bottom: 1px solid var(--ys-line); vertical-align: top; }
+.tn tbody tr:last-child td { border-bottom: 0; }
+.tn td.tn-num { text-align: right; font-variant-numeric: tabular-nums; font-family: var(--ys-serif); font-size: 1.15rem; }
+.tn td.tn-muted { color: var(--ys-orange); font-size: 13px; }
+.tn-dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 8px; }
+.tn-combo-box { background: linear-gradient(120deg, var(--ys-bg) 0%, var(--ys-blue-soft) 55%, var(--ys-blue) 100%); border-radius: 28px; padding: 28px; border: 1px solid var(--ys-green); }
+.tn-combo { margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; max-width: 72ch; line-height: 1.5; }
+.tn-combo li { display: flex; gap: 10px; }
+.tn-combo li::before { content: ""; flex: none; width: 8px; height: 8px; border-radius: 50%; background: var(--ys-orange); margin-top: .5em; }
+.tn-combo b { font-weight: 600; }
+.tn-fail { color: var(--ys-orange); font-size: 13px; }
+.tn-watch .tn-table-wrap { border-style: dashed; }
+</style>
+</head>
+<body>
+<div class="tn">
+  <header id="tn-head" class="tn-hero tn-pad">
+    <svg class="tn-orbits" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true"><circle cx="760" cy="180" r="330"></circle><ellipse cx="520" cy="200" rx="620" ry="90" transform="rotate(-8 520 200)"></ellipse></svg>
+    <div class="tn-logo"><svg viewBox="0 0 34 22" aria-hidden="true"><circle cx="17" cy="11" r="8.5"></circle><ellipse cx="17" cy="11.5" rx="15.5" ry="4" transform="rotate(10 17 11.5)"></ellipse></svg>Yoga Space</div>
+    <h1>Потребности <em>в&nbsp;преподавателях</em></h1>
+    <p class="tn-lead">Нужно <b data-draw="k-teachers" data-source="summary" data-field="teachers" data-row="0"></b> преподавателей на <b data-draw="k-classes" data-source="summary" data-field="classes" data-row="0"></b> занятий в неделю. Больше всего слотов открыто: <b data-draw="k-top"></b>.</p>
+  </header>
+
+  <section class="tn-tiles tn-pad" id="tn-tiles">
+    <div class="tn-card">
+      <div class="tn-tile-label">Нужно преподавателей</div>
+      <div class="tn-big tn-accent" data-draw="t-teachers" data-source="summary" data-field="teachers" data-row="0"></div>
+      <div class="tn-tile-note">По одному на каждый постоянный слот</div>
+    </div>
+    <div class="tn-card tn-peach">
+      <div class="tn-tile-label">Занятий в неделю</div>
+      <div class="tn-big" data-draw="t-classes" data-source="summary" data-field="classes" data-row="0"></div>
+      <div class="tn-tile-note">Во всех 4 студиях</div>
+    </div>
+  </section>
+
+  <section id="tn-week-sec" class="tn-pad">
+    <p class="tn-kicker"><svg class="tn-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0l1.6 6.1 5.5-3.2-3.2 5.5L20 10l-6.1 1.6 3.2 5.5-5.5-3.2L10 20l-1.6-6.1-5.5 3.2 3.2-5.5L0 10l6.1-1.6-3.2-5.5 5.5 3.2z"/></svg>Расписание</p>
+    <h2>Открытые слоты <em>по дням недели</em></h2>
+    <div class="tn-legend" data-draw="legend"></div>
+    <div class="tn-week-wrap">
+      <div class="tn-week" data-draw="week" data-source="slots"></div>
+    </div>
+  </section>
+
+  <section class="tn-two tn-pad" id="tn-split">
+    <div class="tn-card" id="tn-by-studio">
+      <h2>По <em>студиям</em></h2>
+      <p class="tn-sub">Занятий в неделю и сколько нужно преподавателей</p>
+      <div class="tn-bars" data-draw="by-studio" data-source="byStudio"></div>
+    </div>
+    <div class="tn-card" id="tn-by-type">
+      <h2>По <em>направлениям</em></h2>
+      <p class="tn-sub">Каких преподавателей ищем</p>
+      <div class="tn-bars" data-draw="by-type" data-source="byType"></div>
+    </div>
+  </section>
+
+  <section id="tn-table-sec" class="tn-pad">
+    <p class="tn-kicker"><svg class="tn-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0l1.6 6.1 5.5-3.2-3.2 5.5L20 10l-6.1 1.6 3.2 5.5-5.5-3.2L10 20l-1.6-6.1-5.5 3.2 3.2-5.5L0 10l6.1-1.6-3.2-5.5 5.5 3.2z"/></svg>Кого ищем</p>
+    <h2>Все открытые <em>слоты</em></h2>
+    <p class="tn-sub">Один слот: один преподаватель на все дни слота</p>
+    <div class="tn-table-wrap">
+      <table data-source="slots" data-row-key="id">
+        <thead><tr>
+          <th data-field="studio">Студия</th>
+          <th data-field="days">Дни</th>
+          <th data-field="time">Время</th>
+          <th data-field="style">Направление</th>
+          <th data-field="notes">Пожелания</th>
+          <th data-field="classes">Занятий</th>
+        </tr></thead>
+        <tbody data-draw="need-table"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="tn-combo-sec" class="tn-pad"><div class="tn-combo-box">
+    <h2>Можно закрыть <em>меньшим составом</em></h2>
+    <p class="tn-sub">Если преподаватели возьмут несколько студий, хватит 6–7 человек</p>
+    <ul class="tn-combo">
+      <li><b>Воскресенье:</b> Никитская 10:00 и Пятницкая 16:30. Один мягкий преподаватель для начинающих.</li>
+      <li><b>Вт и Чт:</b> Никитская 14:00 и Пятницкая 20:15. Один мягкий преподаватель для начинающих.</li>
+      <li><b>Пн и Пт:</b> Дмитровка 9:30 и Мясницкая 11:30. Один преподаватель хатхи или виньясы, если он успевает доехать (проверить длительность занятия).</li>
+    </ul>
+  </div></section>
+</div>
+
+<script>
+const SLOTS = [{"id": "s1", "studio": "Мясницкая", "days": "Пн Пт", "time": "11:30", "style": "Хатха или виньяса", "type": "Хатха / виньяса", "notes": "", "classes": "2"}, {"id": "s2", "studio": "Пятницкая", "days": "Пн Ср Пт", "time": "12:00–13:30", "style": "Хатха, все уровни", "type": "Хатха", "notes": "Точно не силовой класс, можно с интересными элементами", "classes": "3"}, {"id": "s3", "studio": "Пятницкая", "days": "Вт Чт", "time": "20:15–21:35", "style": "Мягкая, женская, терапевтическая", "type": "Мягкая / начинающие", "notes": "", "classes": "2"}, {"id": "s4", "studio": "Пятницкая", "days": "Вс", "time": "16:30–18:00", "style": "Мягкая для начинающих или нестандартный формат", "type": "Мягкая / начинающие", "notes": "1 раз в неделю", "classes": "1"}, {"id": "s5", "studio": "Дмитровка", "days": "Пн Пт", "time": "9:30", "style": "Хатха или виньяса, все уровни или начинающие", "type": "Хатха / виньяса", "notes": "", "classes": "2"}, {"id": "s6", "studio": "Дмитровка", "days": "Пт", "time": "20:30", "style": "Виньяса", "type": "Сильная виньяса", "notes": "Нужен сильный преподаватель", "classes": "1"}, {"id": "s7", "studio": "Никитская", "days": "Вт Чт", "time": "14:00", "style": "Хатха, начинающие", "type": "Хатха", "notes": "", "classes": "2"}, {"id": "s8", "studio": "Никитская", "days": "Пн Ср Пт", "time": "14:00", "style": "Хатха все уровни или инь", "type": "Хатха / инь", "notes": "", "classes": "3"}, {"id": "s9", "studio": "Никитская", "days": "Вс", "time": "10:00", "style": "Для начинающих", "type": "Мягкая / начинающие", "notes": "", "classes": "1"}];
+const STUDIOS = ['Мясницкая', 'Пятницкая', 'Дмитровка', 'Никитская'];
+const COLORS = ['#5c6937', '#f0803b', '#a2b9c9', '#cb9f86'];
+const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
+const color = (s) => COLORS[Math.max(0, STUDIOS.indexOf(s))];
+const mins = (t) => { const m = String(t).match(/(\d+):(\d+)/); return m ? +m[1] * 60 + +m[2] : 0; };
+const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
+const draw = (name, fn) => document.querySelectorAll('[data-draw="' + name + '"]').forEach(fn);
+const teachers = SLOTS.length, classes = SLOTS.reduce((a, r) => a + +r.classes, 0);
+const group = (key) => { const m = new Map(); SLOTS.forEach((r) => { const o = m.get(r[key]) || { name: r[key], teachers: 0, classes: 0 }; o.teachers++; o.classes += +r.classes; m.set(r[key], o); }); return [...m.values()]; };
+const byStudio = group('studio');
+const byType = group('type').sort((a, b) => b.teachers - a.teachers || b.classes - a.classes);
+['k-teachers', 't-teachers'].forEach((n) => draw(n, (e) => { e.textContent = teachers; }));
+['k-classes', 't-classes'].forEach((n) => draw(n, (e) => { e.textContent = classes; }));
+const maxC = Math.max(...byStudio.map((r) => r.classes));
+draw('k-top', (e) => { e.textContent = byStudio.filter((r) => r.classes === maxC).map((r) => r.name + ' (' + r.classes + ' зан.)').join(', '); });
+draw('legend', (e) => { STUDIOS.forEach((s) => { const sp = el('span'); const i = el('i'); i.style.background = color(s); sp.append(i, s); e.append(sp); }); });
+draw('week', (e) => { DAYS.forEach((d) => { const col = el('div', 'tn-day'); col.append(el('div', 'tn-day-name', d));
+  SLOTS.filter((r) => r.days.split(/\s+/).includes(d)).sort((a, b) => mins(a.time) - mins(b.time)).forEach((r) => {
+    const c = el('div', 'tn-chip'); c.style.setProperty('--chip', color(r.studio)); c.append(el('b', null, r.time + ' · ' + r.studio), el('span', null, r.type)); col.append(c); });
+  e.append(col); }); });
+const bars = (name, data, byColor) => draw(name, (e) => { const mx = Math.max(...data.map((r) => r.classes));
+  data.forEach((r) => { const row = el('div', 'tn-bar-row'); const tr = el('div', 'tn-bar-track'); const b = el('div', 'tn-bar'); const pct = r.classes / mx * 72;
+    b.style.width = pct + '%'; b.style.background = byColor ? color(r.name) : '#aeb49c';
+    const v = el('span', 'tn-bar-val', r.classes + ' зан. · ' + r.teachers + ' преп.'); v.style.left = 'calc(' + pct + '% + 8px)';
+    tr.append(b, v); row.append(el('div', null, r.name), tr); e.append(row); }); });
+bars('by-studio', byStudio, true); bars('by-type', byType, false);
+draw('need-table', (e) => { SLOTS.slice().sort((a, b) => STUDIOS.indexOf(a.studio) - STUDIOS.indexOf(b.studio) || mins(a.time) - mins(b.time)).forEach((r) => {
+  const tr = el('tr'); const s = el('td'); const dot = el('span', 'tn-dot'); dot.style.background = color(r.studio); s.append(dot, r.studio);
+  tr.append(s, el('td', null, r.days), el('td', null, r.time), el('td', null, r.style), el('td', 'tn-muted', r.notes), el('td', 'tn-num', r.classes)); e.append(tr); }); });
+</script>
+</body>
+</html>
