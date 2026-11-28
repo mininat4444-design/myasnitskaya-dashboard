@@ -5,8 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex, nofollow">
 <title>Потребности в преподавателях · Yoga Space</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap');
 /* YogaSpace: бежевый фон, зелёный вместо чёрного, оранжевый акцент, голубая подложка; тонкие орбиты */
 html, body { margin: 0; background: #fdf6f0; } * { box-sizing: border-box; }
 .tn {
@@ -73,6 +74,7 @@ html, body { margin: 0; background: #fdf6f0; } * { box-sizing: border-box; }
 .tn-fail { color: var(--ys-orange); font-size: 13px; }
 .tn-watch .tn-table-wrap { border-style: dashed; }
 </style>
+<style>.tn-chip { border-left-style: solid; border-left-width: 4px; }</style>
 </head>
 <body>
 <div class="tn">
@@ -80,105 +82,70 @@ html, body { margin: 0; background: #fdf6f0; } * { box-sizing: border-box; }
     <svg class="tn-orbits" viewBox="0 0 1000 360" preserveAspectRatio="none" aria-hidden="true"><circle cx="760" cy="180" r="330"></circle><ellipse cx="520" cy="200" rx="620" ry="90" transform="rotate(-8 520 200)"></ellipse></svg>
     <div class="tn-logo"><svg viewBox="0 0 34 22" aria-hidden="true"><circle cx="17" cy="11" r="8.5"></circle><ellipse cx="17" cy="11.5" rx="15.5" ry="4" transform="rotate(10 17 11.5)"></ellipse></svg>Yoga Space</div>
     <h1>Потребности <em>в&nbsp;преподавателях</em></h1>
-    <p class="tn-lead">Нужно <b data-draw="k-teachers" data-source="summary" data-field="teachers" data-row="0"></b> преподавателей на <b data-draw="k-classes" data-source="summary" data-field="classes" data-row="0"></b> занятий в неделю. Больше всего слотов открыто: <b data-draw="k-top"></b>.</p>
+    <p class="tn-lead">Нужно <b>9</b> преподавателей на <b>17</b> занятий в неделю. Больше всего слотов открыто: <b>Пятницкая (6 зан.), Никитская (6 зан.)</b>.</p>
   </header>
 
-  <section class="tn-tiles tn-pad" id="tn-tiles">
+  <section class="tn-tiles tn-pad">
     <div class="tn-card">
       <div class="tn-tile-label">Нужно преподавателей</div>
-      <div class="tn-big tn-accent" data-draw="t-teachers" data-source="summary" data-field="teachers" data-row="0"></div>
+      <div class="tn-big tn-accent">9</div>
       <div class="tn-tile-note">По одному на каждый постоянный слот</div>
     </div>
     <div class="tn-card tn-peach">
       <div class="tn-tile-label">Занятий в неделю</div>
-      <div class="tn-big" data-draw="t-classes" data-source="summary" data-field="classes" data-row="0"></div>
+      <div class="tn-big">17</div>
       <div class="tn-tile-note">Во всех 4 студиях</div>
     </div>
   </section>
 
-  <section id="tn-week-sec" class="tn-pad">
+  <section class="tn-pad">
     <p class="tn-kicker"><svg class="tn-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0l1.6 6.1 5.5-3.2-3.2 5.5L20 10l-6.1 1.6 3.2 5.5-5.5-3.2L10 20l-1.6-6.1-5.5 3.2 3.2-5.5L0 10l6.1-1.6-3.2-5.5 5.5 3.2z"/></svg>Расписание</p>
     <h2>Открытые слоты <em>по дням недели</em></h2>
-    <div class="tn-legend" data-draw="legend"></div>
-    <div class="tn-week-wrap">
-      <div class="tn-week" data-draw="week" data-source="slots"></div>
-    </div>
+    <div class="tn-legend"><span><i style="background:#5c6937"></i>Мясницкая</span><span><i style="background:#f0803b"></i>Пятницкая</span><span><i style="background:#a2b9c9"></i>Дмитровка</span><span><i style="background:#cb9f86"></i>Никитская</span></div>
+    <div class="tn-week-wrap"><div class="tn-week"><div class="tn-day"><div class="tn-day-name">Пн</div><div class="tn-chip" style="border-left-color:#a2b9c9"><b>9:30 · Дмитровка</b><span>Хатха / виньяса</span></div><div class="tn-chip" style="border-left-color:#5c6937"><b>11:30 · Мясницкая</b><span>Хатха / виньяса</span></div><div class="tn-chip" style="border-left-color:#f0803b"><b>12:00–13:30 · Пятницкая</b><span>Хатха</span></div><div class="tn-chip" style="border-left-color:#cb9f86"><b>14:00 · Никитская</b><span>Хатха / инь</span></div></div><div class="tn-day"><div class="tn-day-name">Вт</div><div class="tn-chip" style="border-left-color:#cb9f86"><b>14:00 · Никитская</b><span>Хатха</span></div><div class="tn-chip" style="border-left-color:#f0803b"><b>20:15–21:35 · Пятницкая</b><span>Мягкая / начинающие</span></div></div><div class="tn-day"><div class="tn-day-name">Ср</div><div class="tn-chip" style="border-left-color:#f0803b"><b>12:00–13:30 · Пятницкая</b><span>Хатха</span></div><div class="tn-chip" style="border-left-color:#cb9f86"><b>14:00 · Никитская</b><span>Хатха / инь</span></div></div><div class="tn-day"><div class="tn-day-name">Чт</div><div class="tn-chip" style="border-left-color:#cb9f86"><b>14:00 · Никитская</b><span>Хатха</span></div><div class="tn-chip" style="border-left-color:#f0803b"><b>20:15–21:35 · Пятницкая</b><span>Мягкая / начинающие</span></div></div><div class="tn-day"><div class="tn-day-name">Пт</div><div class="tn-chip" style="border-left-color:#a2b9c9"><b>9:30 · Дмитровка</b><span>Хатха / виньяса</span></div><div class="tn-chip" style="border-left-color:#5c6937"><b>11:30 · Мясницкая</b><span>Хатха / виньяса</span></div><div class="tn-chip" style="border-left-color:#f0803b"><b>12:00–13:30 · Пятницкая</b><span>Хатха</span></div><div class="tn-chip" style="border-left-color:#cb9f86"><b>14:00 · Никитская</b><span>Хатха / инь</span></div><div class="tn-chip" style="border-left-color:#a2b9c9"><b>20:30 · Дмитровка</b><span>Сильная виньяса</span></div></div><div class="tn-day"><div class="tn-day-name">Сб</div></div><div class="tn-day"><div class="tn-day-name">Вс</div><div class="tn-chip" style="border-left-color:#cb9f86"><b>10:00 · Никитская</b><span>Мягкая / начинающие</span></div><div class="tn-chip" style="border-left-color:#f0803b"><b>16:30–18:00 · Пятницкая</b><span>Мягкая / начинающие</span></div></div></div></div>
   </section>
 
-  <section class="tn-two tn-pad" id="tn-split">
-    <div class="tn-card" id="tn-by-studio">
+  <section class="tn-two tn-pad">
+    <div class="tn-card">
       <h2>По <em>студиям</em></h2>
       <p class="tn-sub">Занятий в неделю и сколько нужно преподавателей</p>
-      <div class="tn-bars" data-draw="by-studio" data-source="byStudio"></div>
+      <div class="tn-bars"><div class="tn-bar-row"><div>Мясницкая</div><div class="tn-bar-track"><div class="tn-bar" style="width:24.0%;background:#5c6937"></div><span class="tn-bar-val" style="left:calc(24.0% + 8px)">2 зан. · 1 преп.</span></div></div>
+<div class="tn-bar-row"><div>Пятницкая</div><div class="tn-bar-track"><div class="tn-bar" style="width:72.0%;background:#f0803b"></div><span class="tn-bar-val" style="left:calc(72.0% + 8px)">6 зан. · 3 преп.</span></div></div>
+<div class="tn-bar-row"><div>Дмитровка</div><div class="tn-bar-track"><div class="tn-bar" style="width:36.0%;background:#a2b9c9"></div><span class="tn-bar-val" style="left:calc(36.0% + 8px)">3 зан. · 2 преп.</span></div></div>
+<div class="tn-bar-row"><div>Никитская</div><div class="tn-bar-track"><div class="tn-bar" style="width:72.0%;background:#cb9f86"></div><span class="tn-bar-val" style="left:calc(72.0% + 8px)">6 зан. · 3 преп.</span></div></div></div>
     </div>
-    <div class="tn-card" id="tn-by-type">
+    <div class="tn-card">
       <h2>По <em>направлениям</em></h2>
       <p class="tn-sub">Каких преподавателей ищем</p>
-      <div class="tn-bars" data-draw="by-type" data-source="byType"></div>
+      <div class="tn-bars"><div class="tn-bar-row"><div>Мягкая / начинающие</div><div class="tn-bar-track"><div class="tn-bar" style="width:57.6%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(57.6% + 8px)">4 зан. · 3 преп.</span></div></div>
+<div class="tn-bar-row"><div>Хатха</div><div class="tn-bar-track"><div class="tn-bar" style="width:72.0%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(72.0% + 8px)">5 зан. · 2 преп.</span></div></div>
+<div class="tn-bar-row"><div>Хатха / виньяса</div><div class="tn-bar-track"><div class="tn-bar" style="width:57.6%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(57.6% + 8px)">4 зан. · 2 преп.</span></div></div>
+<div class="tn-bar-row"><div>Хатха / инь</div><div class="tn-bar-track"><div class="tn-bar" style="width:43.2%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(43.2% + 8px)">3 зан. · 1 преп.</span></div></div>
+<div class="tn-bar-row"><div>Сильная виньяса</div><div class="tn-bar-track"><div class="tn-bar" style="width:14.4%;background:#aeb49c"></div><span class="tn-bar-val" style="left:calc(14.4% + 8px)">1 зан. · 1 преп.</span></div></div></div>
     </div>
   </section>
 
-  <section id="tn-table-sec" class="tn-pad">
+  <section class="tn-pad">
     <p class="tn-kicker"><svg class="tn-star" viewBox="0 0 20 20" aria-hidden="true"><path d="M10 0l1.6 6.1 5.5-3.2-3.2 5.5L20 10l-6.1 1.6 3.2 5.5-5.5-3.2L10 20l-1.6-6.1-5.5 3.2 3.2-5.5L0 10l6.1-1.6-3.2-5.5 5.5 3.2z"/></svg>Кого ищем</p>
     <h2>Все открытые <em>слоты</em></h2>
     <p class="tn-sub">Один слот: один преподаватель на все дни слота</p>
     <div class="tn-table-wrap">
-      <table data-source="slots" data-row-key="id">
-        <thead><tr>
-          <th data-field="studio">Студия</th>
-          <th data-field="days">Дни</th>
-          <th data-field="time">Время</th>
-          <th data-field="style">Направление</th>
-          <th data-field="notes">Пожелания</th>
-          <th data-field="classes">Занятий</th>
-        </tr></thead>
-        <tbody data-draw="need-table"></tbody>
+      <table>
+        <thead><tr><th>Студия</th><th>Дни</th><th>Время</th><th>Направление</th><th>Пожелания</th><th>Занятий</th></tr></thead>
+        <tbody><tr><td><span class="tn-dot" style="background:#5c6937"></span>Мясницкая</td><td>Пн Пт</td><td>11:30</td><td>Хатха или виньяса</td><td class="tn-muted"></td><td class="tn-num">2</td></tr><tr><td><span class="tn-dot" style="background:#f0803b"></span>Пятницкая</td><td>Пн Ср Пт</td><td>12:00–13:30</td><td>Хатха, все уровни</td><td class="tn-muted">Точно не силовой класс, можно с интересными элементами</td><td class="tn-num">3</td></tr><tr><td><span class="tn-dot" style="background:#f0803b"></span>Пятницкая</td><td>Вс</td><td>16:30–18:00</td><td>Мягкая для начинающих или нестандартный формат</td><td class="tn-muted">1 раз в неделю</td><td class="tn-num">1</td></tr><tr><td><span class="tn-dot" style="background:#f0803b"></span>Пятницкая</td><td>Вт Чт</td><td>20:15–21:35</td><td>Мягкая, женская, терапевтическая</td><td class="tn-muted"></td><td class="tn-num">2</td></tr><tr><td><span class="tn-dot" style="background:#a2b9c9"></span>Дмитровка</td><td>Пн Пт</td><td>9:30</td><td>Хатха или виньяса, все уровни или начинающие</td><td class="tn-muted"></td><td class="tn-num">2</td></tr><tr><td><span class="tn-dot" style="background:#a2b9c9"></span>Дмитровка</td><td>Пт</td><td>20:30</td><td>Виньяса</td><td class="tn-muted">Нужен сильный преподаватель</td><td class="tn-num">1</td></tr><tr><td><span class="tn-dot" style="background:#cb9f86"></span>Никитская</td><td>Вс</td><td>10:00</td><td>Для начинающих</td><td class="tn-muted"></td><td class="tn-num">1</td></tr><tr><td><span class="tn-dot" style="background:#cb9f86"></span>Никитская</td><td>Вт Чт</td><td>14:00</td><td>Хатха, начинающие</td><td class="tn-muted"></td><td class="tn-num">2</td></tr><tr><td><span class="tn-dot" style="background:#cb9f86"></span>Никитская</td><td>Пн Ср Пт</td><td>14:00</td><td>Хатха все уровни или инь</td><td class="tn-muted"></td><td class="tn-num">3</td></tr></tbody>
       </table>
     </div>
   </section>
 
-  <section id="tn-combo-sec" class="tn-pad"><div class="tn-combo-box">
+  <section class="tn-pad"><div class="tn-combo-box">
     <h2>Можно закрыть <em>меньшим составом</em></h2>
     <p class="tn-sub">Если преподаватели возьмут несколько студий, хватит 6–7 человек</p>
     <ul class="tn-combo">
-      <li><b>Воскресенье:</b> Никитская 10:00 и Пятницкая 16:30. Один мягкий преподаватель для начинающих.</li>
-      <li><b>Вт и Чт:</b> Никитская 14:00 и Пятницкая 20:15. Один мягкий преподаватель для начинающих.</li>
-      <li><b>Пн и Пт:</b> Дмитровка 9:30 и Мясницкая 11:30. Один преподаватель хатхи или виньясы, если он успевает доехать (проверить длительность занятия).</li>
+      <li><span><b>Воскресенье:</b> Никитская 10:00 и Пятницкая 16:30. Один мягкий преподаватель для начинающих.</span></li>
+      <li><span><b>Вт и Чт:</b> Никитская 14:00 и Пятницкая 20:15. Один мягкий преподаватель для начинающих.</span></li>
+      <li><span><b>Пн и Пт:</b> Дмитровка 9:30 и Мясницкая 11:30. Один преподаватель хатхи или виньясы, если он успевает доехать (проверить длительность занятия).</span></li>
     </ul>
   </div></section>
 </div>
-
-<script>
-const SLOTS = [{"id": "s1", "studio": "Мясницкая", "days": "Пн Пт", "time": "11:30", "style": "Хатха или виньяса", "type": "Хатха / виньяса", "notes": "", "classes": "2"}, {"id": "s2", "studio": "Пятницкая", "days": "Пн Ср Пт", "time": "12:00–13:30", "style": "Хатха, все уровни", "type": "Хатха", "notes": "Точно не силовой класс, можно с интересными элементами", "classes": "3"}, {"id": "s3", "studio": "Пятницкая", "days": "Вт Чт", "time": "20:15–21:35", "style": "Мягкая, женская, терапевтическая", "type": "Мягкая / начинающие", "notes": "", "classes": "2"}, {"id": "s4", "studio": "Пятницкая", "days": "Вс", "time": "16:30–18:00", "style": "Мягкая для начинающих или нестандартный формат", "type": "Мягкая / начинающие", "notes": "1 раз в неделю", "classes": "1"}, {"id": "s5", "studio": "Дмитровка", "days": "Пн Пт", "time": "9:30", "style": "Хатха или виньяса, все уровни или начинающие", "type": "Хатха / виньяса", "notes": "", "classes": "2"}, {"id": "s6", "studio": "Дмитровка", "days": "Пт", "time": "20:30", "style": "Виньяса", "type": "Сильная виньяса", "notes": "Нужен сильный преподаватель", "classes": "1"}, {"id": "s7", "studio": "Никитская", "days": "Вт Чт", "time": "14:00", "style": "Хатха, начинающие", "type": "Хатха", "notes": "", "classes": "2"}, {"id": "s8", "studio": "Никитская", "days": "Пн Ср Пт", "time": "14:00", "style": "Хатха все уровни или инь", "type": "Хатха / инь", "notes": "", "classes": "3"}, {"id": "s9", "studio": "Никитская", "days": "Вс", "time": "10:00", "style": "Для начинающих", "type": "Мягкая / начинающие", "notes": "", "classes": "1"}];
-const STUDIOS = ['Мясницкая', 'Пятницкая', 'Дмитровка', 'Никитская'];
-const COLORS = ['#5c6937', '#f0803b', '#a2b9c9', '#cb9f86'];
-const DAYS = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'];
-const color = (s) => COLORS[Math.max(0, STUDIOS.indexOf(s))];
-const mins = (t) => { const m = String(t).match(/(\d+):(\d+)/); return m ? +m[1] * 60 + +m[2] : 0; };
-const el = (tag, cls, text) => { const e = document.createElement(tag); if (cls) e.className = cls; if (text != null) e.textContent = text; return e; };
-const draw = (name, fn) => document.querySelectorAll('[data-draw="' + name + '"]').forEach(fn);
-const teachers = SLOTS.length, classes = SLOTS.reduce((a, r) => a + +r.classes, 0);
-const group = (key) => { const m = new Map(); SLOTS.forEach((r) => { const o = m.get(r[key]) || { name: r[key], teachers: 0, classes: 0 }; o.teachers++; o.classes += +r.classes; m.set(r[key], o); }); return [...m.values()]; };
-const byStudio = group('studio');
-const byType = group('type').sort((a, b) => b.teachers - a.teachers || b.classes - a.classes);
-['k-teachers', 't-teachers'].forEach((n) => draw(n, (e) => { e.textContent = teachers; }));
-['k-classes', 't-classes'].forEach((n) => draw(n, (e) => { e.textContent = classes; }));
-const maxC = Math.max(...byStudio.map((r) => r.classes));
-draw('k-top', (e) => { e.textContent = byStudio.filter((r) => r.classes === maxC).map((r) => r.name + ' (' + r.classes + ' зан.)').join(', '); });
-draw('legend', (e) => { STUDIOS.forEach((s) => { const sp = el('span'); const i = el('i'); i.style.background = color(s); sp.append(i, s); e.append(sp); }); });
-draw('week', (e) => { DAYS.forEach((d) => { const col = el('div', 'tn-day'); col.append(el('div', 'tn-day-name', d));
-  SLOTS.filter((r) => r.days.split(/\s+/).includes(d)).sort((a, b) => mins(a.time) - mins(b.time)).forEach((r) => {
-    const c = el('div', 'tn-chip'); c.style.setProperty('--chip', color(r.studio)); c.append(el('b', null, r.time + ' · ' + r.studio), el('span', null, r.type)); col.append(c); });
-  e.append(col); }); });
-const bars = (name, data, byColor) => draw(name, (e) => { const mx = Math.max(...data.map((r) => r.classes));
-  data.forEach((r) => { const row = el('div', 'tn-bar-row'); const tr = el('div', 'tn-bar-track'); const b = el('div', 'tn-bar'); const pct = r.classes / mx * 72;
-    b.style.width = pct + '%'; b.style.background = byColor ? color(r.name) : '#aeb49c';
-    const v = el('span', 'tn-bar-val', r.classes + ' зан. · ' + r.teachers + ' преп.'); v.style.left = 'calc(' + pct + '% + 8px)';
-    tr.append(b, v); row.append(el('div', null, r.name), tr); e.append(row); }); });
-bars('by-studio', byStudio, true); bars('by-type', byType, false);
-draw('need-table', (e) => { SLOTS.slice().sort((a, b) => STUDIOS.indexOf(a.studio) - STUDIOS.indexOf(b.studio) || mins(a.time) - mins(b.time)).forEach((r) => {
-  const tr = el('tr'); const s = el('td'); const dot = el('span', 'tn-dot'); dot.style.background = color(r.studio); s.append(dot, r.studio);
-  tr.append(s, el('td', null, r.days), el('td', null, r.time), el('td', null, r.style), el('td', 'tn-muted', r.notes), el('td', 'tn-num', r.classes)); e.append(tr); }); });
-</script>
 </body>
 </html>
